@@ -8,3 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'cup-of-coffee';
 }
+
+// /pages: компоненты с маршрутами
+// /components: компоненты для визуализации данных
