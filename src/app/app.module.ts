@@ -24,7 +24,7 @@ import { NotFoundComponent } from './not-found.component';
     // core & shared
     CoreModule,
     SharedModule,
-    HomeModule
+    HomeModule,
   
     // app
     AppRoutingModule,
