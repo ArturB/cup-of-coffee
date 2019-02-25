@@ -11,6 +11,10 @@ import { HeaderComponent } from './layout/header/header.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    FooterComponent, 
+    HeaderComponent
   ]
 })
 export class CoreModule {
