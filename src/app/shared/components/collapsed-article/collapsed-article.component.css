@@ -1,18 +1,25 @@
 .articleFig {
     /* border: 1px solid #a2a2a2; */
     box-shadow: 0px 7px 12px -2px rgba(158,158,158,1);
-    /* border-radius: 4px; */
+    /* border-radius: calc(.25rem - 1px); */
+    
     
 }
 
 .articleFig .art{
     overflow: hidden;
+    border-top-left-radius: .25rem; 
+    border-top-right-radius: .25rem;
+    
     margin-bottom: 0;
     background: rgb(56, 56, 56);
     opacity: 1;
+    position: relative;
 }
   
 .articleFig .art .imgArtcicle{
+    border-top-left-radius: .25rem; 
+    border-top-right-radius: .25rem;
     transition: 0.8s ease;
     background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.39));
 }
@@ -25,8 +32,12 @@
     opacity: 0.7; 
 }
 
-.card-body {
-    
+.infoArticle {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    color: #fcfcfc;
 }
 
 .card-body {
