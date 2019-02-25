@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollapsedCategoryComponent implements OnInit {
 
+  categoryName: string = 'Popularne';
+
   constructor() { }
+
 
   ngOnInit() {
   }
