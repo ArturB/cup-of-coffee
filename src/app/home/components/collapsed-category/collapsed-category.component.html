@@ -1,9 +1,19 @@
-<p>
-  collapsed-category works!
-</p>
-<div class="heading">
-  <h2>Kategoria: </h2>
+<div class="container mb-5">
+  <div class="heading">
+    <h2>Kategoria: </h2>
+  </div>
+  <div class="row">
+    <div class="col-6 col-lg-3">
+      <app-collapsed-article></app-collapsed-article>
+    </div>
+    <div class="col-6 col-lg-3">
+      <app-collapsed-article></app-collapsed-article>
+    </div>
+    <div class="col-6 col-lg-3">
+      <app-collapsed-article></app-collapsed-article>
+    </div>
+    <div class="col-6 col-lg-3">
+      <app-collapsed-article></app-collapsed-article>
+    </div>
+  </div>
 </div>
-<app-collapsed-article>
-  *ngFor="let collapsed-article of collapsed-articles"
-</app-collapsed-article>
