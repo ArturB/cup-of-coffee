@@ -1,0 +1,12 @@
+.form-control {
+    border: 2px solid #499273;
+    border-radius:  0;
+}
+
+
+.btnSearch {
+    color: #fcfcfc;
+    background-color: #499273;
+    border-color: #499273;
+    border-radius: 0 .25rem .25rem 0;
+}

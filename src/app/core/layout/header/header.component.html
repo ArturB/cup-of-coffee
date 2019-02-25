@@ -1,14 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-dark bgPink">
+<nav class="navbar navbar-expand-lg navbar-dark bgPink py-2">
   <div class="container">
     <!-- <a class="navbar-brand ml-5 mx-4" href="/"><img src="/assets/images/logo5.jpg" width="160px"></a> -->
-    <a class="navbar-brand mr-lg-5" href="/"><img src="/assets/images/logo13.png" width="220px"></a>
+    <a class="navbar-brand mr-lg-5" href="/"><img src="/assets/images/logo13.png" width="260px"></a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <form class="form-inline ml-auto my-2 my-lg-0">
+      <!-- <form class="form-inline ml-auto my-2 my-lg-0">
         <input class="form-control" type="search" placeholder="Szukaj ..." aria-label="Search">
         <select class="form-control search-slt" id="exampleFormControlSelect1">
             <option hidden value="">Wszystkie kategorie</option>
@@ -17,17 +17,26 @@
             <option value="">Psychologia</option>
         </select>
         <button class="btn btnSearch my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-      </form>
+      </form> -->
       <!-- <div class="navbar-nav"> -->
-      <ul class="navbar-nav ml-lg-5 mt-2 mt-lg-0">
-        <li class="nav-item active">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <!-- <li class="nav-item active">
           <a class="nav-link" href="#">kategorie</a>
+        </li> -->
+        <li class="dropdown nav-item px-md-4">
+          <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#"><i class="fa fa-folder-open-o fa-2x faNav mb-1"></i>kategorie
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="#">Popularne</a></li>
+            <li><a class="nav-link" href="#">Sztuka</a></li>
+            <li><a class="nav-link" href="#">Psychologia</a></li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">dodaj artykuł</a>
+        <li class="nav-item px-md-4">
+          <a class="nav-link" href="#"><i class="fa fa-plus-square-o fa-2x faNav mb-1"></i>dodaj artykuł</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">konto</a>
+        <li class="nav-item px-md-4">
+          <a class="nav-link" href="#"><i class="fa fa-user-o fa-2x faNav mb-1"></i>konto</a>
         </li>
       </ul>
       <!-- </div> -->
