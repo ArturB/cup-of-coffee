@@ -8,18 +8,22 @@ import { HomeUsComponent } from './pages/home-us/home-us.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { AddArticleComponent } from './pages/add-article/add-article.component';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
+import { CollapsedCategoryComponent } from './components/collapsed-category/collapsed-category.component';
 
 @NgModule({
   declarations: [
     AddArticleComponent, 
     UserAccountComponent, 
     CategoryComponent, 
-    HomeUsComponent
+    HomeUsComponent, CollapsedCategoryComponent
   ],
   imports: [
     // CommonModule,
     HomeRoutingModule,
     SharedModule
+  ],
+  exports: [
+    CollapsedCategoryComponent
   ]
 })
 export class HomeModule { }
