@@ -1,5 +1,7 @@
 export class Article {
     link: string;
     title: string;
-    thumbnail: string;
+    author: string;
+    viewed: number;
+    dateModified: Date;
 }
