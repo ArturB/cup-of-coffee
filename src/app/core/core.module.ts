@@ -3,18 +3,23 @@ import { CommonModule } from '@angular/common';
 
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { SearchFormComponent } from './layout/search-form/search-form.component';
 
 @NgModule({
   declarations: [
     FooterComponent, 
-    HeaderComponent
+    HeaderComponent,
+    SearchFormComponent
+    
   ],
   imports: [
     CommonModule
   ],
   exports: [
     FooterComponent, 
-    HeaderComponent
+    HeaderComponent,
+    SearchFormComponent
+    
   ]
 })
 export class CoreModule {
