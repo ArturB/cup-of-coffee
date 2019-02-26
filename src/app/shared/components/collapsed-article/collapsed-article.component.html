@@ -1,18 +1,18 @@
 <div class="card articleFig mb-4">
   <!-- <img class="card-img-top" src="https://placehold.it/300x150" alt="Obrazek w karcie"> -->
   <div class="art">
-    <img class="card-img-top imgArtcicle" src="./assets/img/image5.jpg" alt="Obrazek w karcie">
+    <img class="card-img-top imgArtcicle" [src]="article.link" alt="Obrazek w karcie">
     <div class="infoArticle text-right mb-1">
-      <span class="mr-3"><i class="fa fa fa-eye pr-2"></i>9K</span>
-      <span class="mr-3"><i class="fa fa fa-calendar pr-2"></i>22.02.18</span>
+      <span class="mr-3"><i class="fa fa fa-eye pr-2"></i>{{ article.viewed }}</span>
+      <span class="mr-3"><i class="fa fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.mm.yy" }}</span>
       
     </div>
   </div>
   <div class="card-body">
-    <p class="card-text">Lorem ipsum Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam. f ffet.</p>
+    <p class="card-text">{{ article.title }}</p>
   </div>
   <div class="card-footer text-right">
-    Autor
+    {{ article.author }}
   </div>
 </div>
 
