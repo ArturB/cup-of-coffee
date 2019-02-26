@@ -4,3 +4,10 @@
 a:link, a:visited, a:active, a:hover {
 	text-decoration: none
 }
+
+h2 {
+	font-size: 1.6rem;
+}
+p{
+	line-height: 2;
+}
