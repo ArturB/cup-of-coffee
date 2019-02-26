@@ -12,9 +12,16 @@
     color: #c75253;
 }
 
+.btnSeeMore {
+    text-align: center;
+}
+
 @media (min-width: 992px) {
     .heading h2 {
         width: 40%;
         text-align: left;
+    }
+    .btnSeeMore {
+        text-align: right;
     }
 }
