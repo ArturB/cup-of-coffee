@@ -1,6 +1,7 @@
 export class User {
-    username: string;
-    favoriteArticles: any;
-    createdArticles: any;
-        
-  }
+  constructor(public email: string,
+              public password: string,
+              public username?: string,
+              public ConfirmPassword?: string
+              ) {}
+}
