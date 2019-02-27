@@ -11,8 +11,10 @@
 </div>
 
 <div class="container mt-n5 text-right">
-    <button type="button" class="faBtn">
-      <i class="fa fa-star fa-3x"></i>
+    <button type="button" class="faBtn" (click)="onFavorite()">
+      <i class="fa fa-star fa-3x"
+      [ngStyle]="{'background-color': isFavorite ? '#f5ad0d' : '#08c5c5'}">
+      </i>
     </button>
 </div>
 

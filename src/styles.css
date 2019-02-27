@@ -1,5 +1,13 @@
-* {
+/* * {
 	outline: none;
+	box-shadow: none;
+} */
+button:focus, input:focus, .btn:focus, .form-control:focus {
+	outline:0;
+	box-shadow:none;
+}
+.btn {
+    color: #fcfcfc;
 }
 a:link, a:visited, a:active, a:hover {
 	text-decoration: none
@@ -12,3 +20,4 @@ h2 {
 .contBgr {
     background-color: #f3f1f1;
 }
+

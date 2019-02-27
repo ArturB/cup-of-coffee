@@ -22,10 +22,11 @@
 }
 .fa-star {
     color: #fcfcfc;
-    background-color: #08c5c5;
+    /* background-color: #08c5c5; */
     padding: 14px;
     border-radius: 50%;
 }
+
 
 h1, h2 {
     max-width: 60%;

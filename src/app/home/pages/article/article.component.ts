@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleComponent implements OnInit {
 
+  isFavorite: boolean = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onFavorite() {
+    console.log(this.isFavorite);
+    this.isFavorite = !this.isFavorite;
+    
   }
 
 }
