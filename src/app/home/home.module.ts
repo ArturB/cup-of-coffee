@@ -13,6 +13,8 @@ import { UserAccountComponent } from './pages/user-account/user-account.componen
 
 import { CollapsedCategoryComponent } from './components/collapsed-category/collapsed-category.component';
 
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+
 @NgModule({
   declarations: [
     AddArticleComponent, 
@@ -20,7 +22,8 @@ import { CollapsedCategoryComponent } from './components/collapsed-category/coll
     CategoryComponent, 
     ArticleComponent,
     HomeUsComponent, 
-    CollapsedCategoryComponent
+    CollapsedCategoryComponent, 
+    NotFoundComponent
   ],
   imports: [
     CommonModule,

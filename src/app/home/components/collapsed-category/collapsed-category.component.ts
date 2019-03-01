@@ -70,4 +70,9 @@ export class CollapsedCategoryComponent implements OnInit {
   ngOnInit() {
   }
 
+  gotoArticle(article) {
+    console.log("dd ", article);
+  }
+
+
 }

@@ -5,7 +5,7 @@
   <div class="row">
     <!-- wyświetla ostatnie 4 elementy listy -->
     <div class="col-6 col-lg-3" *ngFor="let art of (articles | slice: -4)">
-      <app-collapsed-article
+      <app-collapsed-article (onShowArticle)="gotoArticle($event)"
       [article]="art">
       </app-collapsed-article>
     </div>
@@ -14,3 +14,5 @@
     <app-btn-see-more></app-btn-see-more>
   </div>
 </div>
+
+<app-article></app-article>

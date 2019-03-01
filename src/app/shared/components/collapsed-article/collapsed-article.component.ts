@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Article } from '../../../core/models/article.model';
 
 @Component({
@@ -11,7 +11,14 @@ export class CollapsedArticleComponent implements OnInit {
   @Input() article: Article;
   constructor() { }
 
+  @Output() onShowArticle = new EventEmitter();
+
   ngOnInit() {
+  }
+
+  showArticle(article: Article) {
+    console.log(article.articleId);
+    this.onShowArticle.emit(article);
   }
 
 }
