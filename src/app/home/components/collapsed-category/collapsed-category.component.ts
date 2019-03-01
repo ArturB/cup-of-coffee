@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../../../core/models/article.model';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-collapsed-category',
@@ -35,7 +36,7 @@ export class CollapsedCategoryComponent implements OnInit {
       link: "./assets/img/image3.jpg",
       title: "vmsgdrgd sffsnnrjvrn so vfrfs ssvklms",
       author: "Agent007",
-      description: "aaaa",
+      description: "ssss",
       category: "popularne",
       viewed: 12,
       dateModified: new Date()
@@ -45,7 +46,7 @@ export class CollapsedCategoryComponent implements OnInit {
       link: "./assets/img/image4.jpg",
       title: "vmslvnj vmsjns",
       author: "Ford1201",
-      description: "aaaa",
+      description: "dddd",
       category: "popularne",
       viewed: 12,
       dateModified: new Date()
@@ -55,7 +56,7 @@ export class CollapsedCategoryComponent implements OnInit {
       link: "./assets/img/image5.jpg",
       title: "vmslvnj vmsjn vsjnjso vfrfs ssvklms",
       author: "Admin",
-      description: "aaaa",
+      description: "ffff",
       category: "popularne",
       viewed: 12,
       dateModified: new Date()
@@ -64,13 +65,14 @@ export class CollapsedCategoryComponent implements OnInit {
 
   categoryName: string = 'Popularne';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
 
   ngOnInit() {
   }
 
-  gotoArticle(article) {
+  gotoArticle(article: Article) {
+    this.router.navigate(['/category/article/', article.articleId]);
     console.log("dd ", article);
   }
 

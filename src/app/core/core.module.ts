@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { HomeRoutingModule } from '../home/home-routing.module';
+
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { SearchFormComponent } from './layout/search-form/search-form.component';
@@ -13,7 +15,8 @@ import { SearchFormComponent } from './layout/search-form/search-form.component'
     
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    HomeRoutingModule
   ],
   exports: [
     FooterComponent, 

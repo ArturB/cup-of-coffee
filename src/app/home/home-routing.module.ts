@@ -10,8 +10,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
  
 const routes: Routes = [
   { path: '',   component: HomeUsComponent},
-  { path: 'category', component: CategoryComponent},
-  { path: 'article', component: ArticleComponent},
+  { path: 'category/:category', component: CategoryComponent},
+  { path: 'category/article/:articleId', component: ArticleComponent},
   { path: 'add-article', component: AddArticleComponent},
   { path: 'user-account', component: UserAccountComponent},
   { path: '**', component: NotFoundComponent }
