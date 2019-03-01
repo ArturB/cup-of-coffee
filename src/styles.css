@@ -9,6 +9,9 @@ button:focus, input:focus, .btn:focus, .form-control:focus {
 .btn {
     color: #fcfcfc;
 }
+.btn:hover {
+	color: #fcfcfc;
+}
 a:link, a:visited, a:active, a:hover {
 	text-decoration: none
 }
