@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Article } from '../../../core/models/article.model';
 import { Router } from "@angular/router";
+
+import { Article } from '../../../core/models/article.model';
+import { ArticleService } from '../../../core/services/article.service';
 
 @Component({
   selector: 'app-collapsed-category',
@@ -9,63 +11,13 @@ import { Router } from "@angular/router";
 })
 export class CollapsedCategoryComponent implements OnInit {
 
-  // private videos: Article[] = [];
-  public articles: Array<Article> = [
-    {
-      articleId: 1,
-      link: "./assets/img/image1.jpg",
-      title: "chhhhhhhd sefsgvr vsjnjso vfrfs ssvklms",
-      author: "Admin",
-      description: "aaaa",
-      category: "popularne",
-      viewed: 12,
-      dateModified: new Date()
-    },
-    {
-      articleId: 2,
-      link: "./assets/img/image2.jpg",
-      title: "vmslvnjjnjso vfrfs ssvklms",
-      author: "Lollypop",
-      description: "aaaa",
-      category: "popularne",
-      viewed: 12,
-      dateModified: new Date()
-    },
-    {
-      articleId: 3,
-      link: "./assets/img/image3.jpg",
-      title: "vmsgdrgd sffsnnrjvrn so vfrfs ssvklms",
-      author: "Agent007",
-      description: "ssss",
-      category: "popularne",
-      viewed: 12,
-      dateModified: new Date()
-    },
-    {
-      articleId: 4,
-      link: "./assets/img/image4.jpg",
-      title: "vmslvnj vmsjns",
-      author: "Ford1201",
-      description: "dddd",
-      category: "popularne",
-      viewed: 12,
-      dateModified: new Date()
-    },
-    {
-      articleId: 5,
-      link: "./assets/img/image5.jpg",
-      title: "vmslvnj vmsjn vsjnjso vfrfs ssvklms",
-      author: "Admin",
-      description: "ffff",
-      category: "popularne",
-      viewed: 12,
-      dateModified: new Date()
-    },
-    ];
-
+  articles: Article[] = [];
+  
   categoryName: string = 'Popularne';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private articleService: ArticleService) { 
+    this.articles = articleService.getArticles();
+  }
 
 
   ngOnInit() {

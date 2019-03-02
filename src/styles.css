@@ -16,8 +16,11 @@ a:link, a:visited, a:active, a:hover {
 	text-decoration: none
 }
 
+h1 {
+	font-size: 3.2rem;
+}
 h2 {
-	font-size: 1.6rem;
+	font-size: 2rem;
 }
 
 .contBgr {

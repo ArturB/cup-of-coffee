@@ -1,18 +1,45 @@
+/* .container-fluid{
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.39));
+
+} */
+.output {
+    position: relative; 
+    height: 100%;
+    z-index: -1;
+    /* background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.39)); */
+}
 .imgBgr {
     /* background-image: url(/assets/img/image6.jpeg); */
-    background-color: #1e202f;
-    /* background-position: center; */
-    /* background-repeat: no-repeat; */
-    /* background-size: cover; */
-    min-height: 500px;
+    position: absolute;
+    /* background-color: #1e202f; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    /* opacity: 0.4; 
+    filter: alpha(opacity=40); /* msie */
+    /*background-color: #000; */
+
+    filter: blur(0.1em);
+    /* opacity: 0.8; */
+
+    min-height: 660px;
     position: relative;
     text-align: center;
-    color: white;
+    
+    /* filter: contrast(1); */
     z-index: -1;
 }
 .heading {
-    padding-top: 100px;
-    padding-bottom: 100px;
+    position: absolute;
+    top: 0;    
+    color: white;
+    mix-blend-mode: hard-light;
+    padding-top: 160px;
+    padding-bottom: 160px;
+    /* color: white;
+    mix-blend-mode: difference; */
+    /* filter: grayscale(1) contrast(9) drop-shadow(.05em .05em #499273); */
 }
 
 .faBtn{
@@ -35,12 +62,16 @@ h1, h2 {
 
 @media screen and (max-width: 576px) {
     h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
         max-width: 100%;
     }
     h2 {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         max-width: 100%;
+    }
+
+    .imgBgr {
+        min-height: 500px;
     }
 }
 p {
