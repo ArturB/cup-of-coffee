@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from "@angular/router";
+import { Article } from '../../../../core/models/article.model';
 
 @Component({
   selector: 'app-btn-see-more',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./btn-see-more.component.css']
 })
 export class BtnSeeMoreComponent implements OnInit {
-
-  constructor() { }
+  @Input() articleCategory: string;
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  goToCategory() {
+    console.log(this.articleCategory)
+    this.router.navigate(['/kategorie', this.articleCategory])
   }
 
 }

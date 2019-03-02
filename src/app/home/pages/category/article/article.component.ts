@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
-import { Article } from '../../../core/models/article.model';
+import { Article } from '../../../../core/models/article.model';
 
 @Component({
   selector: 'app-article',

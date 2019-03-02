@@ -3,17 +3,24 @@ import { Routes, RouterModule } from '@angular/router';
  
 import { HomeUsComponent } from './pages/home-us/home-us.component';
 import { CategoryComponent } from './pages/category/category.component';
-import { ArticleComponent } from './pages/article/article.component';
+import { SelectedCategoryComponent } from './pages/category/selected-category/selected-category.component';
+import { ArticleComponent } from './pages/category/article/article.component';
 import { AddArticleComponent } from './pages/add-article/add-article.component';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
  
 const routes: Routes = [
-  { path: '',   component: HomeUsComponent},
-  { path: 'category/:category', component: CategoryComponent},
-  { path: 'category/article/:articleId', component: ArticleComponent},
-  { path: 'add-article', component: AddArticleComponent},
-  { path: 'user-account', component: UserAccountComponent},
+  { path: 'kategorie',   component: HomeUsComponent},
+  { path: '', redirectTo: 'kategorie', pathMatch: 'full'},
+  { path: 'kategorie/:category', component: CategoryComponent,
+    children: [
+      {path: '', component: SelectedCategoryComponent},
+      {path: 'artykul/:articleId', component: ArticleComponent}
+    ]
+  },
+  // { path: 'kategoria/artykul/:articleId', component: ArticleComponent},
+  { path: 'dodaj-artykul', component: AddArticleComponent},
+  { path: 'konto', component: UserAccountComponent},
   { path: '**', component: NotFoundComponent }
 ];
  

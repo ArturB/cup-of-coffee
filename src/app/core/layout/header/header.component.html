@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bgPink py-2">
   <div class="container">
     <!-- <a class="navbar-brand ml-5 mx-4" href="/"><img src="/assets/images/logo5.jpg" width="160px"></a> -->
-    <a class="navbar-brand mr-lg-5" href="/"><img src="/assets/images/logo13.png" width="260px"></a>
+    <a class="navbar-brand mr-lg-5" [routerLink]="['/kategorie']"><img src="/assets/images/logo13.png" width="260px"></a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -23,8 +23,8 @@
         <!-- <li class="nav-item active">
           <a class="nav-link" href="#">kategorie</a>
         </li> -->
-        <li class="dropdown nav-item px-md-4">
-          <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#"><i class="fa fa-folder-open-o fa-2x faNav mb-1"></i>kategorie
+        <li class="dropdown nav-item px-md-4" routerLinkActive="active">
+          <a class="dropdown-toggle nav-link" data-toggle="dropdown" [routerLink]="['/kategorie']"><i class="fa fa-folder-open-o fa-2x faNav mb-1"></i>kategorie
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="#">Popularne</a></li>
@@ -32,11 +32,11 @@
             <li><a class="nav-link" href="#">Psychologia</a></li>
           </ul>
         </li>
-        <li class="nav-item px-md-4">
-          <a class="nav-link" href="#"><i class="fa fa-plus-square-o fa-2x faNav mb-1"></i>dodaj artykuł</a>
+        <li class="nav-item px-md-4" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/dodaj-artykul']"><i class="fa fa-plus-square-o fa-2x faNav mb-1"></i>dodaj artykuł</a>
         </li>
-        <li class="nav-item px-md-4">
-          <a class="nav-link" [routerLink]="['/category', 'popularne']"><i class="fa fa-user-o fa-2x faNav mb-1"></i>konto</a>
+        <li class="nav-item px-md-4" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/konto']"><i class="fa fa-user-o fa-2x faNav mb-1"></i>konto</a>
         </li>
       </ul>
       <!-- </div> -->

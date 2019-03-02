@@ -1,6 +1,6 @@
 <div class="container contBgr py-5">
   <div class="heading mb-5 ml-md-3">
-    <h2 class="pb-2">Kategoria: <a class="catName" href="#">{{articles[0].category.toUpperCase()}}</a></h2>
+    <h2 class="pb-2">Kategoria: <a class="catName" [routerLink]="[ '/kategoria', articles[0].category ]">{{articles[0].category.toUpperCase()}}</a></h2>
   </div>
   <div class="row">
     <!-- wyświetla ostatnie 4 elementy listy -->
@@ -11,7 +11,8 @@
     </div>
   </div>
   <div class="btnSeeMore mt-4 mr-md-3">
-    <app-btn-see-more></app-btn-see-more>
+    <app-btn-see-more
+    [articleCategory]="articles[0].category"></app-btn-see-more>
   </div>
 </div>
 
