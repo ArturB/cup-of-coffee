@@ -56,6 +56,10 @@
     padding-left: 0.5rem;
 }
 
+textarea.form-control {
+    min-height: 230px;
+}
+
 .btnReset {
     /* background-color: #499273; */
     background-color: #52b38a;
