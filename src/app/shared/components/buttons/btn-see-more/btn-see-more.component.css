@@ -1,11 +1,11 @@
 .btnSeeMore {
     /* background-color: #499273; */
-    background-color: #c75253;
+    background-color: #f0686a;
     border: 1px solid #a2a2a2;
 }
 
 .btnSeeMore:hover, .btnSeeMore:active {
-    background-color: #f0686a;
+    background-color: #c75253;
 }
 
   
