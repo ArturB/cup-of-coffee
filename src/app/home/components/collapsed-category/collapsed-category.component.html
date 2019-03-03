@@ -5,10 +5,12 @@
   </div>
   <div class="row">
     <!-- wyświetla ostatnie 4 elementy listy -->
-    <div class="col-6 col-lg-3" *ngFor="let art of (articles)">
-      <app-collapsed-article (onShowArticle)="gotoArticle($event)"
-      [article]="art">
-      </app-collapsed-article>
+    <div class="col-6 col-lg-3" *ngFor="let art of filteredArticles; let i = index">
+      <ng-container>
+        <app-collapsed-article (onShowArticle)="gotoArticle($event)"
+        [article]="art">
+        </app-collapsed-article>
+      </ng-container>
     </div>
   </div>
   <!-- <div class="btnSeeMore mt-4 mr-md-3">

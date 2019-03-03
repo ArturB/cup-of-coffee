@@ -15,6 +15,8 @@ export class SelectedCategoryComponent implements OnInit {
 
   category: string;
 
+  showFour: boolean = false;
+
   constructor(private route: ActivatedRoute, articleService: ArticleService) { 
     this.category = this.route.snapshot.params['category'];
     this.articles = articleService.getArticleByCategory(this.category);
