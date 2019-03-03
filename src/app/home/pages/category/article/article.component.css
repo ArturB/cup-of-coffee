@@ -15,12 +15,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
-    /* opacity: 0.4; 
-    filter: alpha(opacity=40); /* msie */
-    /*background-color: #000; */
-
-    filter: blur(0.1em);
+    /* filter: blur(0.1em); */
     /* opacity: 0.8; */
 
     min-height: 660px;
