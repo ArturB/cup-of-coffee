@@ -7,10 +7,11 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { CollapsedCategoryComponent } from './components/collapsed-category/collapsed-category.component';
 import { CollapsedArticleComponent } from './components/collapsed-article/collapsed-article.component';
 import { BtnSeeMoreComponent } from './components/buttons/btn-see-more/btn-see-more.component';
+import { SearchFormComponent } from './components/search-form/search-form.component';
 
 
 @NgModule({
-  declarations: [LoaderComponent, CollapsedCategoryComponent, CollapsedArticleComponent, BtnSeeMoreComponent],
+  declarations: [LoaderComponent, CollapsedCategoryComponent, CollapsedArticleComponent, BtnSeeMoreComponent, SearchFormComponent],
   imports: [
     CommonModule,
 
@@ -19,7 +20,8 @@ import { BtnSeeMoreComponent } from './components/buttons/btn-see-more/btn-see-m
   exports: [
     CollapsedCategoryComponent,
     CollapsedArticleComponent,
-    BtnSeeMoreComponent
+    BtnSeeMoreComponent,
+    SearchFormComponent
     
   ]
 })

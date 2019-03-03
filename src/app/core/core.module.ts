@@ -7,13 +7,13 @@ import { ArticleService } from './services/article.service';
 
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { SearchFormComponent } from './layout/search-form/search-form.component';
+// import { SearchFormComponent } from './layout/search-form/search-form.component';
 
 @NgModule({
   declarations: [
     FooterComponent, 
     HeaderComponent,
-    SearchFormComponent
+    // SearchFormComponent
     
   ],
   imports: [
@@ -23,7 +23,7 @@ import { SearchFormComponent } from './layout/search-form/search-form.component'
   exports: [
     FooterComponent, 
     HeaderComponent,
-    SearchFormComponent
+    // SearchFormComponent
     
   ],
   providers: [ArticleService],

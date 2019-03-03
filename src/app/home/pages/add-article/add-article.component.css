@@ -1,0 +1,88 @@
+.output {
+    position: relative; 
+    height: 100%;
+    z-index: -1;
+}
+.imgBgr {
+    position: absolute;
+    background-color: #1e202f;
+
+    min-height: 600px;
+    position: relative;
+    text-align: center;
+    z-index: -1;
+}
+.heading {
+    position: absolute;
+    top: 0;    
+    color: white;
+    text-transform: uppercase;
+    mix-blend-mode: hard-light;
+    padding-top: 140px;
+    padding-bottom: 140px;
+    /* color: white;
+    mix-blend-mode: difference; */
+    /* filter: grayscale(1) contrast(9) drop-shadow(.05em .05em #499273); */
+}
+
+.heading h1 {
+    line-height: 1.4;
+    max-width: 60%;
+    /* max-width: 800px; */
+}
+
+.container h5 {
+    max-width: 70%;
+}
+
+@media screen and (max-width: 576px) {
+    .heading h1 {
+        font-size: 2.4rem;
+        max-width: 100%;
+    }
+    .container h5 {
+        max-width: 100%;
+    }
+}
+
+/*  form style */
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.labelStyle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding-left: 0.5rem;
+}
+
+.btnReset {
+    /* background-color: #499273; */
+    background-color: #52b38a;
+    border: 1px solid #a2a2a2;
+}
+
+.btnAdd {
+    /* background-color: #499273; */
+    background-color: #f0686a;
+    border: 1px solid #a2a2a2;
+}
+
+.btnAdd:hover, .btnAdd:active {
+    background-color: #c75253;
+}
+.btnReset:hover, .btnReset:active {
+    background-color: #499273;
+}
+
+.btnGroup {
+    padding-left: 0.5rem;
+
+}
+
+
+/* @media (max-width: 992px) {
+    .btnGroup {
+        text-align: center;
+    }
+} */
