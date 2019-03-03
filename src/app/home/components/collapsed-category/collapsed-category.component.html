@@ -1,7 +1,14 @@
 <ng-container *ngIf="category !== 'undefined'; else noCategories">
   <div class="container contBgr py-5 mb-5">
   <div class="heading mb-5 ml-md-3">
-    <h2 class="pb-2">Kategoria: <a class="catName" [routerLink]="[ '/kategorie', category ]">{{category?.toUpperCase()}}</a></h2>
+    <h2 class="pb-2">Kategoria: 
+      <a 
+        class="catName" 
+        [class.disabled]="!showFour"
+        [routerLink]="[ '/kategorie', category ]">
+        {{category?.toUpperCase()}}
+      </a>
+    </h2>
   </div>
   <div class="row">
     <!-- wyświetla ostatnie 4 elementy listy -->

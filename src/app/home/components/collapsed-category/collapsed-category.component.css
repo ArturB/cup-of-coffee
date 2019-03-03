@@ -8,6 +8,12 @@
 .catName:hover {
     color: #c75253;
 }
+a.disabled {
+    /* Make the disabled links grayish*/
+    color: #c75253;
+    /* And disable the pointer events */
+    pointer-events: none;
+  }
 
 @media (min-width: 992px) {
     .heading h2 {
