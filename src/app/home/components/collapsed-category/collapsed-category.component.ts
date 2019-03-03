@@ -11,20 +11,16 @@ import { ArticleService } from '../../../core/services/article.service';
 })
 export class CollapsedCategoryComponent implements OnInit {
 
-  articless: Article[] = [];
   articles: Article[] = [];
 
   @Input() category: string;
 
-  constructor(private router: Router, private articleService: ArticleService) { 
-  }
+  constructor(private router: Router, private articleService: ArticleService) { }
 
   ngOnInit() {
     this.articles = this.articleService.getArticleByCategory(this.category);
 
   }
-
-
 
   gotoArticle(article: Article) {
     this.router.navigate(['kategorie/',article.category, 'artykul', article.articleId]);

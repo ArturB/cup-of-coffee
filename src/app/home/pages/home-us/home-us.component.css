@@ -1,0 +1,9 @@
+.btnSeeMore {
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+    .btnSeeMore {
+        text-align: right;
+    }
+}
