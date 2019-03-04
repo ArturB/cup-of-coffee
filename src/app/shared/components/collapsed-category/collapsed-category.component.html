@@ -1,31 +1,31 @@
 <ng-container *ngIf="category !== 'undefined'; else noCategories">
   <div class="container contBgr py-5 mb-5">
-  <div class="heading mb-5 ml-md-3">
-    <h2 class="pb-2">Kategoria: 
-      <a 
-        class="catName" 
-        [class.disabled]="!showFour"
-        [routerLink]="[ '/kategorie', category ]">
-        {{category?.toUpperCase()}}
-      </a>
-    </h2>
-  </div>
-  <div class="row">
-    <!-- wyświetla ostatnie 4 elementy listy -->
-    <div class="col-6 col-lg-3" *ngFor="let art of filteredArticles; let i = index">
-      <ng-container>
-        <app-collapsed-article (onShowArticle)="gotoArticle($event)"
-        [article]="art">
-        </app-collapsed-article>
-      </ng-container>
+    <div class="heading mb-5 ml-md-3">
+      <h2 class="pb-2">Kategoria: 
+        <a 
+          class="catName" 
+          [class.disabled]="!showFour"
+          [routerLink]="[ '/kategorie', category ]">
+          {{category?.toUpperCase()}}
+        </a>
+      </h2>
     </div>
+    <div class="row">
+      <!-- wyświetla ostatnie 4 elementy listy -->
+      <div class="col-6 col-lg-3" *ngFor="let art of filteredArticles; let i = index">
+        <ng-container>
+          <app-collapsed-article (onShowArticle)="gotoArticle($event)"
+          [article]="art">
+          </app-collapsed-article>
+        </ng-container>
+      </div>
+    </div>
+    <!-- <div class="btnSeeMore mt-4 mr-md-3">
+      <app-btn-see-more
+      [articleCategory]="category"></app-btn-see-more>
+    </div> -->
+    <ng-content></ng-content>
   </div>
-  <!-- <div class="btnSeeMore mt-4 mr-md-3">
-    <app-btn-see-more
-    [articleCategory]="category"></app-btn-see-more>
-  </div> -->
-  <ng-content></ng-content>
-</div>
 </ng-container>
 
 <ng-template #noCategories>

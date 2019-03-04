@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 
+import { AuthModule } from './pages/auth/auth.module';
+
 import { SharedModule } from '../shared/shared.module';
 
 import { HomeUsComponent } from './pages/home-us/home-us.component';
@@ -14,6 +16,7 @@ import { UserAccountComponent } from './pages/user-account/user-account.componen
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
+
 @NgModule({
   declarations: [
     AddArticleComponent, 
@@ -23,10 +26,12 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     ArticleComponent,
     HomeUsComponent, 
     NotFoundComponent, 
+     
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
+    AuthModule,
     SharedModule
   ],
   exports: [

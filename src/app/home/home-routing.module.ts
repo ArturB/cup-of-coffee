@@ -7,7 +7,10 @@ import { SelectedCategoryComponent } from './pages/category/selected-category/se
 import { ArticleComponent } from './pages/category/article/article.component';
 import { AddArticleComponent } from './pages/add-article/add-article.component';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
+
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+
+import { AuthComponent } from './pages/auth/auth.component';
  
 const routes: Routes = [
   { path: 'kategorie',   component: HomeUsComponent},
@@ -20,7 +23,9 @@ const routes: Routes = [
   },
   // { path: 'kategoria/artykul/:articleId', component: ArticleComponent},
   { path: 'dodaj-artykul', component: AddArticleComponent},
-  { path: 'konto', component: UserAccountComponent},
+  {path: 'konto', component: AuthComponent, loadChildren: './pages/auth/auth.module#AuthModule'},
+
+  // { path: 'konto', component: UserAccountComponent},
   { path: '**', component: NotFoundComponent }
 ];
  

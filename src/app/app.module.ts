@@ -6,6 +6,7 @@ import { SharedModule } from './shared/shared.module';
 
 // czasowo zaiportowany moduł
 import { HomeModule } from './home/home.module';
+// import { AuthModule } from './home/home.module';
 
 
 import { AppRoutingModule } from './app-routing.module';
