@@ -1,3 +1,7 @@
-<p>
-  login works!
-</p>
+<input type="email" id="inputEmail" class="form-control mb-2" placeholder="Email" required autofocus>
+<input type="password" id="inputPassword" class="form-control mb-5" placeholder="Hasło" required>
+
+<button class="btn btn-lg pinkBtn btn-block text-uppercase" type="submit">zaloguj</button>
+<hr class="my-4">
+<p class="text-center">Nie masz konta? <a class="bottomLink" [routerLink]="[ '/konto/', 'rejestracja' ]">Zarejestruj się!</a></p>
+      

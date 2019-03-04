@@ -9,9 +9,9 @@ import { RegisterComponent } from './register/register.component';
 // import { authRouting } from "./auth-routing.module";
 
 const AuthRoutes: Routes = [
-  { path: '', redirectTo: 'zaloguj', pathMatch: 'full' },
-  { path: 'zaloguj', component: LoginComponent },
-  { path: 'zarejestruj', component: RegisterComponent },
+  { path: '', redirectTo: 'logowanie', pathMatch: 'full' },
+  { path: 'logowanie', component: LoginComponent },
+  { path: 'rejestracja', component: RegisterComponent },
 ];
 
 @NgModule({

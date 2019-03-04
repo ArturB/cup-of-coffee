@@ -1,0 +1,9 @@
+.bottomLink {
+    color: #499273;
+    font-weight: 600;
+}
+.bottomLink:hover {
+    color: #499273;
+    text-decoration: underline;
+
+}
