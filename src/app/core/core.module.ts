@@ -26,7 +26,7 @@ import { HeaderComponent } from './layout/header/header.component';
     // SearchFormComponent
     
   ],
-  providers: [ArticleService],
+  providers: [],
 })
 export class CoreModule {
   // constructor(@Optional() @SkipSelf() core:CoreModule ){
