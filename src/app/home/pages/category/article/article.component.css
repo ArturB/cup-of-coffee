@@ -2,27 +2,21 @@
     background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.39));
 
 } */
-.output {
+/* .output {
     position: relative; 
     height: 100%;
     z-index: -1;
-    /* background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.39)); */
 }
 .imgBgr {
-    /* background-image: url(/assets/img/image6.jpeg); */
     position: absolute;
-    /* background-color: #1e202f; */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* filter: blur(0.1em); */
-    /* opacity: 0.8; */
 
     min-height: 600px;
     position: relative;
     text-align: center;
     
-    /* filter: contrast(1); */
     z-index: -1;
 }
 .heading {
@@ -32,9 +26,25 @@
     mix-blend-mode: hard-light;
     padding-top: 140px;
     padding-bottom: 140px;
-    /* color: white;
-    mix-blend-mode: difference; */
-    /* filter: grayscale(1) contrast(9) drop-shadow(.05em .05em #499273); */
+} */
+
+
+.imgBgr {
+    /* background-image: url(/assets/img/image6.jpeg); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #1e202f;
+    min-height: 600px;
+    position: relative;
+    text-align: center;
+   
+    z-index: -1;
+}
+.heading {
+    padding-top: 140px;
+    padding-bottom: 140px;
+    color: white;
 }
 
 .faBtn{
@@ -66,7 +76,7 @@
     }
 
     .imgBgr {
-        min-height: 500px;
+        min-height: 460px;
     }
 }
 p {
