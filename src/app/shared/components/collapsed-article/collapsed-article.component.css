@@ -19,10 +19,16 @@
 }
   
 .articleFig .art .imgArtcicle{
+    height: 169px;
     border-top-left-radius: .25rem; 
     border-top-right-radius: .25rem;
     transition: 0.8s ease;
     background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.39));
+}
+@media screen and (max-width: 576px) {
+    .articleFig .art .imgArtcicle{
+        height: 140px;
+    }
 }
 
 /* .card-body, .card-footer {

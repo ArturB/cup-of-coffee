@@ -37,13 +37,13 @@
     <div class="form-group">
       <label for="articleImg" class="labelStyle">Zdjęcie lub kolor tła</label>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" value="option1" checked>
+        <input class="form-check-input" type="radio" name="" value="option1" checked>
         <label class="form-check-label" for="exampleRadios1">
           Kolor domyślny
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" value="option2">
+        <input class="form-check-input" type="radio" name="" value="option2">
         <label class="form-check-label" for="exampleRadios2">
           <input type="file" class="form-control-file">
         </label>
@@ -53,18 +53,18 @@
     <div class="form-group">
       <label for="author" class="labelStyle">Widoczność autora w artykule</label>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option1" checked>
+        <input class="form-check-input" type="radio" name="" value="option1" checked>
         <label class="form-check-label" for="isAuthor">Pokaż autora</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <input class="form-check-input" type="radio" name="" id="inlineRadio2" value="option2">
         <label class="form-check-label" for="noAuthor">Zostań anonimem</label>
       </div>
     </div>
 
     <div class="btnGroup">
       <button type="reset" class="btn btnReset mr-4">Anuluj<i class="fa fa-trash ml-2 my-auto"></i></button>
-      <button type="" class="btn pinkBtn" (click)="newArticle()">Dodaj artykuł<i class="fa fa-save ml-2 my-auto"></i></button>
+      <button type="button" class="btn pinkBtn" (click)="newArticle()">Dodaj artykuł<i class="fa fa-save ml-2 my-auto"></i></button>
     </div> 
 
   </form>
