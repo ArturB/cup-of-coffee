@@ -17,10 +17,16 @@ export class CollapsedCategoryComponent implements OnInit {
   @Input() category: string;
   @Input() showFour: boolean;
 
-  constructor(private router: Router, private articleService: ArticleService) { }
+  constructor(private router: Router, private articleService: ArticleService) {
+    
+   }
 
   ngOnInit() {
-    this.articles = this.articleService.getArticleByCategory(this.category);
+    this.articleService.getArticleObsByCategory(this.category).subscribe((articles: Array<Article>) => {
+      this.articles = articles;
+    });
+    console.log(this.category);
+    //this.articles = this.articleService.getArticleByCategory(this.category);
     this.filteredArticles = this.sliceFour();
 
   }

@@ -15,11 +15,14 @@ export class ArticleComponent implements OnInit {
 
   isFavorite: boolean = false;
 
-  constructor(private route: ActivatedRoute, articleService: ArticleService) { 
+  constructor(private route: ActivatedRoute, private articleService: ArticleService) { 
 
     let artId: number = parseInt(this.route.snapshot.params['articleId']);
+    this.articleService.getArticleObsById(artId).subscribe((article: Article) => {
+      this.article = article;
+    })
 
-    this.article = articleService.getArticleById(artId);
+    //this.article = articleService.getArticleObsById(artId);
     console.log("Artykuł: ", this.article);
 
   }

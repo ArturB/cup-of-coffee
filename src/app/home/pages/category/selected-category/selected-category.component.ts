@@ -17,9 +17,13 @@ export class SelectedCategoryComponent implements OnInit {
 
   showFour: boolean = false;
 
-  constructor(private route: ActivatedRoute, articleService: ArticleService) { 
+  constructor(private route: ActivatedRoute, private articleService: ArticleService) { 
+    // this.articleService.getArticleObsByCategory
+    
     this.category = this.route.snapshot.params['category'];
-    this.articles = articleService.getArticleByCategory(this.category);
+    this.articleService.getArticleObsByCategory(this.category).subscribe((articles: Array<Article>) => {
+      this.articles = articles;
+    });
     console.log("Kategoria: ", this.category);
   }
   
