@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   // { path: 'kategoria/artykul/:articleId', component: ArticleComponent},
   { path: 'dodaj-artykul', component: AddArticleComponent},
-  {path: 'konto', component: AuthComponent, loadChildren: './pages/auth/auth.module#AuthModule'},
+  {path: 'konto', loadChildren: './pages/auth/auth.module#AuthModule'},
 
   // { path: 'konto', component: UserAccountComponent},
   { path: '**', component: NotFoundComponent }

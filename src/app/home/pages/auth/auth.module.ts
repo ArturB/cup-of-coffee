@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+// import { Routes, RouterModule } from '@angular/router';
+import { AuthRoutingModule } from "./auth-routing.module";
 
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
-// import { authRouting } from "./auth-routing.module";
 
-const AuthRoutes: Routes = [
-  { path: '', redirectTo: 'logowanie', pathMatch: 'full' },
-  { path: 'logowanie', component: LoginComponent },
-  { path: 'rejestracja', component: RegisterComponent },
-];
+// const AuthRoutes: Routes = [
+//   { path: '', redirectTo: 'logowanie', pathMatch: 'full' },
+//   { path: 'logowanie', component: LoginComponent },
+//   { path: 'rejestracja', component: RegisterComponent },
+// ];
 
 @NgModule({
   declarations: [
@@ -21,9 +21,9 @@ const AuthRoutes: Routes = [
     RegisterComponent,
   ],
   imports: [
-    // CommonModule,
-    // authRouting
-    RouterModule.forChild(AuthRoutes)
+    CommonModule,
+    AuthRoutingModule,
+    // RouterModule.forChild(AuthRoutes)
   ]
 })
 export class AuthModule { }

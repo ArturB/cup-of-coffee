@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 
-import { AuthModule } from './pages/auth/auth.module';
+// import { AuthModule } from './pages/auth/auth.module';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -31,7 +31,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    AuthModule,
+    // AuthModule,
     SharedModule
   ],
   exports: [
