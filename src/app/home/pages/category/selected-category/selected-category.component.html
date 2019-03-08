@@ -1,4 +1,14 @@
 <app-search-form></app-search-form>
-<app-collapsed-category
-[category]="category"
-[showFour]="showFour"></app-collapsed-category>
+
+<ng-container *ngIf="articles.length > 0; else noArticles">
+    <app-collapsed-category
+    [category]="category"
+    [showFour]="showFour">
+    </app-collapsed-category>
+</ng-container>
+<ng-template #noArticles>
+    <div class="container contBgr py-5">
+        <h2 class="text-center">Nie ma artykułów</h2>
+    </div>
+</ng-template>
+
