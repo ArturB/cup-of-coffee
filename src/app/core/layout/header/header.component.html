@@ -23,13 +23,19 @@
         <!-- <li class="nav-item active">
           <a class="nav-link" href="#">kategorie</a>
         </li> -->
-        <li class="dropdown nav-item px-md-4" routerLinkActive="active">
-          <a class="dropdown-toggle nav-link" data-toggle="dropdown" [routerLink]="['/kategorie']"><i class="fa fa-folder-open-o fa-2x faNav mb-1"></i>kategorie
+        <li class="dropdown nav-item px-md-4">
+          <a class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-folder-open-o fa-2x faNav mb-1"></i>kategorie
           <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a class="nav-link" href="#">Popularne</a></li>
-            <li><a class="nav-link" href="#">Sztuka</a></li>
-            <li><a class="nav-link" href="#">Psychologia</a></li>
+          <ul class="dropdown-menu mb-3">
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" [routerLink]="['/kategorie', 'popularne']">Popularne</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" [routerLink]="['/kategorie', 'sztuka']">Sztuka</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" [routerLink]="['/kategorie', 'psychologia']">Psychologia</a>
+            </li>
           </ul>
         </li>
         <li class="nav-item px-md-4" routerLinkActive="active">
