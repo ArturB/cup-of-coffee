@@ -25,7 +25,8 @@ export class CollapsedCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.articleService.getArticleObsByCategory(this.category).subscribe((articles: Array<Article>) => {
-      this.articles = articles;
+      // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
+      this.articles = articles.slice();
     });
     console.log(this.category);
     //this.articles = this.articleService.getArticleByCategory(this.category);

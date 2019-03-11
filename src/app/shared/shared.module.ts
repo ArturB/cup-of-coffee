@@ -11,6 +11,7 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
 
 import { DropdownDirective } from './directives/dropdown.directive';
 import { SearchPipe } from './pipes/search.pipe';
+import { SortTitlePipe } from './pipes/sort-title.pipe';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { SearchPipe } from './pipes/search.pipe';
     CollapsedArticleComponent, 
     BtnSeeMoreComponent, 
     SearchFormComponent, 
-    DropdownDirective, SearchPipe
+    DropdownDirective, SearchPipe, SortTitlePipe
   ],
   imports: [
     CommonModule,
