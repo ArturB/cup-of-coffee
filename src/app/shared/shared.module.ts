@@ -10,6 +10,7 @@ import { BtnSeeMoreComponent } from './components/buttons/btn-see-more/btn-see-m
 import { SearchFormComponent } from './components/search-form/search-form.component';
 
 import { DropdownDirective } from './directives/dropdown.directive';
+import { SearchPipe } from './pipes/search.pipe';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { DropdownDirective } from './directives/dropdown.directive';
     CollapsedArticleComponent, 
     BtnSeeMoreComponent, 
     SearchFormComponent, 
-    DropdownDirective
+    DropdownDirective, SearchPipe
   ],
   imports: [
     CommonModule,

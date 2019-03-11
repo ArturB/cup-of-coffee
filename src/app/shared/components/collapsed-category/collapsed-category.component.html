@@ -12,7 +12,8 @@
     </div>
     <div class="row">
       <!-- wyświetla ostatnie 4 elementy listy -->
-      <div class="col-6 col-lg-3" *ngFor="let art of filteredArticles; let i = index">
+      <div class="col-6 col-lg-3" *ngFor="let art of filteredArticles | search: {articleTitle: searchText} : false">
+      <!-- <div class="col-6 col-lg-3" *ngFor="let art of filteredArticles"> -->
         <ng-container>
           <app-collapsed-article (onShowArticle)="gotoArticle($event)"
           [article]="art">

@@ -13,6 +13,8 @@ export class CollapsedCategoryComponent implements OnInit {
 
   articles: Article[] = [];
   filteredArticles: Article[] = [];
+  
+  articleTitle: string;
 
   @Input() category: string;
   @Input() showFour: boolean;
