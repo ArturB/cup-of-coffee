@@ -9,9 +9,18 @@ import { CollapsedArticleComponent } from './components/collapsed-article/collap
 import { BtnSeeMoreComponent } from './components/buttons/btn-see-more/btn-see-more.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 
+import { DropdownDirective } from './directives/dropdown.directive';
+
 
 @NgModule({
-  declarations: [LoaderComponent, CollapsedCategoryComponent, CollapsedArticleComponent, BtnSeeMoreComponent, SearchFormComponent],
+  declarations: [
+    LoaderComponent, 
+    CollapsedCategoryComponent, 
+    CollapsedArticleComponent, 
+    BtnSeeMoreComponent, 
+    SearchFormComponent, 
+    DropdownDirective
+  ],
   imports: [
     CommonModule,
 
@@ -21,7 +30,8 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
     CollapsedCategoryComponent,
     CollapsedArticleComponent,
     BtnSeeMoreComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    DropdownDirective
     
   ]
 })

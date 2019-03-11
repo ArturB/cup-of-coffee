@@ -10,6 +10,9 @@ export class HeaderComponent implements OnInit {
   // category: string;
   // private parametersObservable: any;
   // isCategory: boolean = false;
+
+  toggleBtn: boolean = false;
+
   constructor(private route: ActivatedRoute, private router: Router) {
     
   }
@@ -40,5 +43,20 @@ export class HeaderComponent implements OnInit {
   //     this.parametersObservable.unsubscribe();
   //   }
   // }
+
+  toggle() {
+    this.toggleBtn = !this.toggleBtn;
+    console.log(this.toggleBtn);
+    // if (this.toggleBtn) {
+    //   th
+    // }
+  }
+  toggleIcon() {
+    if (this.toggleBtn) {
+      return "fa fa-times"
+    }
+    else return "fa fa-bars"
+  }
+
 
 }
