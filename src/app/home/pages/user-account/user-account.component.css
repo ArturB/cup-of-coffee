@@ -20,7 +20,9 @@
 .heading {
     border-bottom: 2px solid #e8e8e8;
 }
-
+.profileText h1 {
+    color: #a96f44;
+}
 .artImgBgr {
     /* background-color: #ffc107; */
     background-color: #ffc926;;
