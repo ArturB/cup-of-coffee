@@ -1,0 +1,52 @@
+.container {
+    max-width: 1140px;
+}
+.profileBgr {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    box-shadow: 0 0px 20px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profileImg, .profileText {
+    text-align: center;
+}
+@media screen and (min-width: 992px) {
+    .profileImg {
+        text-align: right;
+    }
+    .profileText {
+        text-align: left;
+    }
+}
+
+.artImgBgr {
+    /* background-color: #ffc107; */
+    background-color: #ffc926;;
+}
+.favoriteImgBgr {
+    background-color: #08c5c5;
+}
+.setImgBgr {
+    background-color: #2ba27c;
+}
+.artFig:hover .artImgBgr {
+    background-color: #f1b500;
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+}
+.favFig:hover .favoriteImgBgr {
+    background-color: #07bbbb;
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+}
+.setFig:hover .setImgBgr {
+    background-color: #21926e;
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+}
+
+.figure {
+    cursor: pointer;
+}

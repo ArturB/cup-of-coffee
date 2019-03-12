@@ -24,6 +24,7 @@ const routes: Routes = [
   // { path: 'kategoria/artykul/:articleId', component: ArticleComponent},
   { path: 'dodaj-artykul', component: AddArticleComponent},
   {path: 'konto', loadChildren: './pages/auth/auth.module#AuthModule'},
+  {path: 'moje-konto', component: UserAccountComponent},
 
   // { path: 'konto', component: UserAccountComponent},
   { path: '**', component: NotFoundComponent }
