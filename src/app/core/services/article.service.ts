@@ -125,7 +125,7 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
   private articleObs = new BehaviorSubject<Article>(this.article);
 
   constructor() {
-    this.articlesObs.next(this.articles);
+    // this.articlesObs.next(this.articles);
    }
 
   // getArticles() {
@@ -141,13 +141,14 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
   // }
 
   getArticlesObs(): Observable<Array<Article>> {
+    this.articlesObs.next(this.articles);
     return this.articlesObs.asObservable();
   }
 
   getArticleObsByCategory(artCategory: string): Observable<Array<Article>> {
     //this.articles.filter(e => e.category === artCategory);
     this.articlesObs.next(this.articles.filter(e => e.category === artCategory));
-    console.log(this.articlesObs);
+    // console.log(this.articlesObs);
     return this.articlesObs.asObservable();
     // return this.articlesObs.pipe(filter(e => e[0].category === artCategory).asObservable());
   }

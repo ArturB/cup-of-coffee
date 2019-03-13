@@ -24,14 +24,27 @@ export class CollapsedCategoryComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.articleService.getArticleObsByCategory(this.category).subscribe((articles: Array<Article>) => {
-      // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
-      this.articles = articles.slice();
-    });
+    // this.articleService.getArticleObsByCategory(this.category).subscribe((articles: Array<Article>) => {
+    //   // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
+    //   this.articles = articles.slice();
+    // });
+    // console.log(this.category);
+    // //this.articles = this.articleService.getArticleByCategory(this.category);
+    // this.filteredArticles = this.sliceFour();
+
+    if (this.category === 'wszystkie') {
+      this.articleService.getArticlesObs().subscribe((articles: Array<Article>) => {
+        this.articles = articles;        
+      })
+    } else {
+      this.articleService.getArticleObsByCategory(this.category).subscribe((articles: Array<Article>) => {
+        // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
+        this.articles = articles.slice();
+      });
+    }
     console.log(this.category);
     //this.articles = this.articleService.getArticleByCategory(this.category);
     this.filteredArticles = this.sliceFour();
-
   }
 
   sliceFour() {
