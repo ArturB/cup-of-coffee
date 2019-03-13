@@ -28,7 +28,9 @@ export class AddArticleComponent implements OnInit {
   }
 
   newArticle() {
-    this.articleService.addArticle(this.newArt);
+    this.articleService.addArticle(this.newArt).subscribe(art => {
+      console.log(art);
+    });
     console.log(this.newArt);
     //this.newArt.reset();
   }

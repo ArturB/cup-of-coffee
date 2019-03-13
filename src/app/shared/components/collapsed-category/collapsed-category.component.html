@@ -9,6 +9,8 @@
           {{category?.toUpperCase()}}
         </a>
       </h2>
+      <h3 class="text-center pt-5" *ngIf="articles.length == 0">Nie ma artykułów<i class="fa fa-frown-o pl-2"></i></h3>
+
     </div>
     <div class="row">
       <!-- wyświetla ostatnie 4 elementy listy -->
@@ -32,7 +34,7 @@
 
 <ng-template #noCategories>
   <div class="container contBgr py-5">
-    <h2 class="text-center">Nie ma artykułów<i class="fa fa-frown-o pl-2"></i></h2>
+    <h2 class="text-center">Nie ma takiej kategorii<i class="fa fa-frown-o pl-2"></i></h2>
   </div>
 </ng-template>
 

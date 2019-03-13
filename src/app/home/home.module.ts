@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { HomeRoutingModule } from './home-routing.module';
 
@@ -30,6 +31,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
+    
     HomeRoutingModule,
     // AuthModule,
     SharedModule

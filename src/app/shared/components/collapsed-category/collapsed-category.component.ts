@@ -11,11 +11,12 @@ import { ArticleService } from '../../../core/services/article.service';
 })
 export class CollapsedCategoryComponent implements OnInit {
 
-  articles: Article[] = [];
+  // articles: Article[] = [];
   filteredArticles: Article[] = [];
   
   articleTitle: string;
 
+  @Input() articles: Article[];
   @Input() category: string;
   @Input() showFour: boolean;
 
@@ -42,7 +43,7 @@ export class CollapsedCategoryComponent implements OnInit {
         this.articles = articles.slice();
       });
     }
-    console.log(this.category);
+    console.log('collapsed articles: ', this.articles);
     //this.articles = this.articleService.getArticleByCategory(this.category);
     this.filteredArticles = this.sliceFour();
   }

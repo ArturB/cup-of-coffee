@@ -24,22 +24,23 @@ export class SelectedCategoryComponent implements OnInit {
     // this.articleService.getArticleObsByCategory
     //setTimeout(() => {
     this.category = this.route.snapshot.params['category'];
-    if (this.category === 'wszystkie') {
-      // this.subscription = 
-      this.articleService.getArticlesObs().subscribe((articles: Array<Article>) => {
-        this.articles = articles;        
-      })
-      // console.log("wszystkie: ", this.articles);
+    // if (this.category === 'wszystkie') {
+    //   // this.subscription = 
+    //   this.articleService.getArticlesObs().subscribe((articles: Array<Article>) => {
+    //     this.articles = articles;        
+    //   })
+    //   // console.log("wszystkie: ", this.articles);
 
-    } 
-    else {
-      // this.subscription = 
-      this.articleService.getArticleObsByCategory(this.category).subscribe((articles: Array<Article>) => {
-        this.articles = articles;
-      });
-      // console.log("articles: ", this.articles);
-    }
-    console.log("articles: ", this.articles);
+    // } 
+    // else {
+    //   // this.subscription = 
+    //   this.articleService.getArticleObsByCategory(this.category).subscribe((articles: Array<Article>) => {
+    //     this.articles = articles;
+    //   });
+    //   // console.log("articles: ", this.articles);
+    // }
+    // console.log("articles: ", this.articles);
+    console.log("category: ", this.category);
     // console.log("Kategoria: ", this.category);
     //})
     

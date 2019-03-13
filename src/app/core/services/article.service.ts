@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../models/article.model';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+// import { filter } from 'rxjs/operators';
+import { HttpClient, HttpParams } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -124,7 +126,7 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
   private articlesObs = new BehaviorSubject<Array<Article>>(this.articles);
   private articleObs = new BehaviorSubject<Article>(this.article);
 
-  constructor() {
+  constructor(private http: HttpClient) {
     // this.articlesObs.next(this.articles);
    }
 
@@ -143,6 +145,7 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
   getArticlesObs(): Observable<Array<Article>> {
     this.articlesObs.next(this.articles);
     return this.articlesObs.asObservable();
+    // return this.http.get<Array<Article>>('http://localhost:3000/articles');
   }
 
   getArticleObsByCategory(artCategory: string): Observable<Array<Article>> {
@@ -151,17 +154,42 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
     // console.log(this.articlesObs);
     return this.articlesObs.asObservable();
     // return this.articlesObs.pipe(filter(e => e[0].category === artCategory).asObservable());
+    // return this.http.get<Array<Article>>('http://localhost:3000/articles/' + artCategory);
+    
   }
 
   getArticleObsById(artId: number): Observable<Article> {
     this.article = this.articles.find(e => e.articleId === artId);
     this.articleObs.next(this.article);
     return this.articleObs.asObservable();
+    // return this.http.get<Article>('http://localhost:3000/articles/' + this.article.category + artId);
   }
 
-  addArticle(art: Article) {
+  // getArticlesByUser(userId: number): Observable<Array<Article>> {
+  //   // musimy dodać '' do userId bo parametr musi być stringiem
+  //   const parm = new HttpParams().set('userId', userId+'');
+  //   return this.http.get<Array<Article>>('http://localhost:3000/articles', {params: parm});  // --> np. http://localhost:3000/articles?userId=1
+  // }
+
+  addArticle(art: Article): Observable<Article> {
     this.articles.push(art);
     this.articlesObs.next(this.articles);
+    return this.articleObs.asObservable();
+    // return this.http.post<Article>('http://localhost:3000/articles', art);
+  }
+
+  updateArticle(art: Article): Observable<Article> {
+    // this.articles.push(art);
+    // this.articlesObs.next(this.articles);
+    // return this.articleObs.asObservable();
+    return this.http.put<Article>('http://localhost:3000/articles/' + art.articleId, art);
+  }
+
+  deleteArticle(artId: number): Observable<Article> {
+    // this.articles.push(art);
+    // this.articlesObs.next(this.articles);
+    // return this.articleObs.asObservable();
+    return this.http.delete<Article>('http://localhost:3000/articles/' + artId);
   }
 
 }
