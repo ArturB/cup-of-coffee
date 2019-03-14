@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Article } from '../models/article.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 // import { filter } from 'rxjs/operators';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -126,6 +126,29 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
   private articlesObs = new BehaviorSubject<Array<Article>>(this.articles);
   private articleObs = new BehaviorSubject<Article>(this.article);
 
+
+  // private artsObs = new BehaviorSubject<Array<Article>>([]);
+  // arts$ = this.artsObs.asObservable();
+
+  // private headers = new HttpHeaders().set('Authorization', 'token');
+
+  // constructor(private http: HttpClient) {
+  //   this.getArts();
+  //  }
+
+  //  getArts() {
+  //    return this.http.get<Array<Article>>('http://localhost:3000/articles', {headers: this.headers}).subscribe(
+  //      arts => {
+  //        this.artsObs.next(arts);
+  //      },
+  //      err => {
+  //        console.log(err);
+  //      }
+  //    );
+  //  }
+
+
+
   constructor(private http: HttpClient) {
     // this.articlesObs.next(this.articles);
    }
@@ -147,6 +170,15 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
     return this.articlesObs.asObservable();
     // return this.http.get<Array<Article>>('http://localhost:3000/articles');
   }
+
+  //odpowiedź w tym przypadku już nie jest jsonem w postaci listy artykułów. Teraz otrzymukujemy obiekt HttpResponse, które posiada body w którym są nasze artykuły. Mamy też headers, status, url itd
+  // gettArticlesObs(): Observable<HttpResponse<Response>> {
+  //   this.articlesObs.next(this.articles);
+  //   // return this.articlesObs.asObservable();
+  //   // return this.http.get<Array<Article>>('http://localhost:3000/articles');
+  //   return this.http.get<Response>('http://localhost:3000/articles',
+  //     {observe: 'response'})
+  // }
 
   getArticleObsByCategory(artCategory: string): Observable<Array<Article>> {
     //this.articles.filter(e => e.category === artCategory);
