@@ -2,7 +2,9 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Article } from '../../../core/models/article.model';
+import { User } from '../../../core/models/user.model';
 import { ArticleService } from '../../../core/services/article.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-add-article',
@@ -21,23 +23,35 @@ export class AddArticleComponent implements OnInit, OnChanges {
   //   viewed: 12,
   //   dateModified: new Date().toDateString()
   // };
+  user: User;
   
   newArtForm: FormGroup;
 
   urlLink: string = '';
+  colorLink: string = '#14563e';
 
   newArt: Article;
 
   reset: boolean = false;
+  submit: boolean = false;
 
-  constructor(private articleService: ArticleService) {
+  constructor(
+    private articleService: ArticleService,
+    private authService: AuthService
+    ) {
 
    }
 
   ngOnInit() {
+
+    this.authService.getUserProfile(2).subscribe((user: User) => {
+      this.user = user;
+    });
+    console.log(this.user);
+
     this.newArtForm = new FormGroup({
       // articleId: new FormControl(null),
-      link: new FormControl('color', Validators.required),
+      link: new FormControl(this.colorLink, Validators.required),
       title: new FormControl(null, [
         Validators.required,
         Validators.minLength(2),
@@ -45,7 +59,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
         ]),
       category: new FormControl('popularne', Validators.required),
       // author: new FormControl(null),
-      author: new FormControl('Author', Validators.required),
+      author: new FormControl(this.user.username, Validators.required),
       description: new FormControl(null)
 
     });
@@ -59,6 +73,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
   }
 
   onValue(event: any) {
+    this.submit = false;
     this.urlLink = event.target.value;
     // this.urlLink=val;
     console.log(this.urlLink);
@@ -77,7 +92,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
     // console.log(this.newArt);
 
     const art = new Article(
-      null,
+      16,
       this.newArtForm.value.link,
       this.newArtForm.value.title,
       this.newArtForm.value.category,
@@ -90,6 +105,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
     this.articleService.addArticle(art).subscribe(art => {
       console.log(art);
     });
+    this.submit = true;
     this.onReset();
   }
 
@@ -98,18 +114,11 @@ export class AddArticleComponent implements OnInit, OnChanges {
     console.log(this.reset);
 
     this.newArtForm.reset({
-      link: 'color',
-      author: 'Author',
+      link: this.colorLink,
+      author: this.user.username,
       category: 'popularne'
     });
   }
 
-  newArticle() {
-    // this.articleService.addArticle(this.newArt).subscribe(art => {
-    //   console.log(art);
-    // });
-    // console.log(this.newArt);
-    //this.newArt.reset();
-  }
 
 }

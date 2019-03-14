@@ -9,9 +9,12 @@ import { Article } from '../../../core/models/article.model';
 export class CollapsedArticleComponent implements OnInit {
 
   @Input() article: Article;
+  @Output() onShowArticle = new EventEmitter();
+  
+  artLink: string;
+  
   constructor() { }
 
-  @Output() onShowArticle = new EventEmitter();
 
   ngOnInit() {
   }
@@ -19,6 +22,20 @@ export class CollapsedArticleComponent implements OnInit {
   showArticle(article: Article) {
     console.log(article.articleId);
     this.onShowArticle.emit(article);
+  }
+
+
+  checkBgr() {
+    this.artLink = this.article.link;
+    if (this.artLink.includes('#')) {
+      return {
+        'background-color': this.artLink
+      };
+    } else {
+      return  {
+        'background-image': 'url(' + this.article.link + ')'
+      };
+    }
   }
 
 }

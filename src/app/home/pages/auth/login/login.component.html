@@ -1,7 +1,52 @@
-<input type="email" id="inputEmail" class="form-control mb-2" placeholder="Email" required autofocus>
-<input type="password" id="inputPassword" class="form-control mb-5" placeholder="Hasło" required>
+<form [formGroup]="logForm" (ngSubmit)="loginUser()">
 
-<button class="btn btn-lg pinkBtn btn-block text-uppercase" type="submit">zaloguj</button>
-<hr class="my-4">
-<p class="text-center">Nie masz konta? <a class="bottomLink" [routerLink]="[ '/konto/', 'rejestracja' ]">Zarejestruj się!</a></p>
-      
+    <div class="form-group mt-4">
+      <input 
+        type="email" 
+        id="email" class="form-control mb-2" placeholder="Email"
+        formControlName="email"
+        >
+      <div *ngIf="!logForm.get('email').valid && logForm.get('email').touched"
+          class="alert alert-danger">
+          <div [hidden]="!logForm.get('email').errors['required']">
+            Podaj e-mail
+          </div>
+          <div [hidden]="!logForm.get('email').errors['email']">
+            Podany e-mail jest niepoprawny
+          </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input 
+        type="password" 
+        id="password" 
+        class="form-control" 
+        placeholder="Hasło"
+        formControlName="password"
+        >
+      <div *ngIf="!logForm.get('password').valid && logForm.get('password').touched"
+          class="alert alert-danger">
+          <div [hidden]="!logForm.get('password').errors['required']">
+            Podaj hasło (od 6 do 24 znaków)
+          </div>
+          <div [hidden]="!logForm.get('password').errors['minlength']">
+            Podaj hasło (od 6 do 24 znaków)
+          </div>
+          <div [hidden]="!logForm.get('password').errors['maxlength']">
+            Podaj hasło (od 6 do 24 znaków)
+          </div>
+      </div>
+    </div>
+  
+    <!-- <div class="custom-control custom-checkbox mb-3">
+      <input type="checkbox" class="custom-control-input" id="customCheck1">
+      <label class="custom-control-label" for="customCheck1">Zapamiętaj mnie</label>
+    </div> -->
+    <button
+      type="submit"
+      [disabled]="logForm.invalid"
+      class="btn btn-lg pinkBtn btn-block text-uppercase mt-5" 
+    >Zaloguj</button>
+    <hr class="my-4">
+    <p class="text-center">Nie masz konta? <a class="bottomLink" [routerLink]="[ '/konto/', 'rejestracja' ]">Zarejestruj się!</a></p>
+  </form>

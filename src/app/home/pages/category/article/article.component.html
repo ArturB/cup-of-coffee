@@ -25,13 +25,14 @@
   
 </div> -->
 
-<div class="container-fluid imgBgr" [ngStyle]="{'background-image': getBgrUrl()}">
+<!-- <div class="container-fluid imgBgr" [ngStyle]="{'background-image': getBgrUrl()}"> -->
+<div class="container-fluid imgBgr" [ngStyle]="checkBgr()">
   <div class="heading text-center">
     <h1 class="mx-auto px-3 hMarg">{{ article.title }}</h1>
     <div class="infoArticle pt-4">
       <h2 class="mx-auto px-3 hMarg">
         <span class="mr-2 mr-sm-3"><i class="fa fa fa-eye pr-2"></i>{{ article.viewed }}</span>
-        <span class="ml-2 mr-sm-3"><i class="fa fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.mm.yy" }}</span>
+        <span class="ml-2 mr-sm-3"><i class="fa fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
       </h2>
     </div>
   </div>

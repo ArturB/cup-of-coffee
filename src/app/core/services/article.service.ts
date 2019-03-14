@@ -12,7 +12,8 @@ export class ArticleService {
   private articles: Array<Article> = [
     {
       articleId: 1,
-      link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQvndPBhegt-DXIpCiN-IH7d-MkQlgJruwESgAKCWaQxymSGfC",
+      // link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQvndPBhegt-DXIpCiN-IH7d-MkQlgJruwESgAKCWaQxymSGfC",
+      link: "#460327",
       title: "hd sefsgvr vsjnjso vfrfs ssvklms chhhhhhhd sefsgvr vsjnjso vfrfs ssvklms",
       category: "popularne",
       author: "Admin",

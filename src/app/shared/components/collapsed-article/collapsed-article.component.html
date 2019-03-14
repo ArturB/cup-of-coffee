@@ -1,7 +1,22 @@
 <div class="card articleFig mb-4" (click)="showArticle(article)">
   <!-- <img class="card-img-top" src="https://placehold.it/300x150" alt="Obrazek w karcie"> -->
   <div class="art">
-    <img class="card-img-top imgArtcicle" [src]="article.link" alt="Obrazek w karcie">
+    <!-- <ng-container *ngIf="artColor; else noArtColor">
+        <div class="card-img-top imgArtcicle" [ngStyle]="{'background-color': getImgBgr()}"></div>
+    </ng-container>
+    <ng-template #noArtColor>
+        <div class="card-img-top imgArtcicle" [ngStyle]="{'background-image': getImgBgr()}"></div>
+      
+    </ng-template> -->
+    
+    <div class="card-img-top imgArtcicle" [ngStyle]="checkBgr()"></div>
+    
+    <!-- 
+    <img 
+      class="card-img-top imgArtcicle" 
+      [src]="artLink" 
+      alt="Obrazek w karcie"
+      [ngStyle]="{'background-image': getImgBgr()}"> -->
     <div class="infoArticle text-right mb-1">
       <span class="mr-3"><i class="fa fa fa-eye pr-2"></i>{{ article.viewed }}</span>
       <span class="mr-3"><i class="fa fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
