@@ -6,5 +6,5 @@ export class Article {
                 public author: string,
                 public description: string,
                 public viewed: number,
-                public dateModified: Date,) {}
+                public dateModified: string,) {}
 }
