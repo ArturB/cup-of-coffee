@@ -14,38 +14,50 @@
 </div>
 
 <div class="container contBgr py-5 my-5 px-md-5">
-  <form onreset>
+  <form [formGroup]="newArtForm" (ngSubmit)="addArticle()">
     <div class="form-group">
       <label for="title" class="labelStyle">Tytuł artykułu</label>
-      <input type="text" class="form-control" id="title" placeholder="">
+      <input type="text" class="form-control" id="title" formControlName="title" placeholder="">
+      <div *ngIf="newArtForm.get('title').invalid && newArtForm.get('title').touched"
+				    class="alert alert-danger mt-2">
+				    <div [hidden]="!newArtForm.get('title').errors['required']">
+				      Podaj tytuł (od 2 do 12 znaków)
+				    </div>
+				    <div [hidden]="!newArtForm.get('title').errors['minlength']">
+				      Podaj tytuł (od 2 do 12 znaków)
+				    </div>
+				    <div [hidden]="!newArtForm.get('title').errors['maxlength']">
+				      Podaj tytuł (od 2 do 12 znaków)
+				    </div>
+				</div>
     </div>
 
     <div class="form-group">
       <label for="category" class="labelStyle">Kategoria</label>
-      <select class="form-control custom-select" id="category">
-        <option value="">Popularne</option>
-        <option value="">Sztuka</option>
-        <option value="">Psychologia</option>
+      <select class="form-control custom-select" id="category" formControlName="category">
+        <option value="popularne">Popularne</option>
+        <option value="sztuka">Sztuka</option>
+        <option value="psychologia">Psychologia</option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="description" class="labelStyle">Zawartość artykułu</label>
-      <textarea class="form-control" id="description" rows="3"></textarea>
+      <textarea class="form-control" id="description" formControlName="description" rows="3"></textarea>
     </div>
     
     <div class="form-group">
       <label for="articleImg" class="labelStyle">Zdjęcie lub kolor tła</label>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="" value="option1" checked>
-        <label class="form-check-label" for="exampleRadios1">
+        <input class="form-check-input" type="radio" id="link" formControlName="link" value="color">
+        <label class="form-check-label" for="link">
           Kolor domyślny
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="" value="option2">
-        <label class="form-check-label" for="exampleRadios2">
-          <input type="file" class="form-control-file">
+        <input class="form-check-input" type="radio" id="urlLink" formControlName="link" [value]=urlLink>
+        <label class="form-check-label" for="urlLink">
+          <input value="" (change)="onValue($event)" type="file" class="form-control-file">
         </label>
       </div>
     </div>
@@ -53,19 +65,27 @@
     <div class="form-group">
       <label for="author" class="labelStyle">Widoczność autora w artykule</label>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="" value="option1" checked>
+        <input class="form-check-input" type="radio" id="isAuthor" formControlName="author" value="Author">
         <label class="form-check-label" for="isAuthor">Pokaż autora</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="" id="inlineRadio2" value="option2">
+        <input class="form-check-input" type="radio" id="noAuthor" formControlName="author" value="Anonim">
         <label class="form-check-label" for="noAuthor">Zostań anonimem</label>
       </div>
     </div>
 
     <div class="btnGroup">
-      <button type="reset" class="btn btn-lg btnReset mr-4">Anuluj<i class="fa fa-trash ml-2 my-auto"></i></button>
-      <button type="button" class="btn btn-lg pinkBtn" (click)="newArticle()">Dodaj artykuł<i class="fa fa-save ml-2 my-auto"></i></button>
+      <button type="button" (click)="onReset()" class="btn btn-lg btnReset mr-4">Anuluj<i class="fa fa-trash ml-2 my-auto"></i></button>
+      <button 
+        type="submit" 
+        [disabled]="newArtForm.invalid"
+        class="btn btn-lg pinkBtn"
+        >Dodaj artykuł<i class="fa fa-save ml-2 my-auto"></i></button>
     </div> 
+
+    <div *ngIf="reset && newArtForm.get('title').untouched && newArtForm.get('description').untouched" class="alert alert-info mt-2">
+        Forma została zresetowana
+    </div>
 
   </form>
 </div>

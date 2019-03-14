@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 import { HomeRoutingModule } from './home-routing.module';
 
 // import { AuthModule } from './pages/auth/auth.module';
@@ -32,6 +35,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     
     HomeRoutingModule,
     // AuthModule,
