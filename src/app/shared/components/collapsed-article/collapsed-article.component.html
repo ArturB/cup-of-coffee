@@ -18,8 +18,8 @@
       alt="Obrazek w karcie"
       [ngStyle]="{'background-image': getImgBgr()}"> -->
     <div class="infoArticle text-right mb-1">
-      <span class="mr-3"><i class="fa fa fa-eye pr-2"></i>{{ article.viewed }}</span>
-      <span class="mr-3"><i class="fa fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
+      <span class="mr-3"><i class="fa fa-thumbs-up pr-2"></i>{{ article.likes }}</span>
+      <span class="mr-3"><i class="fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
       
     </div>
   </div>

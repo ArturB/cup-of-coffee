@@ -13,6 +13,7 @@ export class ArticleComponent implements OnInit {
 
   article: Article;
 
+  isLiked: boolean = false;
   isFavorite: boolean = false;
 
   artLink: string;
@@ -65,6 +66,12 @@ export class ArticleComponent implements OnInit {
         'background-image': 'url(' + this.article.link + ')'
       };
     }
+  }
+
+  onLike() {
+    console.log(this.isLiked);
+    this.isLiked = !this.isLiked;
+    
   }
 
   onFavorite() {

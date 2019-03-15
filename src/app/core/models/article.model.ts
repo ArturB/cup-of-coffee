@@ -5,6 +5,6 @@ export class Article {
                 public category: string,
                 public author: string,
                 public description: string,
-                public viewed: number,
+                public likes: number,
                 public dateModified: string,) {}
 }

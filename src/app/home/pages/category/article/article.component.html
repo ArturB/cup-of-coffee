@@ -5,7 +5,7 @@
     <h1 class="mx-auto px-3 hMarg">{{ article.title }}</h1>
     <div class="infoArticle pt-4">
       <h2 class="mx-auto px-3 hMarg">
-        <span class="mr-2 mr-sm-3"><i class="fa fa fa-eye pr-2"></i>{{ article.viewed }}</span>
+        <span class="mr-2 mr-sm-3"><i class="fa fa fa-eye pr-2"></i>{{ article.likes }}</span>
         <span class="ml-2 mr-sm-3"><i class="fa fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.mm.yy" }}</span>
       </h2>
     </div>
@@ -31,19 +31,24 @@
     <h1 class="mx-auto px-3 hMarg">{{ article.title }}</h1>
     <div class="infoArticle pt-4">
       <h2 class="mx-auto px-3 hMarg">
-        <span class="mr-2 mr-sm-3"><i class="fa fa fa-eye pr-2"></i>{{ article.viewed }}</span>
-        <span class="ml-2 mr-sm-3"><i class="fa fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
+        <span class="mr-2 mr-sm-3"><i class="fa fa-thumbs-up pr-2"></i>{{ article.likes }}</span>
+        <span class="ml-2 mr-sm-3"><i class="fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
       </h2>
     </div>
   </div>
 </div>
 
 <div class="container mt-n5 text-right">
-    <button type="button" class="faBtn" (click)="onFavorite()">
-      <i class="fa fa-star fa-3x"
-      [ngStyle]="{'background-color': isFavorite ? '#f5ad0d' : '#08c5c5'}">
-      </i>
-    </button>
+  <button type="button" class="faBtn" (click)="onLike()">
+    <i class="fa fa-thumbs-up fa-3x iBtn"
+    [ngStyle]="{'background-color': isLiked ? '#FF5722' : '#08c5c5'}">
+    </i>
+  </button>
+  <button type="button" class="faBtn" (click)="onFavorite()">
+    <i class="fa fa-star fa-3x iBtn"
+    [ngStyle]="{'background-color': isFavorite ? '#f5ad0d' : '#2cc585'}">
+    </i>
+  </button>
 </div>
 
 <div class="container my-5">
