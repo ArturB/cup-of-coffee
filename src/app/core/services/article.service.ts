@@ -14,7 +14,7 @@ export class ArticleService {
   private articles: Array<Article> = [
     {
       user: {
-        userId: 4,
+        // userId: 4,
         email: "daria@mail.ru",
         password: "ffff",
         username: "Some user"
@@ -32,7 +32,7 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
     },
     {
       user: {
-        userId: 5,
+        // userId: 5,
         email: "da2a@mail.ru",
         password: "ffff",
         username: "Some user2"
@@ -289,7 +289,15 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
     // this.http.post<Article>('http://localhost:4000/articles/add', art).subscribe(res => console.log('Done'));;
     // return this.http.post('http://localhost:4000/articles/add', art, { headers: config });
     // return this.http.post<Article>('http://localhost:4000/articles/add', art, { headers: config }).map(res=>res.json());
-    return this.http.post<Article>('http://localhost:4000/articles/add', art, { headers: config });
+    
+    
+    const token = localStorage.getItem('access_token')
+      ? '?token=' + localStorage.getItem('access_token')
+      : '';
+    console.log('acoount', token)
+
+    
+    return this.http.post<Article>('http://localhost:4000/articles/add' + token, art, { headers: config });
   }
   // adddArticle(): Observable<Article> {
   //   return this.http.post<Article>('http://localhost:4000/article/add', 

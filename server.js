@@ -6,6 +6,9 @@ const express = require('express'),
     config = require('./server/config/database');
 
 const articleRoute  = require('./server/routes/article.route');
+const userRoute  = require('./server/routes/user.route');
+const profileRoute  = require('./server/routes/profile.route');
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri, { useNewUrlParser: true }).then(
   () => {console.log('Database ' + config.db + ' is connected') },
@@ -51,6 +54,8 @@ app.use(function (req, res, next) { //allow cross origin requests
 
 app.use(cors());
 app.use('/articles', articleRoute);
+app.use('/user', userRoute);
+app.use('/profile', profileRoute);
 const port = process.env.PORT || 4000;
 
 const server = app.listen(port, function(){

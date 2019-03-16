@@ -47,7 +47,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-    this.authService.getUserProfile(2).subscribe((user: User) => {
+    this.authService.getUserProfile().subscribe((user: User) => {
       this.user = user;
     });
     console.log(this.user);
@@ -58,7 +58,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
       title: new FormControl(null, [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(45)
+        Validators.maxLength(80)
         ]),
       category: new FormControl('popularne', Validators.required),
       // author: new FormControl(null),
@@ -111,7 +111,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
       this.newArtForm.value.title,
       this.newArtForm.value.category,
       this.newArtForm.value.description,
-      0,
+      [],
       new Date().toDateString(),
     );
     console.log(art);
@@ -139,6 +139,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
     };
     this.articleService.adArticle(art)
       .subscribe(data => {
+        console.log(art);
         art = data;
       },
         // success => 

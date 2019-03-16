@@ -34,9 +34,9 @@ export class EditArticleComponent implements OnInit {
 
   ngOnInit() {
 
-    this.authService.getUserProfile(2).subscribe((user: User) => {
-      this.user = user;
-    });
+    // this.authService.getUserProfile(2).subscribe((user: User) => {
+    //   this.user = user;
+    // });
     console.log(this.user);
 
     this.newArtForm = new FormGroup({
@@ -82,7 +82,7 @@ export class EditArticleComponent implements OnInit {
     // console.log(this.newArt);
 
     const art = new Article(
-      this.user,
+      // this.user,
       this.newArtForm.value.link,
       this.newArtForm.value.title,
       this.newArtForm.value.category,

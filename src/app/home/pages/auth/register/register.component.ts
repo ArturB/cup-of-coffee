@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { matchOtherValidator } from './password-validation';
 
 import { User } from "../../../../core/models/user.model";
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -13,8 +16,10 @@ import { User } from "../../../../core/models/user.model";
 export class RegisterComponent implements OnInit {
 
   logForm: FormGroup;
+  error: string;
+  showSucessMessage: boolean;
 
-  constructor() { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.logForm = new FormGroup({
@@ -42,13 +47,63 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  // createUser() {
+  //   const user = new User(
+  //       this.logForm.value.email,
+  //       this.logForm.value.password,
+  //       this.logForm.value.username
+  //   );
+  //   console.log(user);
+  // }
+
   createUser() {
     const user = new User(
-        this.logForm.value.email,
-        this.logForm.value.password,
-        this.logForm.value.username
+      this.logForm.value.email,
+      this.logForm.value.password,
+      this.logForm.value.username
     );
-    console.log(user);
+    this.authService.signup(user)
+        //we should subscribe to it, wich will now send a request and allows me to lesten to the data i get back
+        // .subscribe(
+        //     data => {
+        //         console.log(data);
+        //         this.logForm.reset();
+                
+                
+        //     },
+        //     error => console.error(error)
+        // );
+
+
+        // .pipe(first())
+        //   .subscribe(
+        //     data => {
+        //       // this.error = data.success;
+        //       this.router.navigate(['konto/logowanie'])
+        //     },
+        //     err => this.error = 'Nieprawidłowy login lub hasło'
+        //   );
+
+
+          .subscribe(
+            res => {
+              this.showSucessMessage = true;
+              console.log(this.showSucessMessage);
+              setTimeout(() => this.showSucessMessage = false, 4000);
+              this.logForm.reset();
+            },
+            err => {
+              if (err.status === 422) {
+                // this.serverErrorMessages = err.error.join('<br/>');
+                console.log('err 422')
+              }
+              else
+                // this.serverErrorMessages = 'Something went wrong.Please contact admin.';
+                console.log('err 500??')
+
+            }
+          );
+
   }
 
 }

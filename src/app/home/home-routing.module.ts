@@ -12,7 +12,8 @@ import { UserAccountComponent } from './pages/user-account/user-account.componen
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 import { AuthComponent } from './pages/auth/auth.component';
- 
+import { AuthGuard } from '../core/guards/auth.guard';
+
 const routes: Routes = [
   { path: 'kategorie',   component: HomeUsComponent},
   { path: '', redirectTo: 'kategorie', pathMatch: 'full'},
@@ -23,7 +24,7 @@ const routes: Routes = [
     ]
   },
   // { path: 'kategoria/artykul/:articleId', component: ArticleComponent},
-  { path: 'dodaj-artykul', component: AddArticleComponent},
+  { path: 'dodaj-artykul', component: AddArticleComponent, canActivate: [AuthGuard]},
   { path: 'edytuj-artykul:articleId', component: EditArticleComponent},
   {path: 'konto', loadChildren: './pages/auth/auth.module#AuthModule'},
   {path: 'moje-konto', component: UserAccountComponent},

@@ -2,12 +2,23 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const articleRoutes = express.Router();
+var jwt = require('jsonwebtoken');
 
+const config = require('../config/database');
+var secret = config.secret;
 // Require article model in our routes module
 let Article = require('../models/article');
 let User = require('../models/user');
 
-
+articleRoutes.use('/', function (req, res, next) {
+    jwt.verify(req.query.token, secret, (err, decoded) => {
+        if (err) {
+            console.log(err);
+            return res.sendStatus(401)
+        }
+        next();
+    })
+});
 
 
 // Defined get data(index or listing) route
@@ -59,19 +70,17 @@ articleRoutes.route('/').get(function (req, res) {
 // Defined store route
 articleRoutes.route('/add').post(function (req, res) {
 // articleRoutes.post('/', function (req, res) {
-
-    User.findById('5c8d0c19418e5905b80f97a6', function (err, user) {
+    var decoded = jwt.decode(req.query.token);
+    User.findById(decoded.user._id, function (err, user) {
         if (err) {
-            return res.status(500).json({
-                title: 'Wystąpił nieoczekiwany błąd',
-                error: err
-            });
+            return res.sendStatus(500)
         }
         console.log(user);
         let article = new Article({
             link: req.body.link,	
             title: req.body.title,	
             category: req.body.category,	
+            author: user.username,	
             description: req.body.description,	
             likes: req.body.likes,	
             dateModified: req.body.dateModified,	
@@ -80,17 +89,11 @@ articleRoutes.route('/add').post(function (req, res) {
         })
         article.save(function(err, result) {
 			if (err) {
-				return res.status(500).json({
-					title: 'Wystąpił nieoczekiwany błąd',
-					error: err
-				});
+				return res.sendStatus(500)
 			}
 			// user.article.push(result);
             user.save();
-			res.status(201).json({
-				message: 'Sekwencja została dodana do konta użytkownika',
-				obj: result
-            });
+			res.send(result)
         });
 
 

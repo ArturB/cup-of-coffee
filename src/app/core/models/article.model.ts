@@ -5,8 +5,9 @@ export class Article {
                 public title: string,
                 public category: string,
                 public description: string,
-                public likes: number,
+                public likes: Array<User>,
                 public dateModified: string,
+                public author?: string,
                 public user?: User,
                 public articleId?: number) {}
 }

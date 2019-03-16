@@ -1,3 +1,4 @@
+<h4 *ngIf="error">{{error}}</h4>
 <form [formGroup]="logForm" (ngSubmit)="createUser()">
 
   <div class="form-group">
