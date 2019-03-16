@@ -82,11 +82,10 @@ export class EditArticleComponent implements OnInit {
     // console.log(this.newArt);
 
     const art = new Article(
-      16,
+      this.user,
       this.newArtForm.value.link,
       this.newArtForm.value.title,
       this.newArtForm.value.category,
-      this.newArtForm.value.author,
       this.newArtForm.value.description,
       0,
       new Date().toDateString()

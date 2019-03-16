@@ -1,6 +1,9 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { HttpResponse } from '@angular/common/http';
+// import { map } from 'rxjs';
+// import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators'
 import { Article } from '../../../core/models/article.model';
 import { User } from '../../../core/models/user.model';
 import { ArticleService } from '../../../core/services/article.service';
@@ -55,12 +58,14 @@ export class AddArticleComponent implements OnInit, OnChanges {
       title: new FormControl(null, [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(12)
+        Validators.maxLength(45)
         ]),
       category: new FormControl('popularne', Validators.required),
       // author: new FormControl(null),
-      author: new FormControl(this.user.username, Validators.required),
-      description: new FormControl(null)
+      // author: new FormControl(this.user.username, Validators.required),
+      description: new FormControl(null, [
+        Validators.required,
+      ]),
 
     });
 
@@ -79,8 +84,17 @@ export class AddArticleComponent implements OnInit, OnChanges {
     console.log(this.urlLink);
   }
 
+  // addArticle() {
+  //   this.articleService.adddArticle().subscribe(
+  //     article => {
+  //       console.log(article);
+  //     }
+  //   );
+  // }
+
   addArticle() {
     console.log(this.newArtForm);
+    console.log(this.user);
     // this.newArt.articleId = 15;
     // this.newArt.link = this.newArtForm.value.link;
     // this.newArt.title = this.newArtForm.value.title;
@@ -91,20 +105,39 @@ export class AddArticleComponent implements OnInit, OnChanges {
     // this.newArt.dateModified = new Date().toDateString();
     // console.log(this.newArt);
 
-    const art = new Article(
-      16,
+    let art = new Article(
+      this.user,
       this.newArtForm.value.link,
       this.newArtForm.value.title,
       this.newArtForm.value.category,
-      this.newArtForm.value.author,
       this.newArtForm.value.description,
       0,
-      new Date().toDateString()
+      new Date().toDateString(),
     );
     console.log(art);
-    this.articleService.addArticle(art).subscribe(art => {
-      console.log(art);
-    });
+    // this.articleService.adArticle(art);
+    let art2 = {
+      // user: this.user,	
+      user: this.user,	
+      // articleId: {type: Number, required: true},	
+      link: "ooo",	
+      title: "ooo",
+      category: "popularne",
+      // author: {type: String, required: true},
+      // author: [{type: Schema.Types.ObjectId, ref: 'AcVideo'}],
+      description: "ooo",
+      likes: 0,
+      // likes: [{type: Schema.Types.ObjectId, ref: 'User'}],
+      dateModified: new Date().toDateString()
+    };
+    this.articleService.adArticle(art)
+      .subscribe(data => {
+        art = data;
+      },
+        // success => 
+        // { console.log("success "+success) }, 
+        error => { console.log("errrr "+error);
+        });
     this.submit = true;
     this.onReset();
   }

@@ -10,16 +10,16 @@ export class AuthService {
 
   private users: Array<User> = [
     {
-      userId: 2,
-      email: "daria@mail.ru",
-      password: "ffff",
+      userId: 1,
       username: "Darika"
+,     email: "daria@mail.ru",
+      password: "ffff",
     },
     {
-      userId: 3,
+      userId: 2,
+      username: "New",
       email: "new@lol.pw",
       password: "fffrrf",
-      username: "New"
     }
   ];
 
