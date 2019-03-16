@@ -1,10 +1,10 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 const articleRoutes = express.Router();
 
 // Require article model in our routes module
 let Article = require('../models/article');
-
 
 // Defined get data(index or listing) route
 articleRoutes.route('/').get(function (req, res) {
@@ -18,19 +18,78 @@ articleRoutes.route('/').get(function (req, res) {
   });
 });
 
+
+
+// let User = require('../models/article');
+
+// const user = new User({
+//     _id: new mongoose.Types.ObjectId(),
+//     username: 'Ian Fleming',
+//     email: 'Ian@flra.pl',
+//     password: 'fefrrfrfing',
+//   });
+
+// // Defined get data(index or listing) route
+// articleRoutes.route('/').get(function (req, res) {
+//     Article.find(function (err, articles){
+//     if(err){
+//       console.log(err);
+//     }
+//     else {
+//       res.json(articles);
+//     }
+//   });
+// });
+
 // Defined store route
 articleRoutes.route('/add').post(function (req, res) {
 // articleRoutes.post('/', function (req, res) {
   let article = new Article(req.body);
-  console.log("AAAAAA: ", article)
   article.save()
     .then(article => {
-      res.status(200).json({'article': 'article in added successfully'});
+        console.log("Article added: ", article)
+        res.status(200).json({'article': 'article in added successfully'});
     })
     .catch(err => {
-    res.status(400).send("unable to save to database");
+        res.status(400).send("unable to save to database");
     });
 });
+
+// user.save(function (err) {
+//     if (err) return handleError(err);
+
+//     const article = new Article({
+//         title: 'Casino Royale',
+//         user: user._id    // assign the _id from the person
+//     });
+
+//     article.save(function (err) {
+//         if (err) return handleError(err);
+//         // thats it!
+//     });
+// });
+
+// articleRoutes.route('/add').post(function (req, res) {
+//     user.save(function (err) {
+//         if (err) return handleError(err);
+//         let article = new Article(req.body);
+//         article.save(function (err) {
+//             if (err) return handleError(err);
+//             // thats it!
+//         });
+//     });
+// });
+// articleRoutes.post('/', function (req, res) {
+//   let article = new Article(req.body);
+//   article.save()
+//     .then(article => {
+//         console.log("Article added: ", article)
+//         res.status(200).json({'article': 'article in added successfully'});
+//     })
+//     .catch(err => {
+//         res.status(400).send("unable to save to database");
+//     });
+// });
 
 
 

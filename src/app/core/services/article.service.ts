@@ -206,10 +206,16 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
   //   return this.articles.find(e => e.articleId === artId);
   // }
 
+  getHttpArticlesObs(): Observable<Array<Article>> {
+    return this.http.get<Array<Article>>('http://localhost:4000/articles/');
+
+  }
+
   getArticlesObs(): Observable<Array<Article>> {
     this.articlesObs.next(this.articles);
     return this.articlesObs.asObservable();
     // return this.http.get<Array<Article>>('http://localhost:3000/articles');
+    // return this.http.get<Array<Article>>('http://localhost:4000/article/');
   }
 
   //odpowiedź w tym przypadku już nie jest jsonem w postaci listy artykułów. Teraz otrzymukujemy obiekt HttpResponse, które posiada body w którym są nasze artykuły. Mamy też headers, status, url itd
@@ -280,10 +286,10 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
     //   .set('description', art.description)                       
     //   .set('likes', art.likes.toString())                       
     //   .set('dateModified', art.dateModified);                      
-    // this.http.post<Article>('http://localhost:4000/article/add', art).subscribe(res => console.log('Done'));;
-    // return this.http.post('http://localhost:4000/article/add', art, { headers: config });
-    // return this.http.post<Article>('http://localhost:4000/article/add', art, { headers: config }).map(res=>res.json());
-    return this.http.post<Article>('http://localhost:4000/article/add', art, { headers: config });
+    // this.http.post<Article>('http://localhost:4000/articles/add', art).subscribe(res => console.log('Done'));;
+    // return this.http.post('http://localhost:4000/articles/add', art, { headers: config });
+    // return this.http.post<Article>('http://localhost:4000/articles/add', art, { headers: config }).map(res=>res.json());
+    return this.http.post<Article>('http://localhost:4000/articles/add', art, { headers: config });
   }
   // adddArticle(): Observable<Article> {
   //   return this.http.post<Article>('http://localhost:4000/article/add', 

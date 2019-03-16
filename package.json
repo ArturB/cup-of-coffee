@@ -28,6 +28,7 @@
     "express": "^4.16.4",
     "font-awesome": "^4.7.0",
     "mongoose": "^5.4.19",
+    "mongoose-unique-validator": "^2.0.2",
     "ng2-slim-loading-bar": "^4.0.0",
     "reset-css": "^4.0.1",
     "rxjs": "~6.3.3",

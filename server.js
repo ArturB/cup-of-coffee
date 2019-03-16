@@ -50,7 +50,7 @@ app.use(function (req, res, next) { //allow cross origin requests
 
 
 app.use(cors());
-app.use('/article', articleRoute);
+app.use('/articles', articleRoute);
 const port = process.env.PORT || 4000;
 
 const server = app.listen(port, function(){

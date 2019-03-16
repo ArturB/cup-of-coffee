@@ -118,7 +118,14 @@ export class AddArticleComponent implements OnInit, OnChanges {
     // this.articleService.adArticle(art);
     let art2 = {
       // user: this.user,	
-      user: this.user,	
+      // user: this.user,
+      user: {
+        userId: 1,
+        // _id: "554454",
+        email: "dcs@df.ee",
+        password: "ddddddd",
+        username: "Daria",
+      },	
       // articleId: {type: Number, required: true},	
       link: "ooo",	
       title: "ooo",
