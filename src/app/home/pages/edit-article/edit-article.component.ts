@@ -114,4 +114,3 @@ export class EditArticleComponent implements OnInit {
 }
 
 
-}
