@@ -106,7 +106,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
     // console.log(this.newArt);
 
     let art = new Article(
-      this.user,
+      // this.user,
       this.newArtForm.value.link,
       this.newArtForm.value.title,
       this.newArtForm.value.category,

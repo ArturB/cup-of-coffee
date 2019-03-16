@@ -5,6 +5,10 @@ const articleRoutes = express.Router();
 
 // Require article model in our routes module
 let Article = require('../models/article');
+let User = require('../models/user');
+
+
+
 
 // Defined get data(index or listing) route
 articleRoutes.route('/').get(function (req, res) {
@@ -20,14 +24,10 @@ articleRoutes.route('/').get(function (req, res) {
 
 
 
+
 // let User = require('../models/article');
 
-// const user = new User({
-//     _id: new mongoose.Types.ObjectId(),
-//     username: 'Ian Fleming',
-//     email: 'Ian@flra.pl',
-//     password: 'fefrrfrfing',
-//   });
+;
 
 // // Defined get data(index or listing) route
 // articleRoutes.route('/').get(function (req, res) {
@@ -41,18 +41,70 @@ articleRoutes.route('/').get(function (req, res) {
 //   });
 // });
 
+// const user = new User({
+//     // _id: new mongoose.Types.ObjectId(),
+//         username: 'Ian Fleming',
+//         email: 'Ian@flra.pl',
+//         password: 'fefrrfrfing',
+//       })
+//     user.save()
+//         .then(user => {
+//             console.log("User added: ", user)
+//             res.status(200).json({'user': 'user in added successfully'});
+//         })
+//         .catch(err => {
+//             res.status(400).send("unable to save to database");
+//         });
+
 // Defined store route
 articleRoutes.route('/add').post(function (req, res) {
 // articleRoutes.post('/', function (req, res) {
-  let article = new Article(req.body);
-  article.save()
-    .then(article => {
-        console.log("Article added: ", article)
-        res.status(200).json({'article': 'article in added successfully'});
-    })
-    .catch(err => {
-        res.status(400).send("unable to save to database");
+
+    User.findById('5c8d0c19418e5905b80f97a6', function (err, user) {
+        if (err) {
+            return res.status(500).json({
+                title: 'Wystąpił nieoczekiwany błąd',
+                error: err
+            });
+        }
+        console.log(user);
+        let article = new Article({
+            link: req.body.link,	
+            title: req.body.title,	
+            category: req.body.category,	
+            description: req.body.description,	
+            likes: req.body.likes,	
+            dateModified: req.body.dateModified,	
+            // req.body, 
+            user: user
+        })
+        article.save(function(err, result) {
+			if (err) {
+				return res.status(500).json({
+					title: 'Wystąpił nieoczekiwany błąd',
+					error: err
+				});
+			}
+			// user.article.push(result);
+            user.save();
+			res.status(201).json({
+				message: 'Sekwencja została dodana do konta użytkownika',
+				obj: result
+            });
+        });
+
+
     });
+    
+    // let article = new Article(req.body);
+    // article.save()
+    //     .then(article => {
+    //         console.log("Article added: ", article)
+    //         res.status(200).json({'article': 'article in added successfully'});
+    //     })
+    //     .catch(err => {
+    //         res.status(400).send("unable to save to database");
+    //     });
 });
 
 // user.save(function (err) {
