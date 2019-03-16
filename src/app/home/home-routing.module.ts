@@ -6,6 +6,7 @@ import { CategoryComponent } from './pages/category/category.component';
 import { SelectedCategoryComponent } from './pages/category/selected-category/selected-category.component';
 import { ArticleComponent } from './pages/category/article/article.component';
 import { AddArticleComponent } from './pages/add-article/add-article.component';
+import { EditArticleComponent } from './pages/edit-article/edit-article.component';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   },
   // { path: 'kategoria/artykul/:articleId', component: ArticleComponent},
   { path: 'dodaj-artykul', component: AddArticleComponent},
+  { path: 'edytuj-artykul:articleId', component: EditArticleComponent},
   {path: 'konto', loadChildren: './pages/auth/auth.module#AuthModule'},
   {path: 'moje-konto', component: UserAccountComponent},
 

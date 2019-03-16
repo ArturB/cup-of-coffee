@@ -210,8 +210,8 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
     return this.articleObs.asObservable();
     // return this.http.post<Article>('http://localhost:3000/articles', art);
   }
-
-  updateArticle(art: Article): Observable<Article> {
+s
+  editArticle(art: Article): Observable<Article> {
     // this.articles.push(art);
     // this.articlesObs.next(this.articles);
     // return this.articleObs.asObservable();
