@@ -20,15 +20,22 @@ export class SelectedCategoryComponent implements OnInit {
   showFour: boolean = false;
   // private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private articleService: ArticleService, public cdRef:ChangeDetectorRef) { 
+  constructor(
+    private route: ActivatedRoute, 
+    private articleService: ArticleService, 
+    public cdRef:ChangeDetectorRef) { 
     // this.articleService.getArticleObsByCategory
     //setTimeout(() => {
     // this.category = this.route.snapshot.params['category'];
     // if (this.category === 'wszystkie') {
     //   // this.subscription = 
-    //   this.articleService.getArticlesObs().subscribe((articles: Array<Article>) => {
-    //     this.articles = articles;        
-    //   })
+    //   this.articleService.getHttpArticlesObs().subscribe((articles: Array<Article>) => {
+    //       this.articles = articles;        
+    //     },
+    //     error => { 
+    //       console.log("errrr "+error);
+    //     }
+    //   )
     //   // console.log("wszystkie: ", this.articles);
 
     // } 
@@ -37,8 +44,8 @@ export class SelectedCategoryComponent implements OnInit {
     //   this.articleService.getArticleObsByCategory(this.category).subscribe((articles: Array<Article>) => {
     //     this.articles = articles;
     //   });
-    //   // console.log("articles: ", this.articles);
-    // }
+      // console.log("articles: ", this.articles);
+    //}
     // console.log("articles: ", this.articles);
     // console.log("category: ", this.category);
     // console.log("Kategoria: ", this.category);

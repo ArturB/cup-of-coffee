@@ -11,44 +11,44 @@ import { map } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class ArticleService {
-  private articles: Array<Article> = [
-    {
-      user: {
-        // userId: 4,
-        email: "daria@mail.ru",
-        password: "ffff",
-        username: "Some user"
-      },
-      // link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQvndPBhegt-DXIpCiN-IH7d-MkQlgJruwESgAKCWaQxymSGfC",
-      link: "#460327",
-      title: "hd sefsgvr vsjnjso vfrfs ssvklms chhhhhhhd sefsgvr vsjnjso vfrfs ssvklms",
-      category: "popularne",
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem esse eaque libero quod perspiciatis, tempore suscipit qui veritatis autem eum adipisci dolor quidem reiciendis soluta veniam ipsam nisi vero tempora sequi provident ratione explicabo est? Sint ex eveniet doloremque necessitatibus accusantium deleniti corporis vel ullam fugiat magnam! Ab quo sapiente fuga esse perspiciatis nostrum maxime maiores delectus excepturi velit, qui vel eius est perferendis nam enim totam laborum quis temporibus provident debitis rerum, numquam ea dolores! Tenetur iure libero eaque temporibus ut, rem velit necessitatibus optio, voluptatem quaerat in. Nesciunt atque, voluptatum ratione vero error nam voluptate nisi ad itaque architecto doloremque repudiandae officia in unde dolorum aliquid ullam illo, dolor ipsa excepturi accusamus blanditiis voluptates odio? Eveniet in, ipsam enim quia facere rerum expedita provident nostrum animi tempora facilis exercitationem repellendus sint excepturi blanditiis sunt est veritatis dicta reprehenderit voluptatum aperiam minus vel quidem nulla! Voluptatum, debitis obcaecati cumque explicabo dignissimos provident earum eligendi quis expedita ea! Totam ad necessitatibus enim officiis quas. Rem quam recusandae debitis soluta nostrum. Modi, itaque quas consectetur vero maiores deleniti nostrum cum quaerat repellendus dolore nisi earum optio dolores quia sunt numquam porro distinctio mollitia. Officia, est! Repellendus inventore voluptatem soluta exercitationem.
-Lorem em ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem esse eaque libero quod perspiciatis, tempore suscipit qui veritatis autem eum adipisci dolor quidem reiciendis soluta veniam ipsam nisi vero tempora sequi provident ratione explicabo est? Sint ex eveniet doloremque necessitatibus accusantium deleniti corporis vel ullam fugiat magnam! Ab quo sapiente fuga esse perspiciatis nostrum maxime maiores delectus excepturi velit, qui vel eius est perferendis nam enim totam laborum quis temporibus provident debitis rerum, numquam ea dolores! Tenetur iure libero eaque temporibus ut, rem velit necessitatibus optio, voluptatem quaerat in. Nesciunt atque, voluptatum ratione vero error nam voluptate nisi ad itaque architecto doloremque repudiandae officia in unde dolorum aliquid ullam illo, dolor ipsa excepturi accusamus blanditiis voluptates odio? Eveniet in, ipsam enim quia facere rerum expedita provident nostrum animi tempora facilis exercitationem repellendus sint excepturi blanditiis sunt est veritatis dicta reprehenderit voluptatum aperiam minus vel quidem nulla! Voluptatum, debitis obcaecati cumque explicabo dignissimos provident earum eligendi quis expedita ea! Totam ad necessitatibus enim officiis quas. Rem quam recusandae debitis soluta nostrum. Modi, itaque quas consectetur vero maiores deleniti nostrum cum quaerat repellendus dolore nisi earum optio dolores quia sunt numquam porro distinctio mollitia. Officia, est! Repellendus inventore voluptatem soluta exercitationem.
-Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem `,
-      likes: 12,
-      dateModified: new Date().toDateString(),
-      articleId: 1
-    },
-    {
-      user: {
-        // userId: 5,
-        email: "da2a@mail.ru",
-        password: "ffff",
-        username: "Some user2"
-      },
-      // link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQvndPBhegt-DXIpCiN-IH7d-MkQlgJruwESgAKCWaQxymSGfC",
-      link: "#560327",
-      title: "hd sefsgvr vsjnjso vfrfs ssvklms chhhhhhhd sefsgvr vsjnjso vfrfs ssvklms",
-      category: "sztuka",
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem esse eaque libero quod perspiciatis, tempore suscipit qui veritatis autem eum adipisci dolor quidem reiciendis soluta veniam ipsam nisi vero tempora sequi provident ratione explicabo est? Sint ex eveniet doloremque necessitatibus accusantium deleniti corporis vel ullam fugiat magnam! Ab quo sapiente fuga esse perspiciatis nostrum maxime maiores delectus excepturi velit, qui vel eius est perferendis nam enim totam laborum quis temporibus provident debitis rerum, numquam ea dolores! Tenetur iure libero eaque temporibus ut, rem velit necessitatibus optio, voluptatem quaerat in. Nesciunt atque, voluptatum ratione vero error nam voluptate nisi ad itaque architecto doloremque repudiandae officia in unde dolorum aliquid ullam illo, dolor ipsa excepturi accusamus blanditiis voluptates odio? Eveniet in, ipsam enim quia facere rerum expedita provident nostrum animi tempora facilis exercitationem repellendus sint excepturi blanditiis sunt est veritatis dicta reprehenderit voluptatum aperiam minus vel quidem nulla! Voluptatum, debitis obcaecati cumque explicabo dignissimos provident earum eligendi quis expedita ea! Totam ad necessitatibus enim officiis quas. Rem quam recusandae debitis soluta nostrum. Modi, itaque quas consectetur vero maiores deleniti nostrum cum quaerat repellendus dolore nisi earum optio dolores quia sunt numquam porro distinctio mollitia. Officia, est! Repellendus inventore voluptatem soluta exercitationem.
-Lorem em ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem esse eaque libero quod perspiciatis, tempore suscipit qui veritatis autem eum adipisci dolor quidem reiciendis soluta veniam ipsam nisi vero tempora sequi provident ratione explicabo est? Sint ex eveniet doloremque necessitatibus accusantium deleniti corporis vel ullam fugiat magnam! Ab quo sapiente fuga esse perspiciatis nostrum maxime maiores delectus excepturi velit, qui vel eius est perferendis nam enim totam laborum quis temporibus provident debitis rerum, numquam ea dolores! Tenetur iure libero eaque temporibus ut, rem velit necessitatibus optio, voluptatem quaerat in. Nesciunt atque, voluptatum ratione vero error nam voluptate nisi ad itaque architecto doloremque repudiandae officia in unde dolorum aliquid ullam illo, dolor ipsa excepturi accusamus blanditiis voluptates odio? Eveniet in, ipsam enim quia facere rerum expedita provident nostrum animi tempora facilis exercitationem repellendus sint excepturi blanditiis sunt est veritatis dicta reprehenderit voluptatum aperiam minus vel quidem nulla! Voluptatum, debitis obcaecati cumque explicabo dignissimos provident earum eligendi quis expedita ea! Totam ad necessitatibus enim officiis quas. Rem quam recusandae debitis soluta nostrum. Modi, itaque quas consectetur vero maiores deleniti nostrum cum quaerat repellendus dolore nisi earum optio dolores quia sunt numquam porro distinctio mollitia. Officia, est! Repellendus inventore voluptatem soluta exercitationem.
-Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem `,
-      likes: 12,
-      dateModified: new Date().toDateString(),
-      articleId: 2
-    }
-  ];
+//   private articles: Array<Article> = [
+//     {
+//       user: {
+//         // userId: 4,
+//         email: "daria@mail.ru",
+//         password: "ffff",
+//         username: "Some user"
+//       },
+//       // link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQvndPBhegt-DXIpCiN-IH7d-MkQlgJruwESgAKCWaQxymSGfC",
+//       link: "#460327",
+//       title: "hd sefsgvr vsjnjso vfrfs ssvklms chhhhhhhd sefsgvr vsjnjso vfrfs ssvklms",
+//       category: "popularne",
+//       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem esse eaque libero quod perspiciatis, tempore suscipit qui veritatis autem eum adipisci dolor quidem reiciendis soluta veniam ipsam nisi vero tempora sequi provident ratione explicabo est? Sint ex eveniet doloremque necessitatibus accusantium deleniti corporis vel ullam fugiat magnam! Ab quo sapiente fuga esse perspiciatis nostrum maxime maiores delectus excepturi velit, qui vel eius est perferendis nam enim totam laborum quis temporibus provident debitis rerum, numquam ea dolores! Tenetur iure libero eaque temporibus ut, rem velit necessitatibus optio, voluptatem quaerat in. Nesciunt atque, voluptatum ratione vero error nam voluptate nisi ad itaque architecto doloremque repudiandae officia in unde dolorum aliquid ullam illo, dolor ipsa excepturi accusamus blanditiis voluptates odio? Eveniet in, ipsam enim quia facere rerum expedita provident nostrum animi tempora facilis exercitationem repellendus sint excepturi blanditiis sunt est veritatis dicta reprehenderit voluptatum aperiam minus vel quidem nulla! Voluptatum, debitis obcaecati cumque explicabo dignissimos provident earum eligendi quis expedita ea! Totam ad necessitatibus enim officiis quas. Rem quam recusandae debitis soluta nostrum. Modi, itaque quas consectetur vero maiores deleniti nostrum cum quaerat repellendus dolore nisi earum optio dolores quia sunt numquam porro distinctio mollitia. Officia, est! Repellendus inventore voluptatem soluta exercitationem.
+// Lorem em ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem esse eaque libero quod perspiciatis, tempore suscipit qui veritatis autem eum adipisci dolor quidem reiciendis soluta veniam ipsam nisi vero tempora sequi provident ratione explicabo est? Sint ex eveniet doloremque necessitatibus accusantium deleniti corporis vel ullam fugiat magnam! Ab quo sapiente fuga esse perspiciatis nostrum maxime maiores delectus excepturi velit, qui vel eius est perferendis nam enim totam laborum quis temporibus provident debitis rerum, numquam ea dolores! Tenetur iure libero eaque temporibus ut, rem velit necessitatibus optio, voluptatem quaerat in. Nesciunt atque, voluptatum ratione vero error nam voluptate nisi ad itaque architecto doloremque repudiandae officia in unde dolorum aliquid ullam illo, dolor ipsa excepturi accusamus blanditiis voluptates odio? Eveniet in, ipsam enim quia facere rerum expedita provident nostrum animi tempora facilis exercitationem repellendus sint excepturi blanditiis sunt est veritatis dicta reprehenderit voluptatum aperiam minus vel quidem nulla! Voluptatum, debitis obcaecati cumque explicabo dignissimos provident earum eligendi quis expedita ea! Totam ad necessitatibus enim officiis quas. Rem quam recusandae debitis soluta nostrum. Modi, itaque quas consectetur vero maiores deleniti nostrum cum quaerat repellendus dolore nisi earum optio dolores quia sunt numquam porro distinctio mollitia. Officia, est! Repellendus inventore voluptatem soluta exercitationem.
+// Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem `,
+//       likes: 12,
+//       dateModified: new Date().toDateString(),
+//       articleId: 1
+//     },
+//     {
+//       user: {
+//         // userId: 5,
+//         email: "da2a@mail.ru",
+//         password: "ffff",
+//         username: "Some user2"
+//       },
+//       // link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQvndPBhegt-DXIpCiN-IH7d-MkQlgJruwESgAKCWaQxymSGfC",
+//       link: "#560327",
+//       title: "hd sefsgvr vsjnjso vfrfs ssvklms chhhhhhhd sefsgvr vsjnjso vfrfs ssvklms",
+//       category: "sztuka",
+//       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem esse eaque libero quod perspiciatis, tempore suscipit qui veritatis autem eum adipisci dolor quidem reiciendis soluta veniam ipsam nisi vero tempora sequi provident ratione explicabo est? Sint ex eveniet doloremque necessitatibus accusantium deleniti corporis vel ullam fugiat magnam! Ab quo sapiente fuga esse perspiciatis nostrum maxime maiores delectus excepturi velit, qui vel eius est perferendis nam enim totam laborum quis temporibus provident debitis rerum, numquam ea dolores! Tenetur iure libero eaque temporibus ut, rem velit necessitatibus optio, voluptatem quaerat in. Nesciunt atque, voluptatum ratione vero error nam voluptate nisi ad itaque architecto doloremque repudiandae officia in unde dolorum aliquid ullam illo, dolor ipsa excepturi accusamus blanditiis voluptates odio? Eveniet in, ipsam enim quia facere rerum expedita provident nostrum animi tempora facilis exercitationem repellendus sint excepturi blanditiis sunt est veritatis dicta reprehenderit voluptatum aperiam minus vel quidem nulla! Voluptatum, debitis obcaecati cumque explicabo dignissimos provident earum eligendi quis expedita ea! Totam ad necessitatibus enim officiis quas. Rem quam recusandae debitis soluta nostrum. Modi, itaque quas consectetur vero maiores deleniti nostrum cum quaerat repellendus dolore nisi earum optio dolores quia sunt numquam porro distinctio mollitia. Officia, est! Repellendus inventore voluptatem soluta exercitationem.
+// Lorem em ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem esse eaque libero quod perspiciatis, tempore suscipit qui veritatis autem eum adipisci dolor quidem reiciendis soluta veniam ipsam nisi vero tempora sequi provident ratione explicabo est? Sint ex eveniet doloremque necessitatibus accusantium deleniti corporis vel ullam fugiat magnam! Ab quo sapiente fuga esse perspiciatis nostrum maxime maiores delectus excepturi velit, qui vel eius est perferendis nam enim totam laborum quis temporibus provident debitis rerum, numquam ea dolores! Tenetur iure libero eaque temporibus ut, rem velit necessitatibus optio, voluptatem quaerat in. Nesciunt atque, voluptatum ratione vero error nam voluptate nisi ad itaque architecto doloremque repudiandae officia in unde dolorum aliquid ullam illo, dolor ipsa excepturi accusamus blanditiis voluptates odio? Eveniet in, ipsam enim quia facere rerum expedita provident nostrum animi tempora facilis exercitationem repellendus sint excepturi blanditiis sunt est veritatis dicta reprehenderit voluptatum aperiam minus vel quidem nulla! Voluptatum, debitis obcaecati cumque explicabo dignissimos provident earum eligendi quis expedita ea! Totam ad necessitatibus enim officiis quas. Rem quam recusandae debitis soluta nostrum. Modi, itaque quas consectetur vero maiores deleniti nostrum cum quaerat repellendus dolore nisi earum optio dolores quia sunt numquam porro distinctio mollitia. Officia, est! Repellendus inventore voluptatem soluta exercitationem.
+// Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem `,
+//       likes: 12,
+//       dateModified: new Date().toDateString(),
+//       articleId: 2
+//     }
+//   ];
 //   private articles: Array<Article> = [
 //     {
 //       articleId: 1,
@@ -164,7 +164,7 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
 //     ];
 
   private article: Article;
-  private articlesObs = new BehaviorSubject<Array<Article>>(this.articles);
+  // private articlesObs = new BehaviorSubject<Array<Article>>(this.articles);
   private articleObs = new BehaviorSubject<Article>(this.article);
 
 
@@ -193,6 +193,34 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
   constructor(private http: HttpClient) {
     // this.articlesObs.next(this.articles);
    }
+   getHttpArticlesObs(): Observable<Array<Article>> {
+    return this.http.get<Array<Article>>('http://localhost:4000/articles/');
+
+  }
+
+  getHttpArticleObsByCategory(artCategory: string): Observable<Array<Article>> {
+    const params = new HttpParams().set("category", artCategory)
+    console.log(params);
+    return this.http.get<Array<Article>>('http://localhost:4000/articles/category/', {params: params});
+
+  }
+
+  getHttpArticleObsById(artTitle: string): Observable<Article> {
+    const params = new HttpParams().set("title", artTitle)
+    console.log(artTitle);
+
+    return this.http.get<Article>('http://localhost:4000/articles/article', {params: params});
+  }
+
+  adArticle(art: Article):Observable<Article> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json');
+
+    const token = localStorage.getItem('access_token')
+      ? '?token=' + localStorage.getItem('access_token')
+      : '';
+
+    return this.http.post<Article>('http://localhost:4000/articles/add' + token, art, { headers: headers });
+  }
 
   // getArticles() {
   //   return this.articles
@@ -206,17 +234,14 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
   //   return this.articles.find(e => e.articleId === artId);
   // }
 
-  getHttpArticlesObs(): Observable<Array<Article>> {
-    return this.http.get<Array<Article>>('http://localhost:4000/articles/');
+  
 
-  }
-
-  getArticlesObs(): Observable<Array<Article>> {
-    this.articlesObs.next(this.articles);
-    return this.articlesObs.asObservable();
-    // return this.http.get<Array<Article>>('http://localhost:3000/articles');
-    // return this.http.get<Array<Article>>('http://localhost:4000/article/');
-  }
+  // getArticlesObs(): Observable<Array<Article>> {
+  //   this.articlesObs.next(this.articles);
+  //   return this.articlesObs.asObservable();
+  //   // return this.http.get<Array<Article>>('http://localhost:3000/articles');
+  //   // return this.http.get<Array<Article>>('http://localhost:4000/article/');
+  // }
 
   //odpowiedź w tym przypadku już nie jest jsonem w postaci listy artykułów. Teraz otrzymukujemy obiekt HttpResponse, które posiada body w którym są nasze artykuły. Mamy też headers, status, url itd
   // gettArticlesObs(): Observable<HttpResponse<Response>> {
@@ -227,22 +252,22 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
   //     {observe: 'response'})
   // }
 
-  getArticleObsByCategory(artCategory: string): Observable<Array<Article>> {
-    //this.articles.filter(e => e.category === artCategory);
-    this.articlesObs.next(this.articles.filter(e => e.category === artCategory));
-    // console.log(this.articlesObs);
-    return this.articlesObs.asObservable();
-    // return this.articlesObs.pipe(filter(e => e[0].category === artCategory).asObservable());
-    // return this.http.get<Array<Article>>('http://localhost:3000/articles/' + artCategory);
+  // getArticleObsByCategory(artCategory: string): Observable<Array<Article>> {
+  //   //this.articles.filter(e => e.category === artCategory);
+  //   this.articlesObs.next(this.articles.filter(e => e.category === artCategory));
+  //   // console.log(this.articlesObs);
+  //   return this.articlesObs.asObservable();
+  //   // return this.articlesObs.pipe(filter(e => e[0].category === artCategory).asObservable());
+  //   // return this.http.get<Array<Article>>('http://localhost:3000/articles/' + artCategory);
     
-  }
+  // }
 
-  getArticleObsById(artId: number): Observable<Article> {
-    this.article = this.articles.find(e => e.articleId === artId);
-    this.articleObs.next(this.article);
-    return this.articleObs.asObservable();
-    // return this.http.get<Article>('http://localhost:3000/articles/' + this.article.category + artId);
-  }
+  // getArticleObsById(artId: number): Observable<Article> {
+  //   this.article = this.articles.find(e => e.articleId === artId);
+  //   this.articleObs.next(this.article);
+  //   return this.articleObs.asObservable();
+  //   // return this.http.get<Article>('http://localhost:3000/articles/' + this.article.category + artId);
+  // }
 
   // getArticlesByUser(userId: number): Observable<Array<Article>> {
   //   // musimy dodać '' do userId bo parametr musi być stringiem
@@ -250,55 +275,51 @@ Lorem ipsum dolor sit amet consectetur aipsum dolor sit amet consectetur adipisi
   //   return this.http.get<Array<Article>>('http://localhost:3000/articles', {params: parm});  // --> np. http://localhost:3000/articles?userId=1
   // }
 
-  addArticle(art: Article): Observable<Article> {
-    this.articles.push(art);
-    this.articlesObs.next(this.articles);
-    return this.articleObs.asObservable();
-    // return this.http.post<Article>('http://localhost:3000/articles/add', art);
-    // return this.http.post<Article>('http://localhost:3000/articles/add', art).subscribe(res => console.log('Done'));;
-  }
+
+
+
+
+  // addArticle(art: Article): Observable<Article> {
+  //   this.articles.push(art);
+  //   this.articlesObs.next(this.articles);
+  //   return this.articleObs.asObservable();
+  //   // return this.http.post<Article>('http://localhost:3000/articles/add', art);
+  //   // return this.http.post<Article>('http://localhost:3000/articles/add', art).subscribe(res => console.log('Done'));;
+  // }
+
+
+
 
   // adArticle(art: Article): Observable<Article> {
     // this.articles.push(art);
     // this.articlesObs.next(this.articles);
     // return this.articleObs.asObservable();
     // return this.http.post<Article>('http://localhost:3000/article/add', art);
-  adArticle(art: Article):Observable<Article> {
-    // const formData = new FormData();
-    // formData.append('user', art.user.toString());
-    // formData.append('link', art.link);
-    // formData.append('title', art.title);
-    // formData.append('category', art.category);
-    // formData.append('description', art.description);
-    // formData.append('likes', art.likes.toString());
-    // formData.append('dateModified', art.dateModified);
-    // formData.append('link', art.link);
-    // formData.append('link', art.link);
-    // console.log(art);
-    const config = new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json');
+  // adArticle(art: Article):Observable<Article> {
+  //   const config = new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json');
     
-    const body = JSON.stringify(art)
-    // const body = new HttpParams()
-    //   .set('user', art.user.toString())
-    //   .set('link', art.link)                       
-    //   .set('title', art.title)                       
-    //   .set('category', art.category)                       
-    //   .set('description', art.description)                       
-    //   .set('likes', art.likes.toString())                       
-    //   .set('dateModified', art.dateModified);                      
-    // this.http.post<Article>('http://localhost:4000/articles/add', art).subscribe(res => console.log('Done'));;
-    // return this.http.post('http://localhost:4000/articles/add', art, { headers: config });
-    // return this.http.post<Article>('http://localhost:4000/articles/add', art, { headers: config }).map(res=>res.json());
+  //   const body = JSON.stringify(art)
+  //   // const body = new HttpParams()
+  //   //   .set('user', art.user.toString())
+  //   //   .set('link', art.link)                       
+  //   //   .set('title', art.title)                       
+  //   //   .set('category', art.category)                       
+  //   //   .set('description', art.description)                       
+  //   //   .set('likes', art.likes.toString())                       
+  //   //   .set('dateModified', art.dateModified);                      
+  //   // this.http.post<Article>('http://localhost:4000/articles/add', art).subscribe(res => console.log('Done'));;
+  //   // return this.http.post('http://localhost:4000/articles/add', art, { headers: config });
+  //   // return this.http.post<Article>('http://localhost:4000/articles/add', art, { headers: config }).map(res=>res.json());
     
     
-    const token = localStorage.getItem('access_token')
-      ? '?token=' + localStorage.getItem('access_token')
-      : '';
-    console.log('acoount', token)
+  //   const token = localStorage.getItem('access_token')
+  //     ? '?token=' + localStorage.getItem('access_token')
+  //     : '';
+  //   console.log('acoount', token)
 
     
-    return this.http.post<Article>('http://localhost:4000/articles/add' + token, art, { headers: config });
-  }
+  //   return this.http.post<Article>('http://localhost:4000/articles/add' + token, art, { headers: config });
+  // }
   // adddArticle(): Observable<Article> {
   //   return this.http.post<Article>('http://localhost:4000/article/add', 
   //     this.articles[1]

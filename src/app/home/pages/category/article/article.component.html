@@ -1,57 +1,40 @@
-<!-- <div class="output">
-  <div class="container-fluid imgBgr" [ngStyle]="{'background-image': getBgrUrl()}">
-  </div>
-  <div class="container-fluid heading text-center">
-    <h1 class="mx-auto px-3 hMarg">{{ article.title }}</h1>
-    <div class="infoArticle pt-4">
-      <h2 class="mx-auto px-3 hMarg">
-        <span class="mr-2 mr-sm-3"><i class="fa fa fa-eye pr-2"></i>{{ article.likes }}</span>
-        <span class="ml-2 mr-sm-3"><i class="fa fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.mm.yy" }}</span>
-      </h2>
+<ng-container *ngIf="article; else noArticle">
+  <div class="container-fluid imgBgr" [ngStyle]="checkBgr()">
+    <div class="heading text-center">
+      <h1 class="mx-auto px-3 hMarg">{{ article.title }}</h1>
+      <div class="infoArticle pt-4">
+        <h2 class="mx-auto px-3 hMarg">
+          <span class="mr-2 mr-sm-3"><i class="fa fa-thumbs-up pr-2"></i>{{ article.likes }}</span>
+          <span class="ml-2 mr-sm-3"><i class="fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
+        </h2>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="container mt-n5 text-right">
-    <button type="button" class="faBtn" (click)="onFavorite()">
-      <i class="fa fa-star fa-3x"
-      [ngStyle]="{'background-color': isFavorite ? '#f5ad0d' : '#08c5c5'}">
+  
+  <div class="container mt-n5 text-right">
+    <button type="button" class="faBtn" (click)="onLike()">
+      <i class="fa fa-thumbs-up fa-3x iBtn"
+      [ngStyle]="{'background-color': isLiked ? '#FF5722' : '#08c5c5'}">
       </i>
     </button>
-</div>
-
-<div class="container my-5">
-  <p>{{ article.description }}</p>
+    <button type="button" class="faBtn" (click)="onFavorite()">
+      <i class="fa fa-star fa-3x iBtn"
+      [ngStyle]="{'background-color': isFavorite ? '#f5ad0d' : '#2cc585'}">
+      </i>
+    </button>
+  </div>
   
-</div> -->
+  <div class="container my-5">
+    <p>{{ article.description }}</p>
+    
+  </div>
+</ng-container>
 
-<!-- <div class="container-fluid imgBgr" [ngStyle]="{'background-image': getBgrUrl()}"> -->
-<div class="container-fluid imgBgr" [ngStyle]="checkBgr()">
-  <div class="heading text-center">
-    <h1 class="mx-auto px-3 hMarg">{{ article.title }}</h1>
-    <div class="infoArticle pt-4">
-      <h2 class="mx-auto px-3 hMarg">
-        <span class="mr-2 mr-sm-3"><i class="fa fa-thumbs-up pr-2"></i>{{ article.likes }}</span>
-        <span class="ml-2 mr-sm-3"><i class="fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
-      </h2>
+<ng-template #noArticle>
+  <div class="container py-5">
+    <div class="contBgr py-5">
+      <h3 class="text-center">Artykuł o podanym tytule nie został znaleziony<i class="fa fa-frown-o pl-2"></i></h3>
     </div>
   </div>
-</div>
+</ng-template>
 
-<div class="container mt-n5 text-right">
-  <button type="button" class="faBtn" (click)="onLike()">
-    <i class="fa fa-thumbs-up fa-3x iBtn"
-    [ngStyle]="{'background-color': isLiked ? '#FF5722' : '#08c5c5'}">
-    </i>
-  </button>
-  <button type="button" class="faBtn" (click)="onFavorite()">
-    <i class="fa fa-star fa-3x iBtn"
-    [ngStyle]="{'background-color': isFavorite ? '#f5ad0d' : '#2cc585'}">
-    </i>
-  </button>
-</div>
-
-<div class="container my-5">
-  <p>{{ article.description }}</p>
-  
-</div>

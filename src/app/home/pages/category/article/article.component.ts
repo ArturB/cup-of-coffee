@@ -21,13 +21,20 @@ export class ArticleComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private articleService: ArticleService) { 
 
-    let artId: number = parseInt(this.route.snapshot.params['articleId']);
-    this.articleService.getArticleObsById(artId).subscribe((article: Article) => {
-      this.article = article;
-    })
+    // let artId: number = parseInt(this.route.snapshot.params['articleId']);
+    let artTitle: string = this.route.snapshot.params['title'];
+    // let artrId: string = artId.toExponential();
+    this.articleService.getHttpArticleObsById(artTitle).subscribe(
+      (article: Article) => {
+        this.article = article;
+        console.log("Artykuł: ", this.article);
+      },
+      error => {
+        console.log(error);
+      }
+    )
 
     //this.article = articleService.getArticleObsById(artId);
-    console.log("Artykuł: ", this.article);
 
   }
 
@@ -42,13 +49,13 @@ export class ArticleComponent implements OnInit {
   //   // return "url(./assets/img/image2.jpg)";
   // }
   ngOnChanges() {
-    if (this.article.link.includes('#')) {
-      this.artColor = true;
+    // if (this.article.link.includes('#')) {
+    //   this.artColor = true;
 
-    } else {
-      this.artColor = false;
+    // } else {
+    //   this.artColor = false;
 
-    }
+    // }
   }
 
   checkBgr() {

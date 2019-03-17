@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'kategorie/:category', component: CategoryComponent,
     children: [
       {path: '', component: SelectedCategoryComponent},
-      {path: 'artykul/:articleId', component: ArticleComponent}
+      {path: 'artykul/:title', component: ArticleComponent}
     ]
   },
   // { path: 'kategoria/artykul/:articleId', component: ArticleComponent},

@@ -10,7 +10,55 @@ var secret = config.secret;
 let Article = require('../models/article');
 let User = require('../models/user');
 
-articleRoutes.use('/', function (req, res, next) {
+
+
+// Defined get data(index or listing) route
+articleRoutes.route('/').get((req, res) => {
+    Article.find((err, articles) => {
+    if(err){
+        console.log(err);
+        res.send(err);
+    }
+    else {
+        console.log(articles);
+        res.send(articles)
+    //   res.json(articles);
+    }
+  });
+});
+
+
+articleRoutes.route('/category').get((req, res) => {
+    console.log(req.query.category);
+    Article.find({category: req.query.category}, (err, articles) => {
+    if(err){
+        console.log(req.query.category);
+        res.send(err);
+    }
+    else {
+        console.log(articles);
+        res.send(articles)
+    //   res.json(articles);
+    }
+  });
+});
+
+articleRoutes.route('/article').get((req, res) => {
+    console.log(req.query.title);
+    Article.findOne({title: req.query.title}, (err, article) => {
+    if(err){
+        console.log(req.query.title);
+        res.send(err);
+    }
+    else {
+        console.log(article);
+        res.send(article)
+    //   res.json(articles);
+    }
+  });
+});
+
+articleRoutes.use('/', (req, res, next) => {
     jwt.verify(req.query.token, secret, (err, decoded) => {
         if (err) {
             console.log(err);
@@ -21,18 +69,37 @@ articleRoutes.use('/', function (req, res, next) {
 });
 
 
-// Defined get data(index or listing) route
-articleRoutes.route('/').get(function (req, res) {
-    Article.find(function (err, articles){
-    if(err){
-      console.log(err);
-    }
-    else {
-      res.json(articles);
-    }
-  });
-});
+articleRoutes.route('/add').post((req, res)  => {
+// articleRoutes.post('/', function (req, res) {
+    var decoded = jwt.decode(req.query.token);
+    User.findById(decoded.user._id, (err, user) => {
+        if (err) {
+            return res.sendStatus(500)
+        }
+        console.log(user);
+        let article = new Article({
+            link: req.body.link,	
+            title: req.body.title,	
+            category: req.body.category,	
+            author: user.username,	
+            description: req.body.description,	
+            likes: req.body.likes,	
+            dateModified: req.body.dateModified,	
+            // req.body, 
+            user: user
+        })
+        article.save((err, result) => {
+            if (err) {
+                return res.sendStatus(500)
+            }
+            // user.article.push(result);
+            user.save();
+            res.send(result)
+        });
 
+
+    });
+});
 
 
 
@@ -68,36 +135,7 @@ articleRoutes.route('/').get(function (req, res) {
 //         });
 
 // Defined store route
-articleRoutes.route('/add').post(function (req, res) {
-// articleRoutes.post('/', function (req, res) {
-    var decoded = jwt.decode(req.query.token);
-    User.findById(decoded.user._id, function (err, user) {
-        if (err) {
-            return res.sendStatus(500)
-        }
-        console.log(user);
-        let article = new Article({
-            link: req.body.link,	
-            title: req.body.title,	
-            category: req.body.category,	
-            author: user.username,	
-            description: req.body.description,	
-            likes: req.body.likes,	
-            dateModified: req.body.dateModified,	
-            // req.body, 
-            user: user
-        })
-        article.save(function(err, result) {
-			if (err) {
-				return res.sendStatus(500)
-			}
-			// user.article.push(result);
-            user.save();
-			res.send(result)
-        });
 
-
-    });
     
     // let article = new Article(req.body);
     // article.save()
@@ -108,7 +146,7 @@ articleRoutes.route('/add').post(function (req, res) {
     //     .catch(err => {
     //         res.status(400).send("unable to save to database");
     //     });
-});
+
 
 // user.save(function (err) {
 //     if (err) return handleError(err);

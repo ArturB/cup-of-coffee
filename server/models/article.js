@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // const User = require('./user');
+const mongooseUniqueValidator = require('mongoose-unique-validator');
 
 let articleSchema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: 'User'},	
     // user: {type: Object},	
     // // articleId: {type: Number, required: true},	
     link: {type: String, required: true},	
-	title: {type: String, required: true},
+	title: {type: String, required: true, unique: true},
 	category: {type: String, required: true},
 	author: {type: String, required: true},
 	// author: [{type: Schema.Types.ObjectId, ref: 'AcVideo'}],
@@ -16,6 +17,8 @@ let articleSchema = new Schema({
 	likes: [{type: Schema.Types.ObjectId, ref: 'User'}],
 	dateModified: {type: String, required: true}
 });
+
+articleSchema.plugin(mongooseUniqueValidator);
 
 // module.exports = mongoose.model('Article', schema);
 

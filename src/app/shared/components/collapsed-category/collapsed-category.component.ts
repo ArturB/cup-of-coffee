@@ -39,26 +39,38 @@ export class CollapsedCategoryComponent implements OnInit {
     if (this.category === 'wszystkie') {
       //retry sprawia, że jeżeli nasze zapytanie się nie powiodło to jeszcze 3 razy będzie wykonana próba zapytania
       // this.articleService.getArticlesObs().retry(3).subscribe((articles: Array<Article>) => {
-      this.articleService.getArticlesObs().subscribe((articles: Array<Article>) => {
-        this.articles = articles;        
-      },
-        (error: HttpErrorResponse) => {
-          console.log(error.status);
+      this.articleService.getHttpArticlesObs().subscribe(
+        (articles: Array<Article>) => {
+          // console.log(articles);
+          this.articles = articles;        
+          this.filteredArticles = this.sliceFour();
+          console.log(this.articles);
+        },
+        error => { 
+          console.log(error, error.status);
         }
+        // (error: HttpErrorResponse) => {
+        //   console.log(error.status);
+        // }
       )
     } else {
-      this.articleService.getArticleObsByCategory(this.category).subscribe((articles: Array<Article>) => {
+      this.articleService.getHttpArticleObsByCategory(this.category).subscribe(
+        (articles: Array<Article>) => {
         // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
-        this.articles = articles.slice();
-      },
-        (error: HttpErrorResponse) => {
-          console.log(error.status);
+          console.log(articles);
+          this.articles = articles.slice();
+          this.filteredArticles = this.sliceFour();
+        },
+        // (error: HttpErrorResponse) => {
+        //   console.log(error.status);
+        // }
+        error => { 
+          console.log(error, error.status);
         }
       );
     }
     console.log('collapsed articles: ', this.articles);
     //this.articles = this.articleService.getArticleByCategory(this.category);
-    this.filteredArticles = this.sliceFour();
   }
 
   sliceFour() {
@@ -71,7 +83,7 @@ export class CollapsedCategoryComponent implements OnInit {
 
 
   gotoArticle(article: Article) {
-    this.router.navigate(['kategorie/',article.category, 'artykul', article.articleId]);
+    this.router.navigate(['kategorie/',article.category, 'artykul', article.title]);
     console.log("Wybrany artykuł: ", article);
   }
 
