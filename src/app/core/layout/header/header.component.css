@@ -76,7 +76,7 @@
     background-color: #b66;
 }
 
-.dropdown-toggle {
+.dropdown-toggle, .konto {
     cursor: pointer;    
 }
 
@@ -129,4 +129,9 @@
 
 .toggleOn {
     display: block;
+}
+
+.isLogged {
+    display: none;
+
 }

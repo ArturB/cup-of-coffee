@@ -346,18 +346,18 @@ export class ArticleService {
     // );
   //}
 
-  editArticle(art: Article): Observable<Article> {
-    // this.articles.push(art);
-    // this.articlesObs.next(this.articles);
-    // return this.articleObs.asObservable();
-    return this.http.put<Article>('http://localhost:3000/articles/' + art.articleId, art);
-  }
+  // editArticle(art: Article): Observable<Article> {
+  //   // this.articles.push(art);
+  //   // this.articlesObs.next(this.articles);
+  //   // return this.articleObs.asObservable();
+  //   return this.http.put<Article>('http://localhost:3000/articles/' + art.articleId, art);
+  // }
 
-  deleteArticle(artId: number): Observable<Article> {
-    // this.articles.push(art);
-    // this.articlesObs.next(this.articles);
-    // return this.articleObs.asObservable();
-    return this.http.delete<Article>('http://localhost:3000/articles/' + artId);
-  }
+  // deleteArticle(artId: number): Observable<Article> {
+  //   // this.articles.push(art);
+  //   // this.articlesObs.next(this.articles);
+  //   // return this.articleObs.asObservable();
+  //   return this.http.delete<Article>('http://localhost:3000/articles/' + artId);
+  // }
 
 }

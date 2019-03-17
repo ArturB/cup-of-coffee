@@ -27,6 +27,16 @@ export class AuthService {
 
   private user: User;
 
+  private loggedIn = new BehaviorSubject<boolean>(this.tokenAvailable());
+
+  get isLoggedIn() {
+    return this.loggedIn.asObservable(); // {2}
+  }
+
+  private tokenAvailable(): boolean {
+    return !!localStorage.getItem('access_token');
+  }
+
   private usersObs = new BehaviorSubject<Array<User>>(this.users);
   private userObs = new BehaviorSubject<User>(this.user);
 
@@ -73,6 +83,7 @@ export class AuthService {
           // this.data = result;
           // console.log(result.message);
           localStorage.setItem('access_token', result.token);
+          this.loggedIn.next(true);
           return true;
         })
       );
@@ -95,12 +106,17 @@ export class AuthService {
     // remove user from local storage to log user out
     // localStorage.removeItem('currentUser');
     // this.currentUserSubject.next(null);
-    return (localStorage.getItem('access_token') !== null);
+    this.loggedIn.next(false);
+    localStorage.clear();
+    // return (localStorage.getItem('access_token') !== null);
   }
 
-  public get loggedIn(): boolean {
-    return (localStorage.getItem('access_token') !== null);
-  }
+  // public get loggedIn(): boolean {
+  //   return (localStorage.getItem('access_token') !== null);
+  // }
+  // loggedIn(): boolean {
+  //   return (localStorage.getItem('access_token') !== null);
+  // }
 
 
 

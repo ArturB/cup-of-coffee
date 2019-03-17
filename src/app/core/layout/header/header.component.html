@@ -35,14 +35,19 @@
         <!-- <li class="nav-item px-md-4" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/konto']"><i class="fa fa-user-o fa-2x faNav mb-1"></i>konto</a>
         </li> -->
-        <li class="nav-item px-md-4" routerLinkActive="active">
+        <li class="nav-item px-md-4" routerLinkActive="active"
+        [ngClass]="{'isLogged': isLoggedIn$ | async}">
           <a class="nav-link" [routerLink]="['/konto/rejestracja']"><i class="fa fa-user-plus fa-2x faNav mb-1"></i>zarejestruj się</a>
         </li>
-        <li class="nav-item px-md-4" routerLinkActive="active">
+        <li class="nav-item px-md-4" routerLinkActive="active"
+        [ngClass]="{'isLogged': isLoggedIn$ | async}">
           <a class="nav-link" [routerLink]="['/konto/logowanie']"><i class="fa fa-sign-in fa-2x faNav mb-1"></i>zaloguj</a>
         </li>
-        <li class="nav-item px-md-4" routerLinkActive="active">
+        <li *ngIf="isLoggedIn$ | async" class="nav-item px-md-4" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/moje-konto']"><i class="fa fa-user-o fa-2x faNav mb-1"></i>Moje konto</a>
+        </li>
+        <li *ngIf="isLoggedIn$ | async" class="nav-item px-md-4 konto" routerLinkActive="active">
+          <a class="nav-link" (click)="onLogout()"><i class="fa fa-sign-out fa-2x faNav mb-1"></i>Wyloguj</a>
         </li>
       </ul>
       <!-- </div> -->

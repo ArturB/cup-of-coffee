@@ -15,22 +15,22 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'kategorie',   component: HomeUsComponent},
-  { path: '', redirectTo: 'kategorie', pathMatch: 'full'},
-  { path: 'kategorie/:category', component: CategoryComponent,
+  {path: 'kategorie',   component: HomeUsComponent},
+  {path: '', redirectTo: 'kategorie', pathMatch: 'full'},
+  {path: 'kategorie/:category', component: CategoryComponent,
     children: [
       {path: '', component: SelectedCategoryComponent},
       {path: 'artykul/:title', component: ArticleComponent}
     ]
   },
   // { path: 'kategoria/artykul/:articleId', component: ArticleComponent},
-  { path: 'dodaj-artykul', component: AddArticleComponent, canActivate: [AuthGuard]},
-  { path: 'edytuj-artykul:articleId', component: EditArticleComponent},
+  {path: 'dodaj-artykul', component: AddArticleComponent, canActivate: [AuthGuard]},
+  {path: 'edytuj-artykul:articleId', component: EditArticleComponent},
   {path: 'konto', loadChildren: './pages/auth/auth.module#AuthModule'},
-  {path: 'moje-konto', component: UserAccountComponent},
+  {path: 'moje-konto', component: UserAccountComponent, canActivate: [AuthGuard]},
 
   // { path: 'konto', component: UserAccountComponent},
-  { path: '**', component: NotFoundComponent }
+  {path: '**', component: NotFoundComponent }
 ];
  
  

@@ -87,13 +87,13 @@ export class EditArticleComponent implements OnInit {
       this.newArtForm.value.title,
       this.newArtForm.value.category,
       this.newArtForm.value.description,
-      0,
+      [],
       new Date().toDateString()
     );
     console.log(art);
-    this.articleService.addArticle(art).subscribe(art => {
-      console.log(art);
-    });
+    // this.articleService.addArticle(art).subscribe(art => {
+    //   console.log(art);
+    // });
     this.submit = true;
     this.onReset();
   }
