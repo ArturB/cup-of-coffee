@@ -90,12 +90,51 @@ articleRoutes.route('/add').post((req, res)  => {
         })
         article.save((err, result) => {
             if (err) {
-                return res.sendStatus(500)
+                if (err.name="ValidationError") {
+                    // res.status(422).send(valErrors)
+                    res.sendStatus(422)
+                }
+                else {
+                    res.send(err)
+                }
             }
             // user.article.push(result);
             user.save();
             res.send(result)
         });
+
+
+    });
+});
+
+articleRoutes.route('/add-like').post((req, res)  => {
+// articleRoutes.post('/', function (req, res) {
+    var decoded = jwt.decode(req.query.token);
+    let us = req.query.user;
+    Article.findById(decoded.article._id, (err, article) => {
+        if (err) {
+            return res.sendStatus(500)
+        }
+        console.log('article', article);
+        // let article = new Article({
+        //     link: req.body.link,	
+        //     title: req.body.title,	
+        //     category: req.body.category,	
+        //     author: user.username,	
+        //     description: req.body.description,	
+        //     likes: req.body.likes,	
+        //     dateModified: req.body.dateModified,	
+        //     // req.body, 
+        //     user: user
+        // })
+        // article.save((err, result) => {
+        //     if (err) {
+        //         return res.sendStatus(500)
+        //     }
+        //     // user.article.push(result);
+        //     user.save();
+        //     res.send(result)
+        // });
 
 
     });

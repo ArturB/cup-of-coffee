@@ -12,15 +12,19 @@ export class CollapsedArticleComponent implements OnInit {
   @Output() onShowArticle = new EventEmitter();
   
   artLink: string;
+
+  likes: number;
   
   constructor() { }
 
 
   ngOnInit() {
+    console.log('likes ', this.article.likes.length)
+    this.likes = this.article.likes.length;
   }
 
   showArticle(article: Article) {
-    console.log(article.articleId);
+    // console.log(article.articleId);
     this.onShowArticle.emit(article);
   }
 

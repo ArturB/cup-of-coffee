@@ -13,10 +13,12 @@ export class UserAccountComponent implements OnInit {
   user: User;
 
   constructor(private authService: AuthService) {
-    this.authService.getUserProfile().subscribe((user: User) => {
-      console.log(user);
-      this.user = user;
-    });
+    this.user = this.authService.getProfile();
+
+    // this.authService.getUserProfile().subscribe((user: User) => {
+    //   console.log(user);
+    //   this.user = user;
+    // });
     console.log(this.user);
    }
 

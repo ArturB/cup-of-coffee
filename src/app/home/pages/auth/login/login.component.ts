@@ -72,7 +72,10 @@ export class LoginComponent implements OnInit {
               // this.error = data.success;
               this.router.navigate([this.returnUrl])
             },
-            err => this.error = 'Nieprawidłowy login lub hasło'
+            err => {
+              this.error = 'Nieprawidłowy login lub hasło'
+              setTimeout(() => this.error = null, 4000);
+            }
           );
 
   }

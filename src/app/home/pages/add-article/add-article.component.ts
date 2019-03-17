@@ -36,7 +36,10 @@ export class AddArticleComponent implements OnInit, OnChanges {
   newArt: Article;
 
   reset: boolean = false;
-  submit: boolean = false;
+  // submit: boolean = false;
+
+  success: string;
+  error: string;
 
   constructor(
     private articleService: ArticleService,
@@ -47,9 +50,10 @@ export class AddArticleComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-    this.authService.getUserProfile().subscribe((user: User) => {
-      this.user = user;
-    });
+    this.user = this.authService.getProfile();
+    // this.authService.getUserProfile().subscribe((user: User) => {
+    //   this.user = user;
+    // });
     console.log(this.user);
 
     this.newArtForm = new FormGroup({
@@ -58,7 +62,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
       title: new FormControl(null, [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(80)
+        Validators.maxLength(90)
         ]),
       category: new FormControl('popularne', Validators.required),
       // author: new FormControl(null),
@@ -78,32 +82,16 @@ export class AddArticleComponent implements OnInit, OnChanges {
   }
 
   onValue(event: any) {
-    this.submit = false;
+    // this.submit = false;
     this.urlLink = event.target.value;
     // this.urlLink=val;
     console.log(this.urlLink);
   }
 
-  // addArticle() {
-  //   this.articleService.adddArticle().subscribe(
-  //     article => {
-  //       console.log(article);
-  //     }
-  //   );
-  // }
 
   addArticle() {
     console.log(this.newArtForm);
     console.log(this.user);
-    // this.newArt.articleId = 15;
-    // this.newArt.link = this.newArtForm.value.link;
-    // this.newArt.title = this.newArtForm.value.title;
-    // this.newArt.category = this.newArtForm.value.category;
-    // this.newArt.author = this.newArtForm.value.author;
-    // this.newArt.description = this.newArtForm.value.description;
-    // this.newArt.likes = 0;
-    // this.newArt.dateModified = new Date().toDateString();
-    // console.log(this.newArt);
 
     let art = new Article(
       // this.user,
@@ -114,40 +102,31 @@ export class AddArticleComponent implements OnInit, OnChanges {
       [],
       new Date().toDateString(),
     );
-    console.log(art);
+    // console.log(art);
     // this.articleService.adArticle(art);
-    let art2 = {
-      // user: this.user,	
-      // user: this.user,
-      user: {
-        userId: 1,
-        // _id: "554454",
-        email: "dcs@df.ee",
-        password: "ddddddd",
-        username: "Daria",
-      },	
-      // articleId: {type: Number, required: true},	
-      link: "ooo",	
-      title: "ooo",
-      category: "popularne",
-      // author: {type: String, required: true},
-      // author: [{type: Schema.Types.ObjectId, ref: 'AcVideo'}],
-      description: "ooo",
-      likes: 0,
-      // likes: [{type: Schema.Types.ObjectId, ref: 'User'}],
-      dateModified: new Date().toDateString()
-    };
-    this.articleService.adArticle(art)
-      .subscribe(data => {
-        console.log(art);
-        art = data;
-      },
-        // success => 
-        // { console.log("success "+success) }, 
-        error => { console.log("errrr "+error);
-        });
-    this.submit = true;
-    this.onReset();
+    this.articleService.addArticle(art)
+      .subscribe(
+        data => {
+          console.log(art);
+          art = data;
+          this.success = 'Artukuł został dodany'
+          setTimeout(() => this.success = null, 4000);
+          this.onReset();
+        },
+
+        err => {
+          if (err.status === 422) {
+            this.error = 'Artykuł o podanym tytule już istnieje. Wybierz inną nazwę i spróbuj ponownie'
+            setTimeout(() => this.error = null, 4000);
+          }
+          else {
+            this.error = 'Podczas wysyłania artykułu wystąpił nieoczekiwany błąd. Spróbuj ponownie'
+            console.log("errrr "+ err);
+          }
+
+        }
+      );
+    // this.submit = true;
   }
 
   onReset() {

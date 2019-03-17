@@ -39,7 +39,7 @@ export class CollapsedCategoryComponent implements OnInit {
     if (this.category === 'wszystkie') {
       //retry sprawia, że jeżeli nasze zapytanie się nie powiodło to jeszcze 3 razy będzie wykonana próba zapytania
       // this.articleService.getArticlesObs().retry(3).subscribe((articles: Array<Article>) => {
-      this.articleService.getHttpArticlesObs().subscribe(
+      this.articleService.getArticlesObs().subscribe(
         (articles: Array<Article>) => {
           // console.log(articles);
           this.articles = articles;        
@@ -54,7 +54,7 @@ export class CollapsedCategoryComponent implements OnInit {
         // }
       )
     } else {
-      this.articleService.getHttpArticleObsByCategory(this.category).subscribe(
+      this.articleService.getArticleObsByCategory(this.category).subscribe(
         (articles: Array<Article>) => {
         // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
           console.log(articles);

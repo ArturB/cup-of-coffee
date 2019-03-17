@@ -45,8 +45,10 @@ router.post('/login', function(req, res) {
     // if(!user || body.password != 'todo') return res.sendStatus(401);
         else {
             // let token = jwt.sign({userID: user.id}, secret, {expiresIn: '24h'});
-            let token = jwt.sign({user: user}, secret, {expiresIn: '24h'});
-            res.send({token});
+            let token = jwt.sign({user: user}, secret, {});
+            let userr = user;
+            console.log(userr)
+            res.send({token, userr});
         }
 
     });

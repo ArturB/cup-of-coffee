@@ -28,13 +28,19 @@ export class AuthService {
   private user: User;
 
   private loggedIn = new BehaviorSubject<boolean>(this.tokenAvailable());
+  // private userObs = new BehaviorSubject<User>(this.user);
 
   get isLoggedIn() {
     return this.loggedIn.asObservable(); // {2}
   }
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+   }
+
+   getProfile() {
+     return JSON.parse(localStorage.getItem('user'));
+   }
 
 
   private tokenAvailable(): boolean {
@@ -42,13 +48,13 @@ export class AuthService {
   }
 
   login(user: User): Observable<boolean> {
-    return this.http.post<{token: string}>('http://localhost:4000/user/login', user)
+    return this.http.post<{token: string, userr: User}>('http://localhost:4000/user/login', user)
       .pipe(
         map(result => {
           // this.data = result;
           // console.log(result.message);
           localStorage.setItem('access_token', result.token);
-          console.log('Zalogowano pomyślnie')
+          localStorage.setItem('user', JSON.stringify(result.userr));
           this.loggedIn.next(true);
           return true;
         })
@@ -69,13 +75,14 @@ export class AuthService {
     // return (localStorage.getItem('access_token') !== null);
   }
 
-  getUserProfile() {
-    const token = localStorage.getItem('access_token')
-      ? '?token=' + localStorage.getItem('access_token')
-      : '';
-    console.log('acoount', token)
+  // getUserProfile() {
+  //   const token = localStorage.getItem('access_token')
+  //     ? '?token=' + localStorage.getItem('access_token')
+  //     : '';
+  //   // console.log('acoount', token)
+  //   console.log('acoount', this.user)
 
-		return this.http.get('http://localhost:4000/profile' + token)
-  }
+	// 	return this.http.get('http://localhost:4000/profile' + token)
+  // }
 
 }

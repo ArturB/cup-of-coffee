@@ -3,6 +3,7 @@ import { ActivatedRoute} from '@angular/router';
 
 import { Article } from '../../../../core/models/article.model';
 import { ArticleService } from '../../../../core/services/article.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-article',
@@ -13,49 +14,39 @@ export class ArticleComponent implements OnInit {
 
   article: Article;
 
+  likes: number;
+
   isLiked: boolean = false;
   isFavorite: boolean = false;
 
   artLink: string;
   artColor: boolean;
 
-  constructor(private route: ActivatedRoute, private articleService: ArticleService) { 
+  constructor(
+    private route: ActivatedRoute, 
+    private articleService: ArticleService,
+    private authService: AuthService
+    ) { 
 
-    // let artId: number = parseInt(this.route.snapshot.params['articleId']);
+  }
+
+  ngOnInit() {
     let artTitle: string = this.route.snapshot.params['title'];
     // let artrId: string = artId.toExponential();
-    this.articleService.getHttpArticleObsById(artTitle).subscribe(
+    this.articleService.getArticleObsById(artTitle).subscribe(
       (article: Article) => {
         this.article = article;
+        this.likes = this.article.likes.length;
         console.log("Artykuł: ", this.article);
       },
       error => {
         console.log(error);
       }
     )
-
-    //this.article = articleService.getArticleObsById(artId);
-
   }
 
-  ngOnInit() {
-  }
-
-  // getBgrUrl() {
-  //   console.log(this.article.link);
-  //   let artLink = this.article.link;
-  //   // return 'url(`${this.article.link}`)';
-  //   return  'url(' + this.article.link + ')';
-  //   // return "url(./assets/img/image2.jpg)";
-  // }
   ngOnChanges() {
-    // if (this.article.link.includes('#')) {
-    //   this.artColor = true;
 
-    // } else {
-    //   this.artColor = false;
-
-    // }
   }
 
   checkBgr() {
@@ -76,6 +67,21 @@ export class ArticleComponent implements OnInit {
   }
 
   onLike() {
+    // let user = this.user;
+    // console.log(art);
+    // // this.articleService.adArticle(art);
+    // this.articleService.addArticle(art)
+    //   .subscribe(data => {
+    //     console.log(art);
+    //     art = data;
+    //   },
+    //     // success => 
+    //     // { console.log("success "+success) }, 
+    //     error => { console.log("errrr "+error);
+    //     });
+
+
+
     console.log(this.isLiked);
     this.isLiked = !this.isLiked;
     

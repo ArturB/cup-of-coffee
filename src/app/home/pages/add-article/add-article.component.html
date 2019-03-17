@@ -83,12 +83,15 @@
       >Dodaj artykuł<i class="fa fa-save ml-2 my-auto"></i></button>
     </div> 
 
-    <div *ngIf="reset && newArtForm.get('title').untouched && newArtForm.get('description').untouched" class="alert alert-info mt-2">
+    <!-- <div *ngIf="reset && newArtForm.get('title').untouched && newArtForm.get('description').untouched" class="alert alert-info mt-2">
         Forma została zresetowana
-    </div>
-    <div *ngIf="submit && newArtForm.get('title').untouched && newArtForm.get('description').untouched" class="alert alert-success mt-2">
+    </div> -->
+    <p *ngIf="success" class="mt-4 mb-4 alert alert-success mt-2">{{success}}</p>
+    <!-- <p *ngIf="onReset()" class="text-center mt-4 mb-4 alert alert-success mt-2">aaaa</p> -->
+    <p *ngIf="error" class="mt-4 mb-4 alert alert-danger mt-2">{{error}}</p>
+    <!-- <div *ngIf="submit && newArtForm.get('title').untouched && newArtForm.get('description').untouched" class="alert alert-success mt-2">
         Artukuł został dodany
-    </div>
+    </div> -->
 
   </form>
 </div>
