@@ -44,20 +44,24 @@ articleRoutes.route('/category').get((req, res) => {
 });
 
 articleRoutes.route('/article').get((req, res) => {
-    console.log(req.query.title);
+    console.log('Artykuł: ', req.query.title);
     Article.findOne({title: req.query.title}, (err, article) => {
     if(err){
         console.log(req.query.title);
         res.send(err);
     }
     else {
-        console.log(article);
+        // console.log(article);
         res.send(article)
     //   res.json(articles);
     }
   });
 });
 
+
+
+
+    
 articleRoutes.use('/', (req, res, next) => {
     jwt.verify(req.query.token, secret, (err, decoded) => {
         if (err) {
@@ -71,7 +75,9 @@ articleRoutes.use('/', (req, res, next) => {
 
 articleRoutes.route('/add').post((req, res)  => {
 // articleRoutes.post('/', function (req, res) {
-    var decoded = jwt.decode(req.query.token);
+    let decoded = jwt.decode(req.query.token);
+
+    console.log('artsssssssicle', decoded);
     User.findById(decoded.user._id, (err, user) => {
         if (err) {
             return res.sendStatus(500)
@@ -108,38 +114,27 @@ articleRoutes.route('/add').post((req, res)  => {
 });
 
 articleRoutes.route('/add-like').post((req, res)  => {
-// articleRoutes.post('/', function (req, res) {
-    var decoded = jwt.decode(req.query.token);
-    let us = req.query.user;
-    Article.findById(decoded.article._id, (err, article) => {
+    let decoded = jwt.decode(req.query.token);
+
+    User.findById(decoded.user._id, (err, user) => {
         if (err) {
             return res.sendStatus(500)
         }
-        console.log('article', article);
-        // let article = new Article({
-        //     link: req.body.link,	
-        //     title: req.body.title,	
-        //     category: req.body.category,	
-        //     author: user.username,	
-        //     description: req.body.description,	
-        //     likes: req.body.likes,	
-        //     dateModified: req.body.dateModified,	
-        //     // req.body, 
-        //     user: user
-        // })
-        // article.save((err, result) => {
-        //     if (err) {
-        //         return res.sendStatus(500)
-        //     }
-        //     // user.article.push(result);
-        //     user.save();
-        //     res.send(result)
-        // });
-
-
+        Article.findById(req.body._id, (err, article) => {
+            if (err) {
+                return res.sendStatus(500)
+            }
+            console.log(article);
+            article.likes.push(user)
+            console.log(user);
+            article.save();
+            res.send(article);
+    
+        });
     });
 });
 
+    
 
 
 // let User = require('../models/article');

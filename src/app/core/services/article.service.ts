@@ -222,14 +222,14 @@ export class ArticleService {
     return this.http.post<Article>('http://localhost:4000/articles/add' + token, art, { headers: headers });
   }
 
-  addLiketoArticle(user: User):Observable<User> {
+  addLikeByUser(art: Article):Observable<Article> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json');
-
+    console.log(art);
     const token = localStorage.getItem('access_token')
       ? '?token=' + localStorage.getItem('access_token')
       : '';
 
-    return this.http.post<User>('http://localhost:4000/articles/add-like' + token, user, { headers: headers });
+    return this.http.post<Article>('http://localhost:4000/articles/add-like' + token, art, { headers: headers });
   }
 
   // getArticles() {

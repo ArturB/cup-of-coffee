@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Article } from '../../../../core/models/article.model';
 import { ArticleService } from '../../../../core/services/article.service';
 import { AuthService } from '../../../../core/services/auth.service';
+import { User } from '../../../../core/models/user.model';
 
 @Component({
   selector: 'app-article',
@@ -13,6 +15,10 @@ import { AuthService } from '../../../../core/services/auth.service';
 export class ArticleComponent implements OnInit {
 
   article: Article;
+  user: User;
+
+  // private artObs : Observable<Article> ; 
+  // private artsObs = new BehaviorSubject<Article>(this.article);
 
   likes: number;
 
@@ -36,8 +42,10 @@ export class ArticleComponent implements OnInit {
     this.articleService.getArticleObsById(artTitle).subscribe(
       (article: Article) => {
         this.article = article;
+        // this.artsObs.next(this.article);
         this.likes = this.article.likes.length;
-        console.log("Artykuł: ", this.article);
+        // return this.artsObs.asObservable();
+        // console.log("Artykuł: ", this.article);
       },
       error => {
         console.log(error);
@@ -46,6 +54,8 @@ export class ArticleComponent implements OnInit {
   }
 
   ngOnChanges() {
+    console.log('likes ', this.likes);
+    // this.onLike();
 
   }
 
@@ -67,18 +77,31 @@ export class ArticleComponent implements OnInit {
   }
 
   onLike() {
-    // let user = this.user;
-    // console.log(art);
-    // // this.articleService.adArticle(art);
-    // this.articleService.addArticle(art)
-    //   .subscribe(data => {
-    //     console.log(art);
-    //     art = data;
-    //   },
-    //     // success => 
-    //     // { console.log("success "+success) }, 
-    //     error => { console.log("errrr "+error);
-    //     });
+    this.user = this.authService.getProfile();
+    // let newLike: User;
+    // console.log(this.article.likes.length);
+    // this.articleService.adArticle(art);
+    this.articleService.addLikeByUser(this.article)
+      .subscribe(
+        data => {
+          console.log(this.article);
+          this.article = data;
+
+        },
+        // success => 
+        // { console.log("success "+success) }, 
+        err => { 
+          if (err.status === 401) {
+            let error = 'Błąd autoryzacji. Zaloguj się ponownie.'
+            // setTimeout(() => this.error = null, 4000);
+            console.log("errrr "+error);
+          }
+          else {
+            let error = 'Jakiś inny błąd'
+            console.log("errrr "+ err);
+          }
+        }
+      );
 
 
 
