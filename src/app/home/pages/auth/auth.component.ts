@@ -1,5 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -9,11 +9,19 @@ import { Router } from "@angular/router";
 export class AuthComponent implements OnInit, DoCheck {
 
   authTitle: string;
+  info: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
+    let paramName = this.route.snapshot.queryParams['name'];
+    if(paramName == 'AddArticleComponent') {
+      this.info = 'Tylko zalogowani użytkownicy mogą dodawać artykuły';
+    } else if (paramName != 'AddArticleComponent' && paramName != null) {
+      this.info = 'Żeby dostać dostęp do tej strony musisz być zalogowany'
+    } else {
+      this.info = null;
+    }
   }
 
   ngDoCheck()  {

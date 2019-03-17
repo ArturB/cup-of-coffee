@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
 import { first } from 'rxjs/operators';
-import { Router, ActivatedRoute } from "@angular/router";
 
 import { matchOtherValidator } from './password-validation';
 
@@ -17,11 +17,13 @@ export class RegisterComponent implements OnInit {
 
   logForm: FormGroup;
   error: string;
-  showSucessMessage: boolean;
+  success: string;
+  // showSucessMessage: boolean;
 
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+
     this.logForm = new FormGroup({
       username: new FormControl(null, [
             Validators.required,
@@ -47,15 +49,6 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  // createUser() {
-  //   const user = new User(
-  //       this.logForm.value.email,
-  //       this.logForm.value.password,
-  //       this.logForm.value.username
-  //   );
-  //   console.log(user);
-  // }
-
   createUser() {
     const user = new User(
       this.logForm.value.email,
@@ -63,47 +56,42 @@ export class RegisterComponent implements OnInit {
       this.logForm.value.username
     );
     this.authService.signup(user)
-        //we should subscribe to it, wich will now send a request and allows me to lesten to the data i get back
-        // .subscribe(
-        //     data => {
-        //         console.log(data);
-        //         this.logForm.reset();
-                
-                
-        //     },
-        //     error => console.error(error)
-        // );
-
-
-        // .pipe(first())
-        //   .subscribe(
-        //     data => {
-        //       // this.error = data.success;
-        //       this.router.navigate(['konto/logowanie'])
-        //     },
-        //     err => this.error = 'Nieprawidłowy login lub hasło'
-        //   );
-
-
           .subscribe(
-            res => {
-              this.showSucessMessage = true;
-              console.log(this.showSucessMessage);
-              setTimeout(() => this.showSucessMessage = false, 4000);
+            data => {
+              // this.showSucessMessage = true;
+              // console.log(this.showSucessMessage);
+              // setTimeout(() => this.showSucessMessage = false, 4000);
+              this.success = 'Rejestracja przebiegła pomyślnie. Możesz się zalogować'
+              const userLogin = new User(
+                this.logForm.value.email,
+                this.logForm.value.password
+              );
+              this.authService.login(userLogin)
+                .pipe(first())
+                .subscribe(
+                  data => {
+                    // this.error = data.success;
+                    this.router.navigate(['/'])
+                  },
+                  err => this.error = 'Nieprawidłowy login lub hasło'
+                );
               this.logForm.reset();
+
+
             },
             err => {
               if (err.status === 422) {
-                // this.serverErrorMessages = err.error.join('<br/>');
-                console.log('err 422')
+              this.error = 'Użytkownik o podanym username lub email już istnieje'
+              setTimeout(() => this.error = null, 4000);
+              // this.serverErrorMessages = err.error.join('<br/>');
               }
               else
+              this.error = 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie'
+
                 // this.serverErrorMessages = 'Something went wrong.Please contact admin.';
-                console.log('err 500??')
 
             }
           );
-
   }
 
 }

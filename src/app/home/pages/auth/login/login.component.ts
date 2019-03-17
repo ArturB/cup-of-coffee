@@ -21,7 +21,12 @@ export class LoginComponent implements OnInit {
   public error: string;
   // error = '';
 
-  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) {
+  // info: string;
+
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private authService: AuthService) {
     // const token = localStorage.getItem('token');
     //   if (token !== null) {
     //     // this.router.navigate(['/']);
@@ -30,6 +35,16 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
+    
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    // this.route.params.subscribe(params => {
+    //   if(params['name']) {
+    //     this.info = 'Zaloguj się aby móc dodawać artykuły na stronie ' + params['name'];
+    //   } else {
+    //     this.info = null;
+    //   }
+    // })
+
     this.logForm = new FormGroup({
       email: new FormControl(null, [
             Validators.required, 
@@ -42,18 +57,7 @@ export class LoginComponent implements OnInit {
           ])
     });
 
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
   }
-
-  // loginUser() {
-  //   const user = new User(
-  //       this.logForm.value.userId = 4,
-  //       this.logForm.value.email,
-  //       this.logForm.value.password
-  //   );
-  //   console.log(user);
-  // }
 
   loginUser() {
     const user = new User(
@@ -62,23 +66,6 @@ export class LoginComponent implements OnInit {
       this.logForm.value.password
       );
       this.authService.login(user)
-          // .subscribe(
-          //   data => {
-          //     if (!data) {
-          //         // this.mesError = data.message;
-          //         console.log(data);
-          //         // this.display = 'block';
-          //     }
-          //     else {
-          //       // localStorage.setItem('token', data.token);
-          //       this.router.navigateByUrl('/');
-          //       }
-          //   },
-          //   error => {
-          //     console.error(error)
-          //   }
-            
-          // );
           .pipe(first())
           .subscribe(
             data => {
@@ -88,17 +75,7 @@ export class LoginComponent implements OnInit {
             err => this.error = 'Nieprawidłowy login lub hasło'
           );
 
-          // .pipe(first())
-          //   .subscribe(
-          //       data => {
-          //           this.router.navigate([this.returnUrl]);
-          //       },
-          //       error => {
-          //           this.error = error;
-          //           this.loading = false;
-          //       })
-          
-}
+  }
 
 
   
