@@ -16,16 +16,6 @@ import { AuthService } from '../../../core/services/auth.service';
 })
 export class AddArticleComponent implements OnInit, OnChanges {
 
-  // newArt: Article = {
-  //   articleId: 10,
-  //   link: "./assets/img/cup.png",
-  //   title: "NOWY ARTYKUŁ",
-  //   category: "popularne",
-  //   author: "Darika",
-  //   description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit rem esse eaque libero quod perspiciatis, tempore suscipit qui veritatis autem eum adipisci dolor quidem reiciendis soluta veniam ipsam nisi vero tempora sequi provident ratione explicabo est? Sint ex eveniet doloremque necessitatibus accusantium deleniti corporis vel ullam fugiat magnam! Ab quo sapiente fuga esse perspiciatis nostrum maxime maiores delectus excepturi velit, qui vel eius est perferendis nam enim totam laborum quis temporibus provident debitis rerum, numquam ea dolores! Tenetur iure libero eaque temporibus ut, rem velit necessitatibus optio, voluptatem quaerat in. Nesciunt atque, voluptatum ratione vero error nam voluptate nisi ad itaque architecto doloremque repudiandae officia in unde dolorum aliquid ullam illo, dolor ipsa excepturi accusamus blanditii`,
-  //   likes: 12,
-  //   dateModified: new Date().toDateString()
-  // };
   user: User;
   
   newArtForm: FormGroup;
@@ -44,9 +34,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
   constructor(
     private articleService: ArticleService,
     private authService: AuthService
-    ) {
-
-   }
+    ) { }
 
   ngOnInit() {
 
@@ -57,7 +45,6 @@ export class AddArticleComponent implements OnInit, OnChanges {
     console.log(this.user);
 
     this.newArtForm = new FormGroup({
-      // articleId: new FormControl(null),
       link: new FormControl(this.colorLink, Validators.required),
       title: new FormControl(null, [
         Validators.required,
@@ -66,7 +53,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
         ]),
       category: new FormControl('popularne', Validators.required),
       // author: new FormControl(null),
-      // author: new FormControl(this.user.username, Validators.required),
+      author: new FormControl(this.user.username, Validators.required),
       description: new FormControl(null, [
         Validators.required,
       ]),
@@ -76,15 +63,11 @@ export class AddArticleComponent implements OnInit, OnChanges {
   }
   ngOnChanges() {
     this.onValue(event);
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
     
   }
 
   onValue(event: any) {
-    // this.submit = false;
     this.urlLink = event.target.value;
-    // this.urlLink=val;
     console.log(this.urlLink);
   }
 
@@ -94,16 +77,14 @@ export class AddArticleComponent implements OnInit, OnChanges {
     console.log(this.user);
 
     let art = new Article(
-      // this.user,
       this.newArtForm.value.link,
       this.newArtForm.value.title,
       this.newArtForm.value.category,
       this.newArtForm.value.description,
       [],
       new Date().toDateString(),
+      this.newArtForm.value.author,
     );
-    // console.log(art);
-    // this.articleService.adArticle(art);
     this.articleService.addArticle(art)
       .subscribe(
         data => {
@@ -119,6 +100,10 @@ export class AddArticleComponent implements OnInit, OnChanges {
             this.error = 'Artykuł o podanym tytule już istnieje. Wybierz inną nazwę i spróbuj ponownie'
             setTimeout(() => this.error = null, 4000);
           }
+          if (err.status === 401) {
+            this.error = 'Podczas wysyłania artykułu wystąpił błąd. Spróbuj zalogować się ponownie'
+            setTimeout(() => this.error = null, 4000);
+          }
           else {
             this.error = 'Podczas wysyłania artykułu wystąpił nieoczekiwany błąd. Spróbuj ponownie'
             console.log("errrr "+ err);
@@ -126,13 +111,13 @@ export class AddArticleComponent implements OnInit, OnChanges {
 
         }
       );
-    // this.submit = true;
   }
 
   onReset() {
     this.reset = true;
     console.log(this.reset);
 
+    // przypisanie polom wartości domyslnych
     this.newArtForm.reset({
       link: this.colorLink,
       author: this.user.username,

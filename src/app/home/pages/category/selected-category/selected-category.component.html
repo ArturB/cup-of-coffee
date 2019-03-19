@@ -1,18 +1,6 @@
 <app-search-form></app-search-form>
 
-<!-- <ng-container *ngIf="articles.length > 0; else noArticles"> -->
-    <app-collapsed-category
-    [category]="category"
-    [showFour]="showFour">
-    </app-collapsed-category>
-
-<!-- </ng-container> -->
-
-
-
-<!-- <ng-template #noArticles> -->
-    <!-- <div class="container contBgr py-5" *ngIf="articles.length == 0">
-        <h2 *ngIf="articles.length == 0" class="text-center">Nie ma artykułów<i class="fa fa-frown-o pl-2"></i></h2>
-    </div> -->
-<!-- </ng-template> -->
-
+<app-collapsed-category
+[category]="category"
+[showFour]="showFour">
+</app-collapsed-category>

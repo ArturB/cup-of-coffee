@@ -8,10 +8,6 @@
     }
 }
 
-/* .navbar-brand {
-    margin-right: 3rem;
-} */
-
 .navbar-toggler {
     color: #fcfcfc;
     border: 1px solid #fcfcfc;
@@ -28,10 +24,8 @@
     font-weight: 500;
 }
 
-
 .bgPink .navbar-nav .nav-link {
     color: #fcfcfc;
-    /* background-color: #a05c67; */
 }
 .bgPink .navbar-nav .nav-item.active a, .bgPink .navbar-nav .nav-link:hover, .dropdown-menu.active a {
     color: #f8f6c4;
@@ -48,16 +42,11 @@
     .navbar-expand-lg .navbar-nav .nav-link {
         padding-right: 0;
         padding-left: 0; 
-        /* padding-right: 1rem;
-        padding-left: 1rem;  */
     }
-    /* .nav-link {
-        padding: 0;
-    } */
-   
 }
 
 
+/* STYLIZACJA MENU Z KATEGORIAMI*/
 .drop-menu {
     border: none;
     background-color: #f0686a;
@@ -84,13 +73,17 @@
     color: #f8f6c4;
 }
 
+/* pozycja dropmenu z kategoriami względnie całej nawigacji */
 .dropPos {
     position: relative;
 }
 
+/* wyświetlenie dropmenu z kategoriami w odpowiedzi na działanie dyrektywy */
 .drop .showDrop {
     display: block;
 }
+
+/* stylizacja dropmenu z kategoriami */
 .drop-menu {
     position: absolute;
     display: none; 
@@ -108,7 +101,7 @@
     border-radius: .25rem;
 }
 
-
+/* stylizacja menu nawigacji dla małych rozdzielczości */
 @media (max-width: 1091px) {
     .faNav {
         display: inline-block;
@@ -127,11 +120,12 @@
     }
 }
 
+/* wyświetlanie menu nawigacji przy małych rozdzielczościach */
 .toggleOn {
     display: block;
 }
 
+/* niewidoczność wybranych items w nawigacji dla nie-/zalogowanego usera */
 .isLogged {
     display: none;
-
 }

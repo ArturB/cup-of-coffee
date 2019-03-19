@@ -28,8 +28,8 @@ export class RegisterComponent implements OnInit {
       username: new FormControl(null, [
             Validators.required,
             Validators.minLength(2),
-            Validators.maxLength(10),
-            Validators.pattern("[A-Za-z'-]{2,24}")
+            Validators.maxLength(14),
+            Validators.pattern("[A-Za-z0-9.'_-]{2,14}")
             ]),
       email: new FormControl(null, [
             Validators.required, 
@@ -79,16 +79,24 @@ export class RegisterComponent implements OnInit {
 
 
             },
-            err => {
-              if (err.status === 422) {
-              this.error = 'Użytkownik o podanym username lub email już istnieje'
-              setTimeout(() => this.error = null, 4000);
-              // this.serverErrorMessages = err.error.join('<br/>');
+            err => {              
+              if (err.error.text == 'username') {
+                this.error = 'Użytkownik o podanym username już istnieje'
+                setTimeout(() => this.error = null, 4000);
               }
-              else
-              this.error = 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie'
-
-                // this.serverErrorMessages = 'Something went wrong.Please contact admin.';
+              else if (err.error.text == 'email') {
+                this.error = 'Użytkownik o podanym email już istnieje'
+                setTimeout(() => this.error = null, 4000);
+              }
+              else if (err.status === 422) {
+                // this.error = err;
+                this.error = 'Użytkownik o podanym username lub email już istnieje'
+                setTimeout(() => this.error = null, 4000);
+              }
+              else {
+                this.error = 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie'
+                setTimeout(() => this.error = null, 4000);
+              }
 
             }
           );

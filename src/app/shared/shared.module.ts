@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from '../home/home-routing.module';
 
+import { HeaderComponent } from './components/header/header.component';
+
 import { LoaderComponent } from './components/loader/loader.component';
 import { CollapsedCategoryComponent } from './components/collapsed-category/collapsed-category.component';
 import { CollapsedArticleComponent } from './components/collapsed-article/collapsed-article.component';
@@ -16,6 +18,7 @@ import { SortTitlePipe } from './pipes/sort-title.pipe';
 
 @NgModule({
   declarations: [
+    HeaderComponent,
     LoaderComponent, 
     CollapsedCategoryComponent, 
     CollapsedArticleComponent, 
@@ -29,6 +32,7 @@ import { SortTitlePipe } from './pipes/sort-title.pipe';
     HomeRoutingModule
   ],
   exports: [
+    HeaderComponent,
     CollapsedCategoryComponent,
     CollapsedArticleComponent,
     BtnSeeMoreComponent,

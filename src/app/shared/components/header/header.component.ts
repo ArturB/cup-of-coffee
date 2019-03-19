@@ -1,39 +1,37 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
-import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnChanges {
-  // category: string;
-  // private parametersObservable: any;
-  // isCategory: boolean = false;
+export class HeaderComponent implements OnInit {
 
+  // jeśli false to menu burger bara jest niewidoczne. Przy zmianie na true dla małych rozdzielczości pojawia się menu burger bara
+  toggleBtn: boolean = false;   
 
-  toggleBtn: boolean = false;
-
+  // zmienna przechowująca stan użytkownika (zalogowany czy nie)
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {
-    
-  }
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {  }
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn;
-    
     console.log(this.isLoggedIn$);
+
+    // bez tego nie dało się zmieniać widok przy wyborze poszczególnych kategorii z menu nawigacji. Reseture za każdym razem url
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
     // this.parametersObservable = this.route.params.subscribe(params => {
     //   //"product" is obtained from 'ProductResolver'
     //   this.category = this.route.snapshot.data['category'];
     // });
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+    
     // console.log('ffff ',this.route.snapshot.params['category']);
     // console.log('this.category ',this.category);
   }
@@ -55,27 +53,17 @@ export class HeaderComponent implements OnInit, OnChanges {
   //   }
   // }
 
-  ngOnChanges() {
-    // if (this.loggedIn) {
-    //   return true
-    // }
-    // this.loggedIn = this.authService.loggedIn();
-    // console.log(this.loggedIn);
-    
-  }
-
+  // metoda wywoływana przy naciśnięciu na przycisk Wyloguj z menu nawigacji
   onLogout(){
-    this.authService.logout();                      // {3}
+    this.authService.logout();                    
     this.router.navigate(['/']);
   }
 
+  // Metoda obsługująca click na icon bar
   toggle() {
     this.toggleBtn = !this.toggleBtn;
-    console.log(this.toggleBtn);
-    // if (this.toggleBtn) {
-    //   th
-    // }
   }
+  // zmiana icon bar w zależności od tego, czy menu jest otwarte czy zamknięte
   toggleIcon() {
     if (this.toggleBtn) {
       return "fa fa-times"

@@ -42,16 +42,13 @@ export class CollapsedCategoryComponent implements OnInit {
       this.articleService.getArticlesObs().subscribe(
         (articles: Array<Article>) => {
           // console.log(articles);
-          this.articles = articles;        
+          this.articles = articles.slice();        
           this.filteredArticles = this.sliceFour();
           console.log(this.articles);
         },
-        error => { 
-          console.log(error, error.status);
+        err => { 
+          console.log(err, err.status);
         }
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.status);
-        // }
       )
     } else {
       this.articleService.getArticleObsByCategory(this.category).subscribe(
@@ -64,8 +61,8 @@ export class CollapsedCategoryComponent implements OnInit {
         // (error: HttpErrorResponse) => {
         //   console.log(error.status);
         // }
-        error => { 
-          console.log(error, error.status);
+        err => { 
+          console.log(err, err.status);
         }
       );
     }

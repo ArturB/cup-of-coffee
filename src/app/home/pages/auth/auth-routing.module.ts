@@ -16,10 +16,6 @@ const authRoutes: Routes = [
       { path: 'rejestracja', component: RegisterComponent },
     ]
   },
-  // { path: '', component: AuthComponent},
-  // 
-  // { path: 'logowanie', component: LoginComponent },
-  // { path: 'rejestracja', component: RegisterComponent },
 ];
 
 @NgModule({

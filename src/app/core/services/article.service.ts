@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Article } from '../models/article.model';
-import { User } from '../models/user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
-// import { filter } from 'rxjs/operators';
 import { HttpClient, HttpParams, HttpResponse, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators'
 
+import { Article } from '../models/article.model';
 
 @Injectable({
   providedIn: 'root'
@@ -206,10 +203,13 @@ export class ArticleService {
   }
 
   getArticleObsById(artTitle: string): Observable<Article> {
+    const token = localStorage.getItem('access_token')
+      ? '?token=' + localStorage.getItem('access_token')
+      : '';
     const params = new HttpParams().set("title", artTitle)
-    console.log(artTitle);
+    console.log('artTitle', artTitle);
 
-    return this.http.get<Article>('http://localhost:4000/articles/article', {params: params});
+    return this.http.get<Article>('http://localhost:4000/articles/article' + token, {params: params});
   }
 
   addArticle(art: Article):Observable<Article> {

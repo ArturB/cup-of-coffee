@@ -16,8 +16,20 @@ router.post('/signup', function (req, res, next) {
     user.save((err, result) => {
         if (err) {
             if (err.name="ValidationError") {
+                if (Object.keys(err.errors)[0] == 'username') {
+                    res.send('username')
+                    console.log(Object.keys(err.errors)[0])
+                }
+                else if (Object.keys(err.errors)[0] == 'email') {
+                    res.send('email')
+                    console.log(Object.keys(err.errors)[0])
+                }
+                else {
+                    res.sendStatus(422)
+                    console.log('422', err.errors)
+                }
                 // res.status(422).send(valErrors)
-                res.sendStatus(422)
+                
             }
             else {
                 res.send(err)

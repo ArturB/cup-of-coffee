@@ -17,13 +17,20 @@ export class ArticleComponent implements OnInit {
   article: Article;
   user: User;
 
-  // private artObs : Observable<Article> ; 
-  // private artsObs = new BehaviorSubject<Article>(this.article);
+  likes: Array<User> = [];
 
-  likes: number;
+  mes;
+  error: string;
+  // const initialSubscriber = lastUrl.subscribe(console.log);
+  private isLike = new BehaviorSubject<any>(this.mes);
+  // private likesArray = new BehaviorSubject<Array<User>>(this.likes);
 
   isLiked: boolean = false;
   isFavorite: boolean = false;
+
+  artTitle: string;
+
+  likeStatus: boolean;
 
   artLink: string;
   artColor: boolean;
@@ -33,19 +40,48 @@ export class ArticleComponent implements OnInit {
     private articleService: ArticleService,
     private authService: AuthService
     ) { 
-
   }
 
   ngOnInit() {
-    let artTitle: string = this.route.snapshot.params['title'];
+    this.artTitle = this.route.snapshot.params['title'];
     // let artrId: string = artId.toExponential();
-    this.articleService.getArticleObsById(artTitle).subscribe(
-      (article: Article) => {
-        this.article = article;
-        // this.artsObs.next(this.article);
-        this.likes = this.article.likes.length;
-        // return this.artsObs.asObservable();
-        // console.log("Artykuł: ", this.article);
+    this.getArt();
+
+    this.isLike.subscribe(data => {
+      if (data == 'likeAdded') {
+        this.isLiked = true;
+        console.log('Jest lajk')
+      } else {
+        this.isLiked = false;
+        console.log('Nie ma lajku')
+        
+      }
+    });
+
+    // this.likesArray.subscribe(data => {
+    //   console.log('likesArray', this.likes)
+
+    // })
+   
+  }
+
+  ngOnChanges() {
+    // console.log('likes ', this.likes);
+
+  }
+
+  getArt() {
+    this.articleService.getArticleObsById(this.artTitle).subscribe(
+      data => {
+        let result;
+        result = data;
+        this.article = result.article;
+
+
+        this.likes = this.article.likes;
+        this.isLike.next(result.message);
+        // this.likesArray.next(this.likes);
+        
       },
       error => {
         console.log(error);
@@ -53,14 +89,10 @@ export class ArticleComponent implements OnInit {
     )
   }
 
-  ngOnChanges() {
-    console.log('likes ', this.likes);
-    // this.onLike();
-
-  }
 
   checkBgr() {
     this.artLink = this.article.link;
+
     if (this.artLink.includes('#')) {
       console.log("color: ", this.artLink, this.artColor);
       return {
@@ -78,14 +110,32 @@ export class ArticleComponent implements OnInit {
 
   onLike() {
     this.user = this.authService.getProfile();
-    // let newLike: User;
-    // console.log(this.article.likes.length);
-    // this.articleService.adArticle(art);
+    console.log('user', this.user);
+
     this.articleService.addLikeByUser(this.article)
       .subscribe(
         data => {
-          console.log(this.article);
-          this.article = data;
+          this.mes = data;
+          this.isLike.next(this.mes.message);
+          this.getArt();
+
+
+          //tu zostało zrealizowano update lajków, ale lepiej chyba jednak pobierać z serwera nowy artykuł
+          // if(this.mes.message == 'likeAdded') {
+          //   this.likes.push(this.user);
+          //   this.likesArray.next(this.likes);
+          // }
+          // else if(this.mes.message == 'likeRemoved') {
+          //   // this.likes.pop();
+          //   this.likes.splice(this.likes.indexOf(this.user), 1 );
+          //   this.likesArray.next(this.likes);
+          // }
+          // this.likesArray.next(this.likes);
+
+          console.log('onLike', this.mes.message);
+          // this.messag.next(this.mes.message)
+          // this.likesArray.next(this.likes);
+
 
         },
         // success => 
@@ -94,19 +144,21 @@ export class ArticleComponent implements OnInit {
           if (err.status === 401) {
             let error = 'Błąd autoryzacji. Zaloguj się ponownie.'
             // setTimeout(() => this.error = null, 4000);
+            this.error = 'Żyby postawić lajka musisz być zalogowany'
+            setTimeout(() => this.error = null, 4000);
             console.log("errrr "+error);
           }
           else {
             let error = 'Jakiś inny błąd'
             console.log("errrr "+ err);
+            
           }
         }
       );
+      // this.isLiked = !this.isLiked;
+      console.log(this.isLiked);
 
 
-
-    console.log(this.isLiked);
-    this.isLiked = !this.isLiked;
     
   }
 

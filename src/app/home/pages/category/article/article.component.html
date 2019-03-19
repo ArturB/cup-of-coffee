@@ -4,7 +4,7 @@
       <h1 class="mx-auto px-3 hMarg">{{ article.title }}</h1>
       <div class="infoArticle pt-4">
         <h2 class="mx-auto px-3 hMarg">
-          <span class="mr-2 mr-sm-3"><i class="fa fa-thumbs-up pr-2"></i>{{ likes }}</span>
+          <span class="mr-2 mr-sm-3"><i class="fa fa-thumbs-up pr-2"></i>{{ likes.length }}</span>
           <span class="ml-2 mr-sm-3"><i class="fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
         </h2>
       </div>
@@ -25,6 +25,8 @@
   </div>
   
   <div class="container my-5">
+  <p *ngIf="error" class="text-center mt-4 mb-4 alert alert-danger">{{error}}</p>
+
     <p>{{ article.description }}</p>
     
   </div>

@@ -14,43 +14,34 @@ import { AuthService } from '../../../../core/services/auth.service';
 export class LoginComponent implements OnInit {
 
   logForm: FormGroup;
-  mesError: string;
-  loading = false;
-  // submitted = false;
-  returnUrl: string;
-  public error: string;
-  // error = '';
 
-  // info: string;
+  returnUrl: string;
+  
+  error: string;
 
   constructor(
     private router: Router, 
     private route: ActivatedRoute, 
-    private authService: AuthService) {
-    // const token = localStorage.getItem('token');
-    //   if (token !== null) {
-    //     // this.router.navigate(['/']);
-    //   }
-      
-   }
+    private authService: AuthService) { }
 
   ngOnInit() {
     
+    // pobieranie returnUrl z queryParams żeby po zalogowaniu wrócić na stronę z której user został przekierowany
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     // this.route.params.subscribe(params => {
     //   if(params['name']) {
     //     this.info = 'Zaloguj się aby móc dodawać artykuły na stronie ' + params['name'];
     //   } else {
     //     this.info = null;
-    //   }
+    //   }s
     // })
 
     this.logForm = new FormGroup({
-      email: new FormControl(null, [
+      email: new FormControl('aaaa@a', [
             Validators.required, 
             Validators.email
             ]),
-      password: new FormControl(null, [
+      password: new FormControl('aaaaaaa', [
             Validators.minLength(6),
             Validators.maxLength(24),
             Validators.required
@@ -79,7 +70,5 @@ export class LoginComponent implements OnInit {
           );
 
   }
-
-
   
 }

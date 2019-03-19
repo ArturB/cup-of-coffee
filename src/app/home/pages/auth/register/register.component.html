@@ -11,16 +11,16 @@
     <div *ngIf="!logForm.get('username').valid && logForm.get('username').touched"
         class="alert alert-danger">
         <div [hidden]="!logForm.get('username').errors['required']">
-          Podaj username (od 2 do 24 znaków)
+          Podaj username (od 2 do 14 znaków)
         </div>
         <div [hidden]="!logForm.get('username').errors['pattern']">
           Podane username jest niepoprawne
         </div>
         <div [hidden]="!logForm.get('username').errors['minlength']">
-          Podaj username (od 2 do 24 znaków)
+          Podaj username (od 2 do 14 znaków)
         </div>
         <div [hidden]="!logForm.get('username').errors['maxlength']">
-          Podaj username (od 2 do 24 znaków)
+          Podaj username (od 2 do 14 znaków)
         </div>
     </div>
   </div>

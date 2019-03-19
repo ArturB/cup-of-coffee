@@ -9,13 +9,6 @@ import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
-
-// const AuthRoutes: Routes = [
-//   { path: '', redirectTo: 'logowanie', pathMatch: 'full' },
-//   { path: 'logowanie', component: LoginComponent },
-//   { path: 'rejestracja', component: RegisterComponent },
-// ];
-
 @NgModule({
   declarations: [
     AuthComponent, 

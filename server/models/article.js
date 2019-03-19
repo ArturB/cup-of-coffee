@@ -5,15 +5,11 @@ const mongooseUniqueValidator = require('mongoose-unique-validator');
 
 let articleSchema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: 'User'},	
-    // user: {type: Object},	
-    // // articleId: {type: Number, required: true},	
     link: {type: String, required: true},	
 	title: {type: String, required: true, unique: true},
 	category: {type: String, required: true},
 	author: {type: String, required: true},
-	// author: [{type: Schema.Types.ObjectId, ref: 'AcVideo'}],
 	description: {type: String, required: true},
-	// likes: {type: Number, required: true},
 	likes: [{type: Schema.Types.ObjectId, ref: 'User'}],
 	dateModified: {type: String, required: true}
 });

@@ -66,15 +66,18 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    return this.authService.isLoggedIn         // {1}
+    return this.authService.isLoggedIn        
       .pipe(
-        take(1),                              // {2} 
-        map((isLoggedIn: boolean) => {         // {3}
-          if (!isLoggedIn){
+        take(1),                              
+        map((isLoggedIn: boolean) => {       
+          if (!isLoggedIn){   // jeśli user nie jest zalogowany to jest przekierowywany do strony logowania
             this.router.navigate(
-              ['/konto/logowanie'], 
-              { queryParams: { returnUrl: state.url, name: next.component['name'] } }
-            );  // {4}
+              ['/konto/logowanie'],
+              // w queryParams przesyłam dwa dodatkowe parametry:
+              // returnUrl żeby po zaogowaniu użytkownik wrócił do strony z której został przekirowany do logowania
+              // name daje info z jakiego komponentu user został przekierowany do logowania żeby wyświetlić odpowiedni komunikat
+              { queryParams: { returnUrl: state.url, name: next.component['name'] } }   
+            );  
             return false;
           }
           return true
