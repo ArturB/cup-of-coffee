@@ -20,14 +20,19 @@ const routes: Routes = [
   {path: 'kategorie/:category', component: CategoryComponent,
     children: [
       {path: '', component: SelectedCategoryComponent},
-      {path: 'artykul/:title', component: ArticleComponent}
+      {path: 'artykul/:_id', component: ArticleComponent}
     ]
   },
   // { path: 'kategoria/artykul/:articleId', component: ArticleComponent},
   {path: 'dodaj-artykul', component: AddArticleComponent, canActivate: [AuthGuard]},
   {path: 'edytuj-artykul:articleId', component: EditArticleComponent},
   {path: 'konto', loadChildren: './pages/auth/auth.module#AuthModule'},
-  {path: 'moje-konto', component: UserAccountComponent, canActivate: [AuthGuard]},
+  {path: 'moje-konto', component: UserAccountComponent, canActivate: [AuthGuard],
+    // children: [
+    //   {path: 'moje-artykuly', component: SelectedCategoryComponent},
+    //   {path: 'artykul/:title', component: ArticleComponent}
+    // ]
+  },
 
   // { path: 'konto', component: UserAccountComponent},
   {path: '**', component: NotFoundComponent }

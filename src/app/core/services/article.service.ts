@@ -190,6 +190,7 @@ export class ArticleService {
   constructor(private http: HttpClient) {
     // this.articlesObs.next(this.articles);
    }
+  
    getArticlesObs(): Observable<Array<Article>> {
     return this.http.get<Array<Article>>('http://localhost:4000/articles/');
 
@@ -202,12 +203,13 @@ export class ArticleService {
 
   }
 
-  getArticleObsById(artTitle: string): Observable<Article> {
+  getArticleObsById(_id: string): Observable<Article> {
+    console.log('id', _id);
     const token = localStorage.getItem('access_token')
       ? '?token=' + localStorage.getItem('access_token')
       : '';
-    const params = new HttpParams().set("title", artTitle)
-    console.log('artTitle', artTitle);
+    const params = new HttpParams().set("_id", _id)
+    console.log('art_id', _id);
 
     return this.http.get<Article>('http://localhost:4000/articles/article' + token, {params: params});
   }
@@ -231,6 +233,29 @@ export class ArticleService {
 
     return this.http.post<Article>('http://localhost:4000/articles/add-like' + token, art, { headers: headers });
   }
+
+  getUserArticlesObs(user): Observable<Array<Article>> {
+    const token = localStorage.getItem('access_token')
+      ? '?token=' + localStorage.getItem('access_token')
+      : '';
+    const params = new HttpParams().set("user", user)
+    // console.log('user artuicles: ', user);
+
+    return this.http.get<Array<Article>>('http://localhost:4000/articles/user-articles' + token, {params: params});
+  }
+
+  deleteArticle(article: Article): Observable<Article> {
+    const token = localStorage.getItem('access_token')
+      ? '?token=' + localStorage.getItem('access_token')
+      : '';
+    const params = new HttpParams().set("_id", article._id.toString())
+    // this.articles.push(art);
+    // this.articlesObs.next(this.articles);
+    // return this.articleObs.asObservable();
+    // return this.http.delete<Article>('http://localhost:4000/articles/delete-article/id' + token, {params: params});
+    return this.http.delete<Article>('http://localhost:4000/articles/delete-article' + token, {params: params});
+  }
+
 
   // getArticles() {
   //   return this.articles
@@ -363,11 +388,6 @@ export class ArticleService {
   //   return this.http.put<Article>('http://localhost:3000/articles/' + art.articleId, art);
   // }
 
-  // deleteArticle(artId: number): Observable<Article> {
-  //   // this.articles.push(art);
-  //   // this.articlesObs.next(this.articles);
-  //   // return this.articleObs.asObservable();
-  //   return this.http.delete<Article>('http://localhost:3000/articles/' + artId);
-  // }
+
 
 }

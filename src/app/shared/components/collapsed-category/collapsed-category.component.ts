@@ -1,8 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from "@angular/router";
-import { HttpErrorResponse } from '@angular/common/http';
-// import 'rxjs/add/operator/retry';
-// import { retry } from 'rxjs';
 
 import { Article } from '../../../core/models/article.model';
 import { ArticleService } from '../../../core/services/article.service';
@@ -80,7 +77,7 @@ export class CollapsedCategoryComponent implements OnInit {
 
 
   gotoArticle(article: Article) {
-    this.router.navigate(['kategorie/',article.category, 'artykul', article.title]);
+    this.router.navigate(['kategorie/',article.category, 'artykul', article._id]);
     console.log("Wybrany artykuł: ", article);
   }
 

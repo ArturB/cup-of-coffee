@@ -11,5 +11,5 @@ export class Article {
                 public dateModified: string,
                 public author?: string,
                 public user?: User,
-                public articleId?: number) {}
+                public _id?: string) {}
 }

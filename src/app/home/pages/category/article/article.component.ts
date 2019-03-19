@@ -33,6 +33,7 @@ export class ArticleComponent implements OnInit {
   isFavorite: boolean = false;
 
   artTitle: string;
+  artId: string;
 
   likeStatus: boolean;
 
@@ -48,8 +49,10 @@ export class ArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.artTitle = this.route.snapshot.params['title'];
+    // this.artTitle = this.route.snapshot.params['title'];
+    this.artId = this.route.snapshot.params['_id'];
     // let artrId: string = artId.toExponential();
+    console.log('artId', this.artId);
     this.getArt();
 
     this.isLike.subscribe(data => {
@@ -76,7 +79,8 @@ export class ArticleComponent implements OnInit {
   }
 
   getArt() {
-    this.articleService.getArticleObsById(this.artTitle).subscribe(
+    console.log('art', this.article);
+    this.articleService.getArticleObsById(this.artId).subscribe(
       data => {
         let result;
         result = data;

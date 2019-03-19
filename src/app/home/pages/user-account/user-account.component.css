@@ -56,3 +56,17 @@
 .figure {
     cursor: pointer;
 }
+
+/*  */
+
+.heading h2 {
+    border-bottom: 2px solid #969696;
+    text-align: center;
+}
+@media (min-width: 992px) {
+    .heading h2 {
+        width: 40%;
+        text-align: left;
+    }
+}
+

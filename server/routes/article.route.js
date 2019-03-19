@@ -44,10 +44,10 @@ articleRoutes.route('/category').get((req, res) => {
 });
 
 articleRoutes.route('/article').get((req, res) => {
-    console.log('Artykuł: ', req.query.title);
-    Article.findOne({title: req.query.title}, (err, article) => {
+    console.log('Artykuł: ', req.query._id);
+    Article.findOne({_id: req.query._id}, (err, article) => {
         if(err){
-            console.log(req.query.title);
+            console.log(req.query._id);
             res.send(err);
         }
 
@@ -204,14 +204,80 @@ articleRoutes.route('/add-like').post((req, res)  => {
     });
 });
 
-    
+articleRoutes.route('/user-articles').get((req, res) => {
+    let decoded = jwt.decode(req.query.token);
+
+    console.log(decoded.user._id);
+    Article.find({user: decoded.user._id}, (err, articles) => {
+        if(err){
+            console.log(err);
+            res.send(err);
+        }
+        else {
+            console.log(articles.length);
+            res.send(articles)
+        //   res.json(articles);
+        }
+    });
+});    
 
 // Defined delete | remove | destroy route
-articleRoutes.route('/delete/:id').get(function (req, res) {
-    Article.findByIdAndRemove({_id: req.params.id}, function(err, article){
-        if(err) res.json(err);
-        else res.json('Successfully removed');
+articleRoutes.route('/delete-article').delete(function (req, res) {
+    console.log('Artykuł: ', req.query._id);
+    let decoded = jwt.decode(req.query.token);
+    // console.log(decoded.user._id);
+    // console.log(req.article._id);
+    Article.findByIdAndDelete({_id: req.query._id}, function(err, article){
+        if(err) res.send(err);
+        else res.send(article);
     });
+    // Article.deleteMany({_id: req.query._id}, (err, article) => {
+    //     if(err) res.send(err);
+    //     else {
+    //         // Article.updateOne(err, data => {
+    //         //     console.log(data)
+    //             res.send(article);
+
+    //         // })
+    //     }
+    // });
+   
 });
+
+// router.delete('/:id', function(req, res, next) {
+//     var decoded = jwt.decode(req.query.token);
+//     AcVideo.findById(req.params.id, function (err, acVideo) {
+//         if (err) {
+//             return res.status(500).json({
+//                 title: 'Wystąpił nieoczekiwany błąd',
+//                 error: err
+//             });
+//         }
+//         if (!acVideo) {
+//             return res.status(500).json({
+//                 title: 'Wideo nie zostało znaleziono',
+//                 error: {message: 'Wybrane wideo nie istnieje na koncie użytkownika'}
+//             });
+//         }
+//         if (acVideo.user != decoded.user._id) {
+//             return res.status(401).json({
+//                 title: 'Brak autoryzacji',
+//                 error: {message: 'Zaloguj się ponownie'}
+//             });
+//         }
+//         acVideo.remove(function(err, result) {
+//             if (err) {
+//                 return res.status(500).json({
+//                     title: 'Wystąpił nieoczekiwany błąd',
+//                     error: err
+//                 });
+//             }
+//             res.status(201).json({
+//                 message: 'Wideo zostało usuięte z konta użytkownika',
+//                 obj: result
+//             });
+//         });
+//     });
+// });
 
 module.exports = articleRoutes;

@@ -175,12 +175,13 @@ export class AddArticleComponent implements OnInit {
     console.log(this.reset);
     this.tcolor = '#fcfcfc';
     this.bcolor = '#14563e';
-    this.icon = this.iconsArray[0];
+    // this.icon = this.iconsArray[0];
 
     // przypisanie polom wartości domyslnych
     this.newArtForm.reset({
       colorText: this.tcolor,
       colorBgr: this.bcolor,
+      faIcon: this.iconsArray[0],
       author: this.user.username,
       category: 'popularne'
     });
