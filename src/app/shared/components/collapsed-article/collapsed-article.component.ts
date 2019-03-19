@@ -11,7 +11,23 @@ export class CollapsedArticleComponent implements OnInit {
   @Input() article: Article;
   @Output() onShowArticle = new EventEmitter();
   
-  artLink: string;
+  // artLink: string;
+
+  // iconsArray: Array<string> = [
+  //   'fa-heart',
+  //   'fa-heart-o',
+  //   'fa-heartbeat',
+  //   'fa-home',
+  //   'fa-handshake-o',
+  //   'fa-gift',
+  //   'fa-gamepad',
+  //   'fa-flash',
+  // ];
+
+  
+  tcolor: string;
+  bcolor: string;
+  faIcon: string;
 
   likes: number;
   
@@ -21,25 +37,22 @@ export class CollapsedArticleComponent implements OnInit {
   ngOnInit() {
     console.log('likes ', this.article.likes.length)
     this.likes = this.article.likes.length;
+    this.tcolor = this.article.artColors[0];
+    this.bcolor = this.article.artColors[1];
+    this.faIcon = this.article.artColors[2];
+    console.log( this.tcolor,  this.bcolor)
   }
+
+
 
   showArticle(article: Article) {
     // console.log(article.articleId);
     this.onShowArticle.emit(article);
   }
 
+  // randIcon() {
+  //   return this.iconsArray[Math.floor(Math.random()*this.iconsArray.length)];
+  // }
 
-  checkBgr() {
-    this.artLink = this.article.link;
-    if (this.artLink.includes('#')) {
-      return {
-        'background-color': this.artLink
-      };
-    } else {
-      return  {
-        'background-image': 'url(' + this.article.link + ')'
-      };
-    }
-  }
 
 }

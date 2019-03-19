@@ -1,11 +1,13 @@
 <ng-container *ngIf="article; else noArticle">
-  <div class="container-fluid imgBgr" [ngStyle]="checkBgr()">
+  <div class="container-fluid imgBgr" [style.background]="bcolor">
     <div class="heading text-center">
-      <h1 class="mx-auto px-3 hMarg">{{ article.title }}</h1>
-      <div class="infoArticle pt-4">
+      <h1 class="mx-auto px-3 hMarg" [style.color]="tcolor">{{ article.title }}</h1>
+      <div class="infoArticle pt-5 mt-5">
+        <i class="fa fa-3x" [ngClass]="faIcon" [style.color]="tcolor"></i>
+        <h4 class="mx-auto px-3 pb-4" [style.color]="tcolor">{{ article.author }}</h4>
         <h2 class="mx-auto px-3 hMarg">
-          <span class="mr-2 mr-sm-3"><i class="fa fa-thumbs-up pr-2"></i>{{ likes.length }}</span>
-          <span class="ml-2 mr-sm-3"><i class="fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
+          <span class="mr-2 mr-sm-3" [style.color]="tcolor"><i class="fa fa-thumbs-up pr-2" [style.color]="tcolor"></i>{{ likes.length }}</span>
+          <span class="ml-2 mr-sm-3" [style.color]="tcolor"><i class="fa fa-calendar pr-2" [style.color]="tcolor"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
         </h2>
       </div>
     </div>

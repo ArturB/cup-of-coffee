@@ -9,7 +9,10 @@
       
     </ng-template> -->
     
-    <div class="card-img-top imgArtcicle" [ngStyle]="checkBgr()"></div>
+    <div class="card-img-top imgArtcicle text-center" [style.background]="bcolor">
+      <!-- <p class="text-center">{{ article.title }}</p> -->
+      <i class="fa fa-3x mt-5" [ngClass]="faIcon" [style.color]="tcolor"></i>
+    </div>
     
     <!-- 
     <img 
@@ -18,8 +21,8 @@
       alt="Obrazek w karcie"
       [ngStyle]="{'background-image': getImgBgr()}"> -->
     <div class="infoArticle text-right mb-1">
-      <span class="mr-3"><i class="fa fa-thumbs-up pr-2"></i>{{ likes }}</span>
-      <span class="mr-3"><i class="fa fa-calendar pr-2"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
+      <span class="mr-3" [style.color]="tcolor"><i class="fa fa-thumbs-up pr-2" [style.color]="tcolor"></i>{{ likes }}</span>
+      <span class="mr-3" [style.color]="tcolor"><i class="fa fa-calendar pr-2" [style.color]="tcolor"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>
       
     </div>
   </div>
@@ -27,7 +30,7 @@
     <p class="card-text">{{ article.title }}</p>
   </div>
   <div class="card-footer text-right">
-    {{ article.user.username }}
+    {{ article.author }}
   </div>
 </div>
 

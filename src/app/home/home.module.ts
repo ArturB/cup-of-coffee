@@ -4,6 +4,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { ColorPickerModule } from 'ngx-color-picker';
 
 import { HomeRoutingModule } from './home-routing.module';
 
@@ -40,6 +41,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     FormsModule,
     ReactiveFormsModule,
     
+    ColorPickerModule,
     HomeRoutingModule,
     // AuthModule,
     SharedModule

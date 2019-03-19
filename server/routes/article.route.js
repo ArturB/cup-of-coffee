@@ -135,7 +135,8 @@ articleRoutes.route('/add').post((req, res)  => {
         }
         console.log(user);
         let article = new Article({
-            link: req.body.link,	
+            // link: req.body.link,	
+            artColors: req.body.artColors,	
             title: req.body.title,	
             category: req.body.category,	
             author: req.body.author,	

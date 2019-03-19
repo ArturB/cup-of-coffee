@@ -19,9 +19,9 @@
 }
   
 .articleFig .art .imgArtcicle{
-    background-position: center;
+    /* background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
     height: 169px;
     border-top-left-radius: .25rem; 
     border-top-right-radius: .25rem;
@@ -47,7 +47,7 @@
     width: 100%;
     bottom: 0;
     right: 0;
-    color: #fcfcfc;
+    /* color: #fcfcfc; */
 }
 
 .card-body {

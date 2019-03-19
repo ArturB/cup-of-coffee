@@ -60,6 +60,24 @@ textarea.form-control {
     min-height: 230px;
 }
 
+.tbColor {
+   cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+    .tbColor {
+        width: 140px;
+    }
+    .icLabel {
+        display: block;
+    }
+    .icSelect {
+        width: 180px;
+        margin-right: 1.2rem;
+    }
+}
+
+
+
 .btnReset {
     /* background-color: #499273; */
     background-color: #52b38a;

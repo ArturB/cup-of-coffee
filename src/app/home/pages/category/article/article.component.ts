@@ -19,6 +19,10 @@ export class ArticleComponent implements OnInit {
 
   likes: Array<User> = [];
 
+  tcolor: string;
+  bcolor: string;
+  faIcon: string;
+
   mes;
   error: string;
   // const initialSubscriber = lastUrl.subscribe(console.log);
@@ -32,7 +36,8 @@ export class ArticleComponent implements OnInit {
 
   likeStatus: boolean;
 
-  artLink: string;
+
+  // artLink: string;
   artColor: boolean;
 
   constructor(
@@ -76,6 +81,9 @@ export class ArticleComponent implements OnInit {
         let result;
         result = data;
         this.article = result.article;
+        this.tcolor = this.article.artColors[0];
+        this.bcolor = this.article.artColors[1];
+        this.faIcon = this.article.artColors[2];
 
 
         this.likes = this.article.likes;
@@ -91,21 +99,21 @@ export class ArticleComponent implements OnInit {
 
 
   checkBgr() {
-    this.artLink = this.article.link;
+    // this.artLink = this.article.link;
 
-    if (this.artLink.includes('#')) {
-      console.log("color: ", this.artLink, this.artColor);
-      return {
-        'background-color': this.artLink
-      };
-    } else {
-      // this.artLink = this.article.link;
-      console.log("link: ", this.artLink, this.artColor);
-      this.artColor = false;
-      return  {
-        'background-image': 'url(' + this.article.link + ')'
-      };
-    }
+    // if (this.artLink.includes('#')) {
+    //   console.log("color: ", this.artLink, this.artColor);
+    //   return {
+    //     'background-color': this.artLink
+    //   };
+    // } else {
+    //   // this.artLink = this.article.link;
+    //   console.log("link: ", this.artLink, this.artColor);
+    //   this.artColor = false;
+    //   return  {
+    //     'background-image': 'url(' + this.article.link + ')'
+    //   };
+    // }
   }
 
   onLike() {

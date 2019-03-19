@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
+
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 

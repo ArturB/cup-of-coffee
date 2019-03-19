@@ -1,7 +1,9 @@
 import { User } from '../models/user.model';
 export class Article {
     constructor(
-                public link: string,
+                // public link: string,
+                public artColors: Array<string>,
+                //  = {tcolor: string, bcolor: string},
                 public title: string,
                 public category: string,
                 public description: string,

@@ -9,9 +9,9 @@
   </div>
 </div>
 
-<div class="container text-center mt-4">
+<!-- <div class="container text-center mt-4">
   <h5 class="mx-auto">Stworzony przez Ciebie artykuł zostanie sprawdzony przez moderatora i po tym opublikowany na serwisie</h5>
-</div>
+</div> -->
 
 <div class="container contBgr py-5 my-5 px-md-5">
   <form [formGroup]="newArtForm" (ngSubmit)="addArticle()">
@@ -46,7 +46,7 @@
       <textarea class="form-control" id="description" formControlName="description" rows="3"></textarea>
     </div>
     
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="articleImg" class="labelStyle">Zdjęcie lub kolor tła</label>
       <div class="form-check">
         <input class="form-check-input" type="radio" id="link" formControlName="link" [value]="colorLink">
@@ -60,7 +60,59 @@
           <input value="" (change)="onValue($event)" type="file" class="form-control-file">
         </label>
       </div>
+    </div> -->
+ 
+    <div class="form-group form-inline">
+      <label for="colorText" class="labelStyle">Kolor tytułu</label>
+      <input 
+        [(colorPicker)]="tcolor"
+        [cpPosition]="'bottom'"
+        [style.background]="tcolor" 
+        class="form-control tbColor ml-3 mr-4" 
+        id="colorText" 
+        formControlName="colorText"
+        [value]="tcolor" 
+        (click)="updateName()">
+    <!-- </div> -->
+    <!-- <div class="form-group form-inline"> -->
+      <label for="colorBgr" class="labelStyle">Kolor tła</label>
+      <input 
+        [(colorPicker)]="bcolor"
+        [cpPosition]="'bottom'"
+        [style.background]="bcolor" 
+        class="form-control tbColor ml-3 mr-4" 
+        id="colorBgr" 
+        formControlName="colorBgr"
+        [value]="bcolor" 
+        (click)="updateName()">
     </div>
+    <label for="colorText" class="labelStyle">Tak będzie wyglądał nagłówek twojego artykułu</label>
+    <div [style.background]="bcolor">
+      <p [style.color]="tcolor" class="text-center p-4">{{ titleName }}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="faIcon" class="labelStyle icLabel">Ikonka</label>
+      <select class="form-control custom-select icSelect" id="faIcon" formControlName="faIcon" (click)="chooseIc()">
+        <option *ngFor="let ic of iconsArray" [value]="ic">
+          {{ ic }}
+        </option>
+      </select>
+      <span class="">Twój wybór: <i class="fa fa-2x" [ngClass]="icon"></i></span>
+
+      <div *ngIf="newArtForm.get('faIcon').invalid && newArtForm.get('faIcon').touched"
+          class="alert alert-danger mt-2">
+          <div [hidden]="!newArtForm.get('faIcon').errors['required']">
+            Musisz wybrać ikonkę
+          </div>
+      </div>
+
+    </div>
+
+        <!-- <input type="button" class="form-control" id="icon" formControlName="icon" value={{ic}}> -->
+        <!-- <li *ngFor="let ic of iconsArray" class="list-inline-item"> -->
+            <!-- <i class="fa fa-heart fa-3x mt-5" [ngClass]="randIcon()" [style.color]="tcolor"></i> -->
+      
 
     <div class="form-group">
       <label for="author" class="labelStyle">Widoczność autora w artykule</label>

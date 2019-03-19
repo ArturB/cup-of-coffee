@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 // import { map } from 'rxjs';
@@ -14,19 +14,63 @@ import { AuthService } from '../../../core/services/auth.service';
   templateUrl: './add-article.component.html',
   styleUrls: ['./add-article.component.css']
 })
-export class AddArticleComponent implements OnInit, OnChanges {
+export class AddArticleComponent implements OnInit {
 
   user: User;
   
   newArtForm: FormGroup;
 
-  urlLink: string = '';
-  colorLink: string = '#14563e';
+  // urlLink: string = '';
+  tcolor: string = '#fcfcfc';
+  bcolor: string = '#14563e';
+
+  titleName: string;
+
+  iconsArray: Array<string> = [
+    'fa-heart',
+    'fa-adjust',
+    'fa-heart-o',
+    'fa-birthday-cake',
+    'fa-automobile',
+    'fa-bicycle',
+    'fa-camera',
+    'fa-camera-retro',
+    'fa-comments-o',
+    'fa-heartbeat',
+    'fa-cogs',
+    'fa-home',
+    'fa-music',
+    'fa-paw',
+    'fa-diamond',
+    'fa-cutlery',
+    'fa-handshake-o',
+    'fa-hourglass-half',
+    'fa-gift',
+    'fa-gamepad',
+    'fa-flash',
+    'fa-child',
+    'fa-bomb',
+    'fa-money',
+    'fa-trophy',
+    'fa-anchor',
+    'fa-plane',
+    'fa-rocket',
+    'fa-briefcase',
+    'fa-asterisk',
+    'fa-balance-scale',
+    'fa-ban',
+    'fa-ban',
+    'fa-bathtub',
+    'fa-cart-plus',
+    'fa-bed',
+    'fa-bullseye',
+    'fa-bell-o',
+  ];
+  icon: string = this.iconsArray[0];
 
   newArt: Article;
 
   reset: boolean = false;
-  // submit: boolean = false;
 
   success: string;
   error: string;
@@ -45,7 +89,10 @@ export class AddArticleComponent implements OnInit, OnChanges {
     console.log(this.user);
 
     this.newArtForm = new FormGroup({
-      link: new FormControl(this.colorLink, Validators.required),
+      // link: new FormControl(this.colorLink, Validators.required),
+      colorText: new FormControl(this.tcolor, Validators.required),
+      colorBgr: new FormControl(this.bcolor, Validators.required),
+      faIcon: new FormControl(this.iconsArray[0], Validators.required),
       title: new FormControl(null, [
         Validators.required,
         Validators.minLength(2),
@@ -61,14 +108,23 @@ export class AddArticleComponent implements OnInit, OnChanges {
     });
 
   }
-  ngOnChanges() {
-    this.onValue(event);
+
+  updateName() {
+    this.titleName = this.newArtForm.get('title').value;
+    console.log(this.titleName)
+  }
+
+  chooseIc() {
+    
+    this.icon = this.newArtForm.value.faIcon;
+
+    // return this.icon
     
   }
 
   onValue(event: any) {
-    this.urlLink = event.target.value;
-    console.log(this.urlLink);
+    // this.urlLink = event.target.value;
+    // console.log(this.urlLink);
   }
 
 
@@ -77,7 +133,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
     console.log(this.user);
 
     let art = new Article(
-      this.newArtForm.value.link,
+      [this.tcolor, this.bcolor, this.newArtForm.value.faIcon],
       this.newArtForm.value.title,
       this.newArtForm.value.category,
       this.newArtForm.value.description,
@@ -85,6 +141,7 @@ export class AddArticleComponent implements OnInit, OnChanges {
       new Date().toDateString(),
       this.newArtForm.value.author,
     );
+    console.log(art);
     this.articleService.addArticle(art)
       .subscribe(
         data => {
@@ -116,10 +173,14 @@ export class AddArticleComponent implements OnInit, OnChanges {
   onReset() {
     this.reset = true;
     console.log(this.reset);
+    this.tcolor = '#fcfcfc';
+    this.bcolor = '#14563e';
+    this.icon = this.iconsArray[0];
 
     // przypisanie polom wartości domyslnych
     this.newArtForm.reset({
-      link: this.colorLink,
+      colorText: this.tcolor,
+      colorBgr: this.bcolor,
       author: this.user.username,
       category: 'popularne'
     });

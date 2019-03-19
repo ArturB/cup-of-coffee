@@ -17,8 +17,8 @@ export class EditArticleComponent implements OnInit {
   
   newArtForm: FormGroup;
 
-  urlLink: string = '';
-  colorLink: string = '#14563e';
+  tcolor: string = '#fcfcfc';
+  bcolor: string = '#14563e';
 
   newArt: Article;
 
@@ -40,17 +40,20 @@ export class EditArticleComponent implements OnInit {
     console.log(this.user);
 
     this.newArtForm = new FormGroup({
-      // articleId: new FormControl(null),
-      link: new FormControl(this.colorLink, Validators.required),
+      // link: new FormControl(this.colorLink, Validators.required),
+      colorText: new FormControl(this.tcolor, Validators.required),
+      colorBgr: new FormControl(this.bcolor, Validators.required),
       title: new FormControl(null, [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(12)
+        Validators.maxLength(90)
         ]),
       category: new FormControl('popularne', Validators.required),
       // author: new FormControl(null),
       author: new FormControl(this.user.username, Validators.required),
-      description: new FormControl(null)
+      description: new FormControl(null, [
+        Validators.required,
+      ]),
 
     });
 
@@ -63,10 +66,10 @@ export class EditArticleComponent implements OnInit {
   }
 
   onValue(event: any) {
-    this.submit = false;
-    this.urlLink = event.target.value;
-    // this.urlLink=val;
-    console.log(this.urlLink);
+    // this.submit = false;
+    // this.urlLink = event.target.value;
+    // // this.urlLink=val;
+    // console.log(this.urlLink);
   }
 
   editArticle() {
@@ -83,7 +86,8 @@ export class EditArticleComponent implements OnInit {
 
     const art = new Article(
       // this.user,
-      this.newArtForm.value.link,
+      // this.newArtForm.value.link,
+      [this.newArtForm.value.colorText, this.newArtForm.value.colorBgr],
       this.newArtForm.value.title,
       this.newArtForm.value.category,
       this.newArtForm.value.description,
@@ -103,7 +107,9 @@ export class EditArticleComponent implements OnInit {
     console.log(this.reset);
 
     this.newArtForm.reset({
-      link: this.colorLink,
+      // link: this.colorLink,
+      colorText: this.tcolor,
+      colorBgr: this.bcolor,
       author: this.user.username,
       category: 'popularne'
     });
