@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpResponse } from '@angular/common/http';
-// import { map } from 'rxjs';
-// import 'rxjs/add/operator/map';
-import { map } from 'rxjs/operators'
+import { Router, ActivatedRoute } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+
 import { Article } from '../../../core/models/article.model';
 import { User } from '../../../core/models/user.model';
 import { ArticleService } from '../../../core/services/article.service';
@@ -17,14 +16,20 @@ import { AuthService } from '../../../core/services/auth.service';
 export class AddArticleComponent implements OnInit {
 
   user: User;
+ 
+
+  // artId: string;
+  // likes: Array<User>;
+
+
   
   newArtForm: FormGroup;
 
   // urlLink: string = '';
-  tcolor: string = '#fcfcfc';
-  bcolor: string = '#14563e';
 
-  titleName: string;
+
+  // titleName: string;
+  // description: string;
 
   iconsArray: Array<string> = [
     'fa-heart',
@@ -65,7 +70,23 @@ export class AddArticleComponent implements OnInit {
     'fa-bullseye',
     'fa-bell-o',
   ];
-  icon: string = this.iconsArray[0];
+  
+  article: Article = {
+    artColors: ['#fcfcfc', '#14563e', this.iconsArray[0]],
+    //  = {tcolor: string, bcolor: string},
+    title: '',
+    category: 'popularne',
+    description: '',
+    likes: [],
+    dateModified: '',
+    author: '',
+    // user: User,
+    _id: ''
+  };
+  tcolor: string = '';
+  bcolor: string = '';
+  // icon: string = this.iconsArray[0];
+  private art = new BehaviorSubject<Article>(this.article);
 
   newArt: Article;
 
@@ -75,48 +96,89 @@ export class AddArticleComponent implements OnInit {
   error: string;
 
   constructor(
+    private route: ActivatedRoute, 
+    private router: Router, 
     private articleService: ArticleService,
     private authService: AuthService
-    ) { }
+    ) {
+      this.article._id = this.route.snapshot.params['_id'];
+      console.log('artId',this.article._id);
+     }
 
   ngOnInit() {
+    // sprawdzanie czy znjudzujemy się na stronie dodawania czy edycji linków
+    if(this.router.url != '/dodaj-artykul') {
+      
+     this.articleService.getArticleObsById(this.article._id).subscribe(
+        data => {
+          let result;
+          result = data;
+          // this.article = result.article;
+          this.art.next(result.article);
+          
+        },
+        err => {
+          let artgetNF: string = 'Artykuł nie został znaleziony'
+          if (err.status == 410) {
+            this.router.navigate(['/404', {artNF: artgetNF}]);
+          }
+          else if (err.status == 404) {
+            this.router.navigate(['/404', {artNF: artgetNF}]);
+          }
+          else {
+            console.log('error',err.status);
+            this.router.navigate(['/404', , {artNF: artgetNF}]);
+          }
+          
+        }
+      )
+    }
+    
 
     this.user = this.authService.getProfile();
     // this.authService.getUserProfile().subscribe((user: User) => {
     //   this.user = user;
     // });
-    console.log(this.user);
+    
 
-    this.newArtForm = new FormGroup({
-      // link: new FormControl(this.colorLink, Validators.required),
-      colorText: new FormControl(this.tcolor, Validators.required),
-      colorBgr: new FormControl(this.bcolor, Validators.required),
-      faIcon: new FormControl(this.iconsArray[0], Validators.required),
-      title: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(90)
+    this.art.subscribe(data => {
+      this.article = data;
+      // console.log(this.article);
+    
+
+      this.tcolor = this.article.artColors[0];
+      this.bcolor = this.article.artColors[1];
+      console.log(this.article);
+
+      this.newArtForm = new FormGroup({
+        colorText: new FormControl(this.tcolor, Validators.required),
+        colorBgr: new FormControl(this.bcolor, Validators.required),
+        faIcon: new FormControl(this.article.artColors[2], Validators.required),
+        title: new FormControl(this.article.title, [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(90)
+          ]),
+        category: new FormControl(this.article.category, Validators.required),
+        // author: new FormControl(null),
+        author: new FormControl(this.user.username, Validators.required),
+        description: new FormControl(this.article.description, [
+          Validators.required,
         ]),
-      category: new FormControl('popularne', Validators.required),
-      // author: new FormControl(null),
-      author: new FormControl(this.user.username, Validators.required),
-      description: new FormControl(null, [
-        Validators.required,
-      ]),
 
+      });
     });
-
   }
 
   updateName() {
-    this.titleName = this.newArtForm.get('title').value;
-    console.log(this.titleName)
+    this.article.title = this.newArtForm.get('title').value;
+    // console.log(this.article.title)
   }
 
   chooseIc() {
     
-    this.icon = this.newArtForm.value.faIcon;
-
+    this.article.artColors[2] = this.newArtForm.value.faIcon;
+    console.log(this.newArtForm.value.colorText)
     // return this.icon
     
   }
@@ -172,14 +234,14 @@ export class AddArticleComponent implements OnInit {
   onReset() {
     this.reset = true;
     console.log(this.reset);
-    this.tcolor = '#fcfcfc';
-    this.bcolor = '#14563e';
-    this.icon = this.iconsArray[0];
+    this.article.artColors[0] = '#fcfcfc';
+    this.article.artColors[1] = '#14563e';
+    this.article.artColors[2] = this.iconsArray[0];
 
     // przypisanie polom wartości domyslnych
     this.newArtForm.reset({
-      colorText: this.tcolor,
-      colorBgr: this.bcolor,
+      colorText: this.article.artColors[0],
+      colorBgr: this.article.artColors[1],
       faIcon: this.iconsArray[0],
       author: this.user.username,
       category: 'popularne'

@@ -1,19 +1,19 @@
 <div class="container py-5">
   <div class="profileBgr pb-5">
     <div class="heading py-5 px-md-5">
-      <div class="row justify-content-center">
-        <div class="col-lg-4 profileImg">
+      <!-- <div class="row justify-content-center"> -->
+        <!-- <div class="col-lg-4 profileImg">
             <img src="assets/img/profile1.png" width="240px">
-        </div>
-        <div class="col-lg-8 profileText">
+        </div> -->
+        <div class="text-center profileText">
             <h1 class="pt-5">{{ user?.username }}</h1>
             <h4><strong>Email: {{ user?.email }} </strong></h4>
             <!-- <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p> -->
             <!-- <p><strong>Skills: </strong> -->
         </div>
-      </div>
+      <!-- </div> -->
     </div>
-    <div class="info py-5">
+    <div class="info pt-5 pb-3">
       <div class="row justify-content-center pt-4">
         <div class="col-md-3 pb-4 text-center">
   
@@ -36,19 +36,20 @@
           <!-- <h2><strong> 20,7K </strong></h2>                    
           <p>Moje artykuły</p> -->
         </div>
-        <div class="col-md-3 pb-4 text-center">
+        <!-- <div class="col-md-3 pb-4 text-center">
   
           <figure class="figure setFig">
             <img src="assets/img/settings_300_inv.png" width="160" class="figure-img img-fluid rounded-circle setImgBgr" alt="settings">
             <figcaption class="figure-caption text-center"><h5>Ustawienia konta</h5></figcaption>
           </figure>
   
-        </div>
+        </div> -->
       </div>
     </div>
 
+
     <div *ngIf="myArticles" class="mx-3 mx-md-5">
-      <div class="heading mb-5 ml-md-3">
+      <div class="sectionHeading mb-5 ml-md-3 pt-5">
           <h2 class="pb-2">Moje artykuły: {{articles.length}}</h2>
       </div>
 
@@ -57,15 +58,22 @@
           <app-collapsed-article (onShowArticle)="gotoArticle($event)"
           [article]="art">
           </app-collapsed-article>
-          <div class="btn-group">
-            <button type="button" (click)="onEdit()" class="btn btn-success">Edytuj<i class="fa fa-edit ml-2 my-auto"></i></button>
+          <div class="btn-group mb-4">
+            <button type="button" (click)="onEdit(art)" class="btn btn-success">Edytuj<i class="fa fa-edit ml-2 my-auto"></i></button>
             <button 
               type="button" 
               class="btn btn-danger"
-              (click)="removeArticle(art)"
+              (click)="remArticle(art)"
             >Usuń<i class="fa fa-trash ml-2 my-auto"></i></button>
           </div> 
         </div>
+        
+        <app-confirm-remove 
+        *ngIf="confRemove"
+        [article]="article"
+        (removeAnsw)=onRemoveAnsw($event)
+        ></app-confirm-remove>
+
       </div>
       
     </div>

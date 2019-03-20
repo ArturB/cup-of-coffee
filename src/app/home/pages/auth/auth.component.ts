@@ -16,7 +16,7 @@ export class AuthComponent implements OnInit, DoCheck {
   ngOnInit() {
     let paramName = this.route.snapshot.queryParams['name'];
     if(paramName == 'AddArticleComponent') {
-      this.info = 'Tylko zalogowani użytkownicy mogą dodawać artykuły';
+      this.info = 'Tylko zalogowani użytkownicy mogą dodawać i edytować artykuły';
     } else if (paramName != 'AddArticleComponent' && paramName != null) {
       this.info = 'Żeby dostać dostęp do tej strony musisz być zalogowany'
     } else {

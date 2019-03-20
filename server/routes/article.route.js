@@ -56,45 +56,37 @@ articleRoutes.route('/article').get((req, res) => {
         }
 
         else if (req.query.token != undefined) {
-            // jwt.verify(req.query.token, secret, (err, decoded) => {
-            //     if (err) {
-            //         console.log(err);
-            //         // return res.sendStatus(401)
-            //         res.send({article: article, message: 'likeRemoved' })
-            //     }
-            //     else {
-                    // console.log(req.query.token);
-                let decoded = jwt.decode(req.query.token);
-                // if(decoded.user = !null) {
-                User.findById(decoded.user._id, (err, user) => {
-                    if (err) {
-                        res.send({message: 'error' })
-                        console.log('Authorize error')
-                        // return res.sendStatus(500)
+            let decoded = jwt.decode(req.query.token);
+            // if(decoded.user = !null) {
+            User.findById(decoded.user._id, (err, user) => {
+                if (err) {
+                    res.send({message: 'error' })
+                    console.log('Authorize error')
+                    // return res.sendStatus(500)
+                }
+                // if (err.status = 401) {
+                //     return res.sendStatus(401)
+                // }
+                
+                else {
+                    let likeId = article.likes.indexOf(user._id);
+                    // let likeStatus = false;
+                    console.log('index of like ',likeId);
+                    if(likeId != -1) {
+                        res.send({article: article, message: 'likeAdded' });
+                        console.log('GET like isneieje');
+                        // article.likes.splice(indexOf(likeId), 1); 
                     }
-                    // if (err.status = 401) {
-                    //     return res.sendStatus(401)
-                    // }
-                    
                     else {
-                        let likeId = article.likes.indexOf(user._id);
-                        // let likeStatus = false;
-                        console.log('index of like ',likeId);
-                        if(likeId != -1) {
-                            res.send({article: article, message: 'likeAdded' });
-                            console.log('GET like isneieje');
-                            // article.likes.splice(indexOf(likeId), 1); 
-                        }
-                        else {
-                            res.send({article: article, message: 'likeRemoved' });
-                            console.log('GET like nie istnieje');
+                        res.send({article: article, message: 'likeRemoved' });
+                        console.log('GET like nie istnieje');
 
-                        }
-                        // console.log(article);
-                        // res.send(article)
-                    //   res.json(articles);
                     }
-                });
+                    // console.log(article);
+                    // res.send(article)
+                //   res.json(articles);
+                }
+            });
                 // }
                 // next();
             // }
@@ -102,7 +94,6 @@ articleRoutes.route('/article').get((req, res) => {
             // })
             
         }
-        // console.log(decoded.user)
 
         
         else {

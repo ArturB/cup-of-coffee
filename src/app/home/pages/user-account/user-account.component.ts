@@ -18,6 +18,8 @@ export class UserAccountComponent implements OnInit {
   article: Article;
   myArticles: boolean = false;
 
+  confRemove: boolean = false;
+
   constructor(private router: Router, private authService: AuthService, private articleService: ArticleService) {
     this.user = this.authService.getProfile();
 
@@ -59,7 +61,29 @@ export class UserAccountComponent implements OnInit {
     console.log("Wybrany artykuł: ", article);
   }
 
+  onEdit(art: Article) {
+    console.log('art._id',art._id);
+
+    this.router.navigate(['edytuj-artykul', art._id]);
+
+  }
+
+  onRemoveAnsw(answ: boolean) {
+    this.confRemove = false;
+    console.log('ddd',this.article)
+    if(answ) {
+      this.removeArticle(this.article);
+    } 
+  }
+
+  remArticle(art: Article) {
+    this.confRemove = true;
+    this.article = art;
+
+  }
+
   removeArticle(art: Article) {
+    
     this.article = art;
     console.log(this.article);
 		this.articleService.deleteArticle(this.article)

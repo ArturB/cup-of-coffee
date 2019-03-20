@@ -77,17 +77,6 @@ textarea.form-control {
 }
 
 
-
-.btnReset {
-    /* background-color: #499273; */
-    background-color: #52b38a;
-    border: 1px solid #a2a2a2;
-}
-
-.btnReset:hover, .btnReset:active {
-    background-color: #499273;
-}
-
 .btnGroup {
     padding-left: 0.5rem;
 

@@ -17,22 +17,21 @@ import { CategoryComponent } from './pages/category/category.component';
 import { SelectedCategoryComponent } from './pages/category/selected-category/selected-category.component';
 import { ArticleComponent } from './pages/category/article/article.component';
 import { AddArticleComponent } from './pages/add-article/add-article.component';
-import { EditArticleComponent } from './pages/edit-article/edit-article.component';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ConfirmRemoveComponent } from './pages/user-account/confirm-remove/confirm-remove.component';
 
 
 @NgModule({
   declarations: [
     AddArticleComponent, 
-    EditArticleComponent,
     UserAccountComponent, 
     CategoryComponent, 
     SelectedCategoryComponent,
     ArticleComponent,
     HomeUsComponent, 
-    NotFoundComponent,  
+    NotFoundComponent, ConfirmRemoveComponent,  
      
   ],
   imports: [

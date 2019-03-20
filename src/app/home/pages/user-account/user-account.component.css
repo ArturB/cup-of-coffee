@@ -6,9 +6,9 @@
     box-shadow: 0 0px 20px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.profileImg, .profileText {
+/* .profileImg, .profileText {
     text-align: center;
-}
+} */
 @media screen and (min-width: 992px) {
     .profileImg {
         text-align: right;
@@ -18,11 +18,17 @@
     }
 }
 .heading {
-    background-color: #f3f1f1;
-    border-bottom: 2px solid #e8e8e8;
+    /* background-color: #f3f1f1;
+    border-bottom: 2px solid #e8e8e8; */
+    background: #f3f1f1 url('/assets/img/account2.jpg') no-repeat center;
+    background-size: cover;
+    min-height: 340px;
+
+
+
 }
 .profileText h1 {
-    color: #a96f44;
+    color: #ff0d85;
 }
 .artImgBgr {
     /* background-color: #ffc107; */
@@ -59,14 +65,35 @@
 
 /*  */
 
-.heading h2 {
+.sectionHeading {
+    border-top: 2px solid #e8e8e8;
+    
+}
+.sectionHeading h2 {
     border-bottom: 2px solid #969696;
     text-align: center;
 }
 @media (min-width: 992px) {
-    .heading h2 {
+    .sectionHeading h2 {
         width: 40%;
         text-align: left;
     }
 }
 
+@media screen and (max-width: 575px) {
+    .btn-group {
+        display: block;
+    }
+    .btn {
+        width: 100%;
+        border-radius: 0;
+    }
+    .btn-success {
+        border-top-right-radius: .25rem !important;
+        border-top-left-radius: .25rem;
+    }
+    .btn-danger {
+        border-bottom-right-radius: .25rem;
+        border-bottom-left-radius: .25rem !important;
+    }
+}
