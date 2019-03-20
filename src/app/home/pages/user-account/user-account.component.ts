@@ -55,7 +55,7 @@ export class UserAccountComponent implements OnInit {
   }
 
   gotoArticle(article: Article) {
-    this.router.navigate(['kategorie/',article.category, 'artykul', article.title]);
+    this.router.navigate(['kategorie/',article.category, 'artykul', article._id]);
     console.log("Wybrany artykuł: ", article);
   }
 

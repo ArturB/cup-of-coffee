@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Article } from '../../../../core/models/article.model';
@@ -43,6 +43,7 @@ export class ArticleComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute, 
+    private router: Router, 
     private articleService: ArticleService,
     private authService: AuthService
     ) { 
@@ -95,29 +96,21 @@ export class ArticleComponent implements OnInit {
         // this.likesArray.next(this.likes);
         
       },
-      error => {
-        console.log(error);
+      err => {
+        let artgetNF: string = 'Artykuł nie został znaleziony'
+        if (err.status == 410) {
+          this.router.navigate(['/404', {artNF: artgetNF}]);
+        }
+        else if (err.status == 404) {
+          this.router.navigate(['/404', {artNF: artgetNF}]);
+        }
+        else {
+          console.log('error',err.status);
+          this.router.navigate(['/404', , {artNF: artgetNF}]);
+        }
+        
       }
     )
-  }
-
-
-  checkBgr() {
-    // this.artLink = this.article.link;
-
-    // if (this.artLink.includes('#')) {
-    //   console.log("color: ", this.artLink, this.artColor);
-    //   return {
-    //     'background-color': this.artLink
-    //   };
-    // } else {
-    //   // this.artLink = this.article.link;
-    //   console.log("link: ", this.artLink, this.artColor);
-    //   this.artColor = false;
-    //   return  {
-    //     'background-image': 'url(' + this.article.link + ')'
-    //   };
-    // }
   }
 
   onLike() {
@@ -129,7 +122,32 @@ export class ArticleComponent implements OnInit {
         data => {
           this.mes = data;
           this.isLike.next(this.mes.message);
-          this.getArt();
+          console.log('onLike', this.mes.message);
+
+          // this.getArt();
+          this.articleService.getArticleObsById(this.artId).subscribe(
+            data => {
+              let result;
+              result = data;
+              this.article = result.article;
+              this.tcolor = this.article.artColors[0];
+              this.bcolor = this.article.artColors[1];
+              this.faIcon = this.article.artColors[2];
+      
+      
+              this.likes = this.article.likes;
+              console.log('likes',this.likes )
+              // this.isLike.next(result.message);
+              // this.likesArray.next(this.likes);
+              
+            },
+            err => {
+              console.log('error',err.status);
+              this.router.navigate(['/404']);
+            }
+
+          )
+        },
 
 
           //tu zostało zrealizowano update lajków, ale lepiej chyba jednak pobierać z serwera nowy artykuł
@@ -144,12 +162,10 @@ export class ArticleComponent implements OnInit {
           // }
           // this.likesArray.next(this.likes);
 
-          console.log('onLike', this.mes.message);
           // this.messag.next(this.mes.message)
           // this.likesArray.next(this.likes);
 
 
-        },
         // success => 
         // { console.log("success "+success) }, 
         err => { 
@@ -161,8 +177,22 @@ export class ArticleComponent implements OnInit {
             console.log("errrr "+error);
           }
           else {
-            let error = 'Jakiś inny błąd'
-            console.log("errrr "+ err);
+            if (err.status == 410) {
+              // let next: ActivatedRouteSnapshot;
+              // this.router.navigate(
+              //   ['/404'], { queryParams: { name: next.outlet['name']} }   
+              // );
+              let artNF: string = 'Artykuł został usunięty przez autora :(';
+              this.router.navigate(['/404', {artNF: artNF}]);
+              // console.log()
+            }
+            else {
+              this.error = 'Wystąpił noeioczekiwany błąd podczas wysyłania/ usuwania lajka. Spróbuj zalogować się ponownie'            
+              console.log(this.error);
+            }
+            
+
+            
             
           }
         }

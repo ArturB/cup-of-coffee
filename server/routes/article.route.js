@@ -47,54 +47,59 @@ articleRoutes.route('/article').get((req, res) => {
     console.log('Artykuł: ', req.query._id);
     Article.findOne({_id: req.query._id}, (err, article) => {
         if(err){
-            console.log(req.query._id);
-            res.send(err);
+            console.log('CastError');
+            res.sendStatus(404);
+        }
+        else if (article == null) {
+            console.log('410', err)
+            res.sendStatus(410)
         }
 
-        if (req.query.token != undefined) {
-            jwt.verify(req.query.token, secret, (err, decoded) => {
-                if (err) {
-                    console.log(err);
-                    // return res.sendStatus(401)
-                    res.send({article: article, message: 'likeRemoved' })
-                }
-                else {
+        else if (req.query.token != undefined) {
+            // jwt.verify(req.query.token, secret, (err, decoded) => {
+            //     if (err) {
+            //         console.log(err);
+            //         // return res.sendStatus(401)
+            //         res.send({article: article, message: 'likeRemoved' })
+            //     }
+            //     else {
                     // console.log(req.query.token);
-                    let decoded = jwt.decode(req.query.token);
-                    // if(decoded.user = !null) {
-                    User.findById(decoded.user._id, (err, user) => {
-                        if (err) {
-                            res.send({article: article, message: 'likeRemoved' })
-                            console.log('Authorize error')
-                            // return res.sendStatus(500)
+                let decoded = jwt.decode(req.query.token);
+                // if(decoded.user = !null) {
+                User.findById(decoded.user._id, (err, user) => {
+                    if (err) {
+                        res.send({message: 'error' })
+                        console.log('Authorize error')
+                        // return res.sendStatus(500)
+                    }
+                    // if (err.status = 401) {
+                    //     return res.sendStatus(401)
+                    // }
+                    
+                    else {
+                        let likeId = article.likes.indexOf(user._id);
+                        // let likeStatus = false;
+                        console.log('index of like ',likeId);
+                        if(likeId != -1) {
+                            res.send({article: article, message: 'likeAdded' });
+                            console.log('GET like isneieje');
+                            // article.likes.splice(indexOf(likeId), 1); 
                         }
-                        // if (err.status = 401) {
-                        //     return res.sendStatus(401)
-                        // }
                         else {
-                            let likeId = article.likes.indexOf(user._id);
-                            // let likeStatus = false;
-                            console.log('index of like ',likeId);
-                            if(likeId != -1) {
-                                res.send({article: article, message: 'likeAdded' });
-                                console.log('GET like isneieje');
-                                // article.likes.splice(indexOf(likeId), 1); 
-                            }
-                            else {
-                                res.send({article: article, message: 'likeRemoved' });
-                                console.log('GET like nie istnieje');
+                            res.send({article: article, message: 'likeRemoved' });
+                            console.log('GET like nie istnieje');
 
-                            }
-                            // console.log(article);
-                            // res.send(article)
-                        //   res.json(articles);
                         }
-                    });
-                }
+                        // console.log(article);
+                        // res.send(article)
+                    //   res.json(articles);
+                    }
+                });
+                // }
                 // next();
-            })
-            
             // }
+            
+            // })
             
         }
         // console.log(decoded.user)
@@ -175,30 +180,39 @@ articleRoutes.route('/add-like').post((req, res)  => {
         // Article.findById(req.body._id, (err, article) => {
         Article.findById(req.body._id, (err, article) => {
             if (err) {
+                console.log('some', err)
                 return res.sendStatus(500)
             }
             // let fine = article.likes.find(x => x === user._id);
-            let likeId = article.likes.indexOf(user._id);
-            // let likeStatus = false;
-            // console.log('index of like ',likeId);
-            if(likeId != -1) {
-                article.likes.splice(likeId, 1);
-                // article.save();
-                // res.send(article);
-                article.save();
-                res.send({ message: 'likeRemoved' });
-                console.log('like został usunięty');
-                // article.likes.splice(indexOf(likeId), 1); 
+            else if (article == null) {
+                console.log('410', err)
+                res.sendStatus(410)
             }
             else {
-                article.likes.push(user);
-                // article.save();
-                // res.send(article);
-                article.save();
-                res.send({ message: 'likeAdded' });
-                console.log('like został dodany');
+                // console.log('410',err, article);
+                let likeId = article.likes.indexOf(user._id);
+            // let likeStatus = false;
+            // console.log('index of like ',likeId);
+                if(likeId != -1) {
+                    article.likes.splice(likeId, 1);
+                    // article.save();
+                    // res.send(article);
+                    article.save();
+                    res.send({ message: 'likeRemoved' });
+                    console.log('like został usunięty');
+                    // article.likes.splice(indexOf(likeId), 1); 
+                }
+                else {
+                    article.likes.push(user);
+                    // article.save();
+                    // res.send(article);
+                    article.save();
+                    res.send({ message: 'likeAdded' });
+                    console.log('like został dodany');
 
+                }
             }
+            
     
         });
     });

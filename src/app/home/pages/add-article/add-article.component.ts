@@ -28,7 +28,8 @@ export class AddArticleComponent implements OnInit {
 
   iconsArray: Array<string> = [
     'fa-heart',
-    'fa-adjust',
+    'fa-home',
+    'fa-music',
     'fa-heart-o',
     'fa-birthday-cake',
     'fa-automobile',
@@ -38,8 +39,6 @@ export class AddArticleComponent implements OnInit {
     'fa-comments-o',
     'fa-heartbeat',
     'fa-cogs',
-    'fa-home',
-    'fa-music',
     'fa-paw',
     'fa-diamond',
     'fa-cutlery',
@@ -48,6 +47,7 @@ export class AddArticleComponent implements OnInit {
     'fa-gift',
     'fa-gamepad',
     'fa-flash',
+    'fa-adjust',
     'fa-child',
     'fa-bomb',
     'fa-money',
@@ -58,7 +58,6 @@ export class AddArticleComponent implements OnInit {
     'fa-briefcase',
     'fa-asterisk',
     'fa-balance-scale',
-    'fa-ban',
     'fa-ban',
     'fa-bathtub',
     'fa-cart-plus',
@@ -175,7 +174,7 @@ export class AddArticleComponent implements OnInit {
     console.log(this.reset);
     this.tcolor = '#fcfcfc';
     this.bcolor = '#14563e';
-    // this.icon = this.iconsArray[0];
+    this.icon = this.iconsArray[0];
 
     // przypisanie polom wartości domyslnych
     this.newArtForm.reset({
