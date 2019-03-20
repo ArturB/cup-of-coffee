@@ -80,10 +80,11 @@
     }
 }
 
+.btn-group {
+    display: block;
+}
 @media screen and (max-width: 575px) {
-    .btn-group {
-        display: block;
-    }
+    
     .btn {
         width: 100%;
         border-radius: 0;

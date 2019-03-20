@@ -95,6 +95,8 @@ export class AddArticleComponent implements OnInit {
   success: string;
   error: string;
 
+  onEdit: boolean = false;
+
   constructor(
     private route: ActivatedRoute, 
     private router: Router, 
@@ -108,6 +110,7 @@ export class AddArticleComponent implements OnInit {
   ngOnInit() {
     // sprawdzanie czy znjudzujemy się na stronie dodawania czy edycji linków
     if(this.router.url != '/dodaj-artykul') {
+      this.onEdit = true;
       
      this.articleService.getArticleObsById(this.article._id).subscribe(
         data => {
@@ -183,27 +186,65 @@ export class AddArticleComponent implements OnInit {
     
   }
 
-  onValue(event: any) {
-    // this.urlLink = event.target.value;
-    // console.log(this.urlLink);
-  }
-
 
   addArticle() {
     console.log(this.newArtForm);
     console.log(this.user);
 
-    let art = new Article(
-      [this.tcolor, this.bcolor, this.newArtForm.value.faIcon],
-      this.newArtForm.value.title,
-      this.newArtForm.value.category,
-      this.newArtForm.value.description,
-      [],
-      new Date().toDateString(),
-      this.newArtForm.value.author,
-    );
-    console.log(art);
-    this.articleService.addArticle(art)
+    if(this.router.url != '/dodaj-artykul') {
+      let art = new Article(
+      
+        [this.tcolor, this.bcolor, this.newArtForm.value.faIcon],
+        this.newArtForm.value.title,
+        this.newArtForm.value.category,
+        this.newArtForm.value.description,
+        this.article.likes,
+        new Date().toDateString(),
+        this.newArtForm.value.author,
+        this.article.user
+      );
+      console.log(art, typeof(this.article._id));
+
+      this.articleService.editArticle(art, this.article._id)
+      .subscribe(
+        data => {
+          console.log('ok',data);
+          art = data;
+          this.success = 'Artukuł został zauktualizowany'
+          setTimeout(() => this.success = null, 4000);
+          this.onReset();
+        },
+
+        err => {
+          if (err.status === 422) {
+            this.error = 'Artykuł o podanym tytule już istnieje. Wybierz inną nazwę i spróbuj ponownie'
+            setTimeout(() => this.error = null, 4000);
+          }
+          else if (err.status === 401) {
+            this.error = 'Podczas wysyłania artykułu wystąpił błąd. Spróbuj zalogować się ponownie'
+            setTimeout(() => this.error = null, 4000);
+          }
+          else {
+            this.error = 'Podczas wysyłania artykułu wystąpił nieoczekiwany błąd. Spróbuj ponownie'
+            console.log("errrr "+ err);
+          }
+
+        }
+      );
+    }
+    else {
+      let art = new Article(
+      
+        [this.tcolor, this.bcolor, this.newArtForm.value.faIcon],
+        this.newArtForm.value.title,
+        this.newArtForm.value.category,
+        this.newArtForm.value.description,
+        [],
+        new Date().toDateString(),
+        this.newArtForm.value.author,
+      );
+      console.log(art, typeof(this.article._id));
+      this.articleService.addArticle(art)
       .subscribe(
         data => {
           console.log(art);
@@ -218,7 +259,7 @@ export class AddArticleComponent implements OnInit {
             this.error = 'Artykuł o podanym tytule już istnieje. Wybierz inną nazwę i spróbuj ponownie'
             setTimeout(() => this.error = null, 4000);
           }
-          if (err.status === 401) {
+          else if (err.status === 401) {
             this.error = 'Podczas wysyłania artykułu wystąpił błąd. Spróbuj zalogować się ponownie'
             setTimeout(() => this.error = null, 4000);
           }
@@ -229,13 +270,17 @@ export class AddArticleComponent implements OnInit {
 
         }
       );
+    }
+
+
+    
   }
 
   onReset() {
     this.reset = true;
     console.log(this.reset);
-    this.article.artColors[0] = '#fcfcfc';
-    this.article.artColors[1] = '#14563e';
+    this.tcolor = '#fcfcfc';
+    this.bcolor = '#14563e';
     this.article.artColors[2] = this.iconsArray[0];
 
     // przypisanie polom wartości domyslnych
@@ -246,6 +291,9 @@ export class AddArticleComponent implements OnInit {
       author: this.user.username,
       category: 'popularne'
     });
+    // if(this.router.url != '/dodaj-artykul') {
+    //   this.router.navigate(['/moje-konto']);
+    // }
   }
 
 

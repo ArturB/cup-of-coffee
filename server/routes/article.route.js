@@ -120,7 +120,7 @@ articleRoutes.use('/', (req, res, next) => {
 });
 
 
-articleRoutes.route('/add').post((req, res)  => {
+articleRoutes.route('/add-article').post((req, res)  => {
 // articleRoutes.post('/', function (req, res) {
     let decoded = jwt.decode(req.query.token);
 
@@ -225,6 +225,41 @@ articleRoutes.route('/user-articles').get((req, res) => {
         }
     });
 });    
+
+// Defined delete | remove | destroy route
+articleRoutes.route('/edit-article').post((req, res) =>  {
+    let decoded = jwt.decode(req.query.token);
+
+    console.log('artsssssssicle', decoded);
+    console.log('Edit: ', req.query._id);
+    // console.log(decoded.user._id);
+    // console.log(req.article._id);
+    Article.findOneAndUpdate({_id: req.query._id}, req.body, {new: true}, (err, article) => {
+        // if(err) res.send(err);
+        if (err) {
+            if (err.name="ValidationError") {
+                // res.status(422).send(valErrors)
+                res.sendStatus(422)
+                console.log('ssss')
+            }
+            else {
+                res.send(err)
+            }
+        }
+        else res.send(article);
+    });
+    // Article.deleteMany({_id: req.query._id}, (err, article) => {
+    //     if(err) res.send(err);
+    //     else {
+    //         // Article.updateOne(err, data => {
+    //         //     console.log(data)
+    //             res.send(article);
+
+    //         // })
+    //     }
+    // });
+   
+});
 
 // Defined delete | remove | destroy route
 articleRoutes.route('/delete-article').delete(function (req, res) {

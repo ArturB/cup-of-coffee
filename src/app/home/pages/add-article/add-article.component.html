@@ -129,10 +129,19 @@
     <div class="btnGroup">
       <button type="button" (click)="onReset()" class="btn btn-lg btnReset mr-4">Anuluj<i class="fa fa-times ml-2 my-auto"></i></button>
       <button 
+        *ngIf="!onEdit"
         type="submit" 
         [disabled]="newArtForm.invalid"
         class="btn btn-lg btnPink"
-      >Dodaj artykuł<i class="fa fa-save ml-2 my-auto"></i></button>
+      >Dodaj artykuł<i class="fa fa-save ml-2 my-auto"></i>
+      </button>
+      <button 
+        *ngIf="onEdit"
+        type="submit" 
+        [disabled]="newArtForm.invalid"
+        class="btn btn-lg btnPink"
+      >Zapisz zmiany<i class="fa fa-save ml-2 my-auto"></i>
+      </button>
     </div> 
 
     <!-- <div *ngIf="reset && newArtForm.get('title').untouched && newArtForm.get('description').untouched" class="alert alert-info mt-2">

@@ -54,11 +54,11 @@
       </div>
 
       <div class="row">
-        <div class="col-6 col-md-4 col-lg-3 text-center mb-4" *ngFor="let art of articles">
+        <div class="col-6 col-md-4 col-lg-3 mb-4" *ngFor="let art of articles">
           <app-collapsed-article (onShowArticle)="gotoArticle($event)"
           [article]="art">
           </app-collapsed-article>
-          <div class="btn-group mb-4">
+          <div class="btn-group text-center mb-4">
             <button type="button" (click)="onEdit(art)" class="btn btn-success">Edytuj<i class="fa fa-edit ml-2 my-auto"></i></button>
             <button 
               type="button" 

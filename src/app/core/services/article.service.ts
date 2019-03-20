@@ -221,7 +221,7 @@ export class ArticleService {
       ? '?token=' + localStorage.getItem('access_token')
       : '';
 
-    return this.http.post<Article>('http://localhost:4000/articles/add' + token, art, { headers: headers });
+    return this.http.post<Article>('http://localhost:4000/articles/add-article' + token, art, { headers: headers });
   }
 
   addLikeByUser(art: Article):Observable<Article> {
@@ -242,6 +242,20 @@ export class ArticleService {
     // console.log('user artuicles: ', user);
 
     return this.http.get<Array<Article>>('http://localhost:4000/articles/user-articles' + token, {params: params});
+  }
+  
+  editArticle(art: Article, _id: string):Observable<Article> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json');
+
+    console.log('edit', art)
+
+    const token = localStorage.getItem('access_token')
+      ? '?token=' + localStorage.getItem('access_token')
+      : '';
+
+    const params = new HttpParams().set("_id", _id)
+
+    return this.http.post<Article>('http://localhost:4000/articles/edit-article' + token, art, {params: params});
   }
 
   deleteArticle(article: Article): Observable<Article> {
