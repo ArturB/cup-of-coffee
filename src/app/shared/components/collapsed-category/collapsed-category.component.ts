@@ -39,9 +39,10 @@ export class CollapsedCategoryComponent implements OnInit {
       this.articleService.getArticlesObs().subscribe(
         (articles: Array<Article>) => {
           // console.log(articles);
-          this.articles = articles.slice();        
+          // this.articles = articles.slice();        
+          this.articles = articles;        
           this.filteredArticles = this.sliceFour();
-          console.log(this.articles);
+          console.log(this.articles, this.filteredArticles);
         },
         err => { 
           console.log(err, err.status);
@@ -51,9 +52,11 @@ export class CollapsedCategoryComponent implements OnInit {
       this.articleService.getArticleObsByCategory(this.category).subscribe(
         (articles: Array<Article>) => {
         // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
-          console.log(articles);
-          this.articles = articles.slice();
+          // console.log(articles);
+          // this.articles = articles.slice();
+          this.articles = articles;
           this.filteredArticles = this.sliceFour();
+          console.log(this.articles, this.filteredArticles);
         },
         // (error: HttpErrorResponse) => {
         //   console.log(error.status);
@@ -69,7 +72,11 @@ export class CollapsedCategoryComponent implements OnInit {
 
   sliceFour() {
     if (this.showFour) {
-      return this.articles = this.articles.slice(this.articles.length-4, this.articles.length);
+      if(this.articles.length > 4) {
+        return this.articles = this.articles.slice(this.articles.length-4, this.articles.length);
+      } else {
+        return this.articles = this.articles;
+      }
     } else {
       return this.articles = this.articles;
     }
