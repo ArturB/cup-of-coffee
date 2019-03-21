@@ -70,7 +70,7 @@ export class UserAccountComponent implements OnInit {
 
   showUserArticles() {
     if (!this.myArticles) {
-      this.articleService.getUserArticlesObs(this.user).subscribe(
+      this.articleService.getUserArticlesObs().subscribe(
         (articles: Array<Article>) => {
         // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
           // console.log(articles);
@@ -145,7 +145,7 @@ export class UserAccountComponent implements OnInit {
         data => {
           // this.articles = this.articles.slice();
           // let lol =data._id.toString();
-          this.articleService.getUserArticlesObs(this.user).subscribe(
+          this.articleService.getUserArticlesObs().subscribe(
             (articles: Array<Article>) => {
             // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
               // console.log(articles);
