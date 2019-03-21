@@ -21,13 +21,13 @@
       <div *ngIf="newArtForm.get('title').invalid && newArtForm.get('title').touched"
 				    class="alert alert-danger mt-2">
 				    <div [hidden]="!newArtForm.get('title').errors['required']">
-				      Podaj tytuł (od 2 do 45 znaków)
+				      Podaj tytuł (od 2 do 120 znaków)
 				    </div>
 				    <div [hidden]="!newArtForm.get('title').errors['minlength']">
-				      Podaj tytuł (od 2 do 45 znaków)
+				      Podaj tytuł (od 2 do 120 znaków)
 				    </div>
 				    <div [hidden]="!newArtForm.get('title').errors['maxlength']">
-				      Podaj tytuł (od 2 do 45 znaków)
+				      Podaj tytuł (od 2 do 120 znaków)
 				    </div>
 				</div>
     </div>

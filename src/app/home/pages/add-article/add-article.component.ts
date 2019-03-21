@@ -160,7 +160,7 @@ export class AddArticleComponent implements OnInit {
         title: new FormControl(this.article.title, [
           Validators.required,
           Validators.minLength(2),
-          Validators.maxLength(90)
+          Validators.maxLength(120)
           ]),
         category: new FormControl(this.article.category, Validators.required),
         // author: new FormControl(null),
