@@ -1,5 +1,6 @@
 .topMrg {
     margin-top: 84px;
+    margin-bottom: 142px;
 }
 @media screen and (max-width: 991px) {
     .topMrg {
