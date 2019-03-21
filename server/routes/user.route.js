@@ -59,7 +59,7 @@ router.post('/login', function(req, res) {
             // let token = jwt.sign({userID: user.id}, secret, {expiresIn: '24h'});
             let token = jwt.sign({user: user}, secret, {});
             let userr = user;
-            console.log(userr)
+            // console.log(userr)
             res.send({token, userr});
         }
 

@@ -20,7 +20,7 @@ articleRoutes.route('/').get((req, res) => {
         res.send(err);
     }
     else {
-        console.log(articles);
+        // console.log('articles');
         res.send(articles)
     //   res.json(articles);
     }
@@ -36,12 +36,14 @@ articleRoutes.route('/category').get((req, res) => {
         res.send(err);
     }
     else {
-        console.log(articles);
+        // console.log(articles);
         res.send(articles)
     //   res.json(articles);
     }
   });
 });
+
+
 
 articleRoutes.route('/article').get((req, res) => {
     console.log('Artykuł: ', req.query._id);
@@ -104,10 +106,6 @@ articleRoutes.route('/article').get((req, res) => {
         
     });
 });
-
-
-
-
     
 articleRoutes.use('/', (req, res, next) => {
     jwt.verify(req.query.token, secret, (err, decoded) => {
@@ -119,6 +117,24 @@ articleRoutes.use('/', (req, res, next) => {
     })
 });
 
+
+
+articleRoutes.route('/favorites').get((req, res) => {
+    let decoded = jwt.decode(req.query.token);
+    console.log(decoded)
+
+    Article.find({likes: decoded.user._id}, (err, articles) => {
+    if(err){
+        console.log(err);
+        res.send(err);
+    }
+    else {
+        console.log(articles);
+        res.send(articles)
+    //   res.json(articles);
+    }
+  });
+});
 
 articleRoutes.route('/add-article').post((req, res)  => {
 // articleRoutes.post('/', function (req, res) {

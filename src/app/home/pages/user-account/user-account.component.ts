@@ -16,11 +16,14 @@ import { AuthService } from '../../../core/services/auth.service';
 export class UserAccountComponent implements OnInit {
 
   user: User;
-  articles: Array<Article>;
+  articles: Array<Article> = [];
+  favArticles: Array<Article> = [];
   article: Article;
   myArticles: boolean = false;
+  myFavorites: boolean = false;
 
   private artsSub = new BehaviorSubject<any>(this.articles);
+  private favArtsSub = new BehaviorSubject<any>(this.favArticles);
   stopwatchValue$: Observable<any>;
   
   
@@ -53,6 +56,7 @@ export class UserAccountComponent implements OnInit {
 
   showUserArticles() {
     if (!this.myArticles) {
+      this.myFavorites = false;
       this.articleService.getUserArticlesObs().subscribe(
         (articles: Array<Article>) => {
         // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
@@ -66,6 +70,7 @@ export class UserAccountComponent implements OnInit {
         },
         err => { 
           console.log(err, err.status);
+          // this.artsSub.unsubscribe();
         }
       );
     }
@@ -82,6 +87,7 @@ export class UserAccountComponent implements OnInit {
       // this.articles = data;
       if (this.selectedCat != 'wszystkie') {
         this.articles = data.filter(e => e.category === this.selectedCat); // pomijamy drugi element ze strumienia
+        console.log(this.articles)
 
       }
       else {
@@ -89,6 +95,24 @@ export class UserAccountComponent implements OnInit {
       }
       
       console.log('User arts: ', this.articles, data);
+
+    });
+  }
+
+  selectFavCat() {
+    console.log(this.selectedCat);
+    this.favArtsSub.subscribe(data => {
+      // this.articles = data;
+      if (this.selectedCat != 'wszystkie') {
+        this.favArticles = data.filter(e => e.category === this.selectedCat); // pomijamy drugi element ze strumienia
+        console.log(this.favArticles)
+
+      }
+      else {
+        this.favArticles = data;
+      }
+      
+      console.log('User arts: ', this.favArticles, data);
 
     });
   }
@@ -146,6 +170,34 @@ export class UserAccountComponent implements OnInit {
         },
 				err => console.log(err)
 			);
-	}
+  }
+  
+  showFavorites() {
+    if (!this.myFavorites) {
+      this.myArticles = false;
+      this.articleService.getFavorites().subscribe(
+        (articles: Array<Article>) => {
+        // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
+          // console.log(articles);
+          this.favArticles = articles;
+          this.favArtsSub.next(this.favArticles);
+          this.myFavorites = true;
+
+          
+
+        },
+        err => { 
+          console.log(err, err.status);
+        }
+      );
+    }
+    else {
+      this.myFavorites = false;
+    }
+  }
+
+  ngOnDestroy() {
+    this.artsSub.unsubscribe();
+  }
 
 }

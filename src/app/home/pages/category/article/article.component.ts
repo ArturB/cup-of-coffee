@@ -27,10 +27,11 @@ export class ArticleComponent implements OnInit {
   error: string;
   // const initialSubscriber = lastUrl.subscribe(console.log);
   private isLike = new BehaviorSubject<any>(this.mes);
+  private isFavorite = new BehaviorSubject<any>(this.mes);
   // private likesArray = new BehaviorSubject<Array<User>>(this.likes);
 
   isLiked: boolean = false;
-  isFavorite: boolean = false;
+  isFavorited: boolean = false;
 
   artTitle: string;
   artId: string;
@@ -51,6 +52,8 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit() {
     // this.artTitle = this.route.snapshot.params['title'];
+    this.user = this.authService.getProfile();
+
     this.artId = this.route.snapshot.params['_id'];
     // let artrId: string = artId.toExponential();
     console.log('artId', this.artId);
@@ -114,7 +117,7 @@ export class ArticleComponent implements OnInit {
   }
 
   onLike() {
-    this.user = this.authService.getProfile();
+    // this.user = this.authService.getProfile();
     console.log('user', this.user);
 
     this.articleService.addLikeByUser(this.article)
@@ -204,10 +207,5 @@ export class ArticleComponent implements OnInit {
     
   }
 
-  onFavorite() {
-    console.log(this.isFavorite);
-    this.isFavorite = !this.isFavorite;
-    
-  }
 
 }

@@ -28,8 +28,8 @@
         </div>
         <div class="col-md-3 pb-4 text-center">
   
-          <figure class="figure favFig">
-            <img src="assets/img/favorite_300_inv.png" width="160" class="figure-img img-fluid rounded-circle favoriteImgBgr" alt="favorite">
+          <figure class="figure favFig" (click)="showFavorites()">
+            <img src="assets/img/like_300_2_inv.png" width="160" class="figure-img img-fluid rounded-circle favoriteImgBgr" alt="favorite">
             <figcaption class="figure-caption text-center"><h5>Ulubione artykuły</h5></figcaption>
           </figure>
   
@@ -84,6 +84,32 @@
         (removeAnsw)=onRemoveAnsw($event)
         ></app-confirm-remove>
 
+      </div>
+      
+    </div>
+
+
+    <div *ngIf="myFavorites" class="mx-3 mx-md-5">
+      <div class="sectionHeading mb-5 ml-md-3 pt-5">
+          <h2 class="pb-2">Moje ulubione artykuły z kategorii <span class="selCat">{{ selectedCat }}</span> <i class="fa fa-long-arrow-right ml-2 my-auto"></i> {{favArticles.length}}</h2>
+      </div>
+      <div class="form-group mb-5">
+          <label for="category" class="labelStyle">Kategoria</label>
+          <select [(ngModel)]="selectedCat" (change)="selectFavCat()" name="first" class="form-control custom-select">
+            <option *ngFor="let opt of catOptions">
+              {{opt.name}}
+            </option>
+          </select>
+          <!-- <button type="button" class="btn btn-primary">Selevted</button> -->
+          <!-- <p>Selected option: {{ selectedCat }}</p> -->
+        </div>
+
+      <div class="row">
+        <div class="col-6 col-md-4 col-lg-3 mb-4" *ngFor="let art of favArticles">
+          <app-collapsed-article (onShowArticle)="gotoArticle($event)"
+          [article]="art">
+          </app-collapsed-article>
+        </div>
       </div>
       
     </div>

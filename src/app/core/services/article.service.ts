@@ -234,6 +234,17 @@ export class ArticleService {
     return this.http.post<Article>('http://localhost:4000/articles/add-like' + token, art);
   }
 
+  getFavorites(): Observable<Array<Article>> {
+    // const params = new HttpParams().set("category", artCategory)
+    // console.log(params);
+    const token = localStorage.getItem('access_token')
+      ? '?token=' + localStorage.getItem('access_token')
+      : '';
+    
+      return this.http.get<Array<Article>>('http://localhost:4000/articles/favorites' + token);
+  
+  }
+
   getUserArticlesObs(): Observable<Array<Article>> {
     const token = localStorage.getItem('access_token')
       ? '?token=' + localStorage.getItem('access_token')

@@ -1,3 +1,4 @@
+import { Article } from '../models/article.model';
 export class User {
   constructor(
               public email: string,

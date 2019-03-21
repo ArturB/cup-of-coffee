@@ -40,7 +40,7 @@
 .setImgBgr {
     background-color: #2ba27c;
 }
-.artFig:hover .artImgBgr {
+.artFig:hover .artImgBgr, {
     background-color: #f1b500;
     -webkit-transition: background-color 100ms linear;
     -ms-transition: background-color 100ms linear;
@@ -52,12 +52,12 @@
     -ms-transition: background-color 100ms linear;
     transition: background-color 100ms linear;
 }
-.setFig:hover .setImgBgr {
+/* .setFig:hover .setImgBgr {
     background-color: #21926e;
     -webkit-transition: background-color 100ms linear;
     -ms-transition: background-color 100ms linear;
     transition: background-color 100ms linear;
-}
+} */
 
 .figure {
     cursor: pointer;
