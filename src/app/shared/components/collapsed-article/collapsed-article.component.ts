@@ -35,12 +35,12 @@ export class CollapsedArticleComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log('likes ', this.article.likes.length)
+    // console.log('likes ', this.article.likes.length)
     this.likes = this.article.likes.length;
     this.tcolor = this.article.artColors[0];
     this.bcolor = this.article.artColors[1];
     this.faIcon = this.article.artColors[2];
-    console.log( this.tcolor,  this.bcolor)
+    // console.log( this.tcolor,  this.bcolor)
   }
 
 

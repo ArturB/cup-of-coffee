@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { BehaviorSubject, Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 import { User } from '../../../core/models/user.model';
 import { Article } from '../../../core/models/article.model';
@@ -18,6 +20,21 @@ export class UserAccountComponent implements OnInit {
   article: Article;
   myArticles: boolean = false;
 
+  private artsSub = new BehaviorSubject<any>(this.articles);
+  stopwatchValue$: Observable<any>;
+  
+  
+  catOptions = [
+    { name: "wszystkie", value: 1 },
+    { name: "popularne", value: 2 },
+    { name: "sztuka", value: 2 },
+    { name: "psychologia", value: 2 }
+  ];
+
+  selectedCat: string = this.catOptions[0].name;
+
+  category: string;
+
   confRemove: boolean = false;
 
   constructor(private router: Router, private authService: AuthService, private articleService: ArticleService) {
@@ -32,6 +49,23 @@ export class UserAccountComponent implements OnInit {
 
   ngOnInit() {
     
+    
+  //   let beers = [
+  //     {name: "Stella", country: "Belgium", price: 9.50},
+  //     {name: "Sam Adams", country: "USA", price: 8.50},
+  //     {name: "Bud Light", country: "USA", price: 6.50},
+  //     {name: "Brooklyn Lager", country: "USA", price: 8.00},
+  //     {name: "Sapporo", country: "Japan", price: 7.50}
+  // ];
+   
+  // Rx.Observable.from(beers)   // <1>
+  //   .filter(beer => beer.price < 8)   // <2>
+  //   .map(beer => beer.name + ": $" + beer.price) // <3>
+  //   .subscribe(    // <4>
+  //       beer => console.log(beer),
+  //       err => console.error(err),
+  //       () => console.log("Streaming is over")
+  // );
   }
 
   showUserArticles() {
@@ -41,7 +75,10 @@ export class UserAccountComponent implements OnInit {
         // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
           // console.log(articles);
           this.articles = articles;
+          this.artsSub.next(this.articles);
           this.myArticles = true;
+
+          
 
         },
         err => { 
@@ -54,6 +91,23 @@ export class UserAccountComponent implements OnInit {
     }
     // console.log(this.user);
     
+  }
+
+  selectCat() {
+    console.log(this.selectedCat);
+    this.artsSub.subscribe(data => {
+      // this.articles = data;
+      if (this.selectedCat != 'wszystkie') {
+        this.articles = data.filter(e => e.category === this.selectedCat); // pomijamy drugi element ze strumienia
+
+      }
+      else {
+        this.articles = data;
+      }
+      
+      console.log('User arts: ', this.articles, data);
+
+    });
   }
 
   gotoArticle(article: Article) {
