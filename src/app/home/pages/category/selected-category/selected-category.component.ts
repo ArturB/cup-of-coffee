@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
 
 import { Article } from '../../../../core/models/article.model';
@@ -11,15 +11,19 @@ import { Article } from '../../../../core/models/article.model';
 })
 export class SelectedCategoryComponent implements OnInit {
   
+  // @Output() searchValue = new EventEmitter();
+  
   articles: Article[] = [];
 
   category: string;
 
   showFour: boolean = false;
 
+  searchText;
+
+
   constructor(
     private route: ActivatedRoute, 
-    // public cdRef:ChangeDetectorRef
     ) { 
     
   }
@@ -30,6 +34,12 @@ export class SelectedCategoryComponent implements OnInit {
     });
     console.log("category: ", this.category);
 
+  }
+
+  searchVal(text: string) {
+    this.searchText = text;
+    // this.searchValue.emit(text);
+    
   }
 
 

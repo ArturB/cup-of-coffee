@@ -21,7 +21,7 @@ export class IsArticlesComponent implements OnInit, OnDestroy {
 
   selectedCat: string;
 
-  category: string;
+  // category: string;
 
   constructor() { }
 

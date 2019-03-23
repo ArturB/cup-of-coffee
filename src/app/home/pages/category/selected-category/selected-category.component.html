@@ -1,6 +1,9 @@
-<app-search-form></app-search-form>
+<app-search-form
+(searchValue)=searchVal($event)>
+</app-search-form>
 
 <app-collapsed-category
 [category]="category"
-[showFour]="showFour">
+[showFour]="showFour"
+[searchText]="searchText">
 </app-collapsed-category>

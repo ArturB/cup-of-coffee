@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from '../home/home-routing.module';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { HeaderComponent } from './components/header/header.component';
 
 import { LoaderComponent } from './components/loader/loader.component';
@@ -24,10 +26,14 @@ import { SortTitlePipe } from './pipes/sort-title.pipe';
     CollapsedArticleComponent, 
     BtnSeeMoreComponent, 
     SearchFormComponent, 
-    DropdownDirective, SearchPipe, SortTitlePipe
+    DropdownDirective, 
+    SearchPipe, 
+    SortTitlePipe
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     HomeRoutingModule
   ],
@@ -37,7 +43,8 @@ import { SortTitlePipe } from './pipes/sort-title.pipe';
     CollapsedArticleComponent,
     BtnSeeMoreComponent,
     SearchFormComponent,
-    DropdownDirective
+    DropdownDirective,
+    SearchPipe
     
   ]
 })

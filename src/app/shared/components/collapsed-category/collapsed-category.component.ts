@@ -20,6 +20,9 @@ export class CollapsedCategoryComponent implements OnInit {
   @Input() category: string;
   @Input() showFour: boolean;
 
+  @Input() searchText: string;
+
+
   constructor(private router: Router, private articleService: ArticleService) {
     
    }
