@@ -13,10 +13,11 @@ export class IsArticlesComponent implements OnInit, OnDestroy {
   @Output() selectCat = new EventEmitter();
     
   catOptions = [
-    { name: "wszystkie", value: 1 },
-    { name: "popularne", value: 2 },
-    { name: "sztuka", value: 3 },
-    { name: "psychologia", value: 4 }
+    { name: 'Wszystkie', value: 'wszystkie'},
+    { name: 'Nauka', value: 'nauka'},
+    { name: 'Sztuka', value: 'sztuka'},
+    { name: 'Filozofia', value: 'filozofia'},
+    { name: 'Psychologia', value: 'psychologia'}
   ];
 
   selectedCat: string;
@@ -26,7 +27,7 @@ export class IsArticlesComponent implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit() {
-    this.selectedCat = this.selCat != undefined ?  this.selCat : this.catOptions[0].name;
+    this.selectedCat = this.selCat != undefined ?  this.selCat : this.catOptions[0].value;
     console.log('dd', this.selectedCat)
   }
 

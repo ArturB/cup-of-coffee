@@ -13,10 +13,10 @@
           <a class="dropdown-toggle nav-link" [routerLink]="['/kategorie']"><i class="fa fa-folder-open-o fa-2x faNav mb-1"></i>kategorie
           <span class="caret"></span></a>
           <ul class="drop-menu showDrop mb-3">
-            <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" [routerLink]="['/kategorie', 'wszystkie']">Wszystkie</a>
+            <li class="nav-item" routerLinkActive="active" *ngFor="let cat of categories">
+              <a class="nav-link" [routerLink]="['/kategorie', cat]">{{ cat }}</a>
             </li>
-            <li class="nav-item" routerLinkActive="active">
+            <!-- <li class="nav-item" routerLinkActive="active">
               <a class="nav-link" [routerLink]="['/kategorie', 'popularne']">Popularne</a>
             </li>
             <li class="nav-item" routerLinkActive="active">
@@ -24,7 +24,7 @@
             </li>
             <li class="nav-item" routerLinkActive="active">
               <a class="nav-link" [routerLink]="['/kategorie', 'psychologia']">Psychologia</a>
-            </li>
+            </li> -->
           </ul>
         </li>
         <li class="nav-item px-md-4" routerLinkActive="active">

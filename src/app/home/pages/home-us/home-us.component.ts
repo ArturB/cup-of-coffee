@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeUsComponent implements OnInit {
 
-  categories = ['popularne', 'sztuka', 'psychologia'];
+  categories = ['nauka', 'sztuka', 'filozofia', 'psychologia'];
   showFour: boolean = true;
   
   constructor() { }

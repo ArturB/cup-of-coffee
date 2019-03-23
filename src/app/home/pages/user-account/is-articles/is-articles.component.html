@@ -4,8 +4,8 @@
 <div class="form-group mb-5">
   <label for="category" class="labelStyle">Kategoria</label>
   <select [(ngModel)]="selectedCat" (change)="selectCategory()" name="selectCat" class="form-control custom-select">
-    <option *ngFor="let opt of catOptions">
-      {{opt.name}}
+    <option *ngFor="let cat of catOptions" [value]=cat.value>
+      {{cat.name}}
     </option>
   </select>
   <!-- <button type="button" class="btn btn-primary">Selevted</button> -->

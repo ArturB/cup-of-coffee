@@ -17,6 +17,9 @@ export class HeaderComponent implements OnInit {
   // zmienna przechowująca stan użytkownika (zalogowany czy nie)
   isLoggedIn$: Observable<boolean>;
 
+  categories = ['wszystkie', 'nauka', 'sztuka', 'filozofia', 'psychologia'];
+
+
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {  }
 
   ngOnInit() {

@@ -37,11 +37,11 @@ export class LoginComponent implements OnInit {
     // })
 
     this.logForm = new FormGroup({
-      email: new FormControl('aaaa@a', [
+      email: new FormControl('cup_of_coffee@outlook.com', [
             Validators.required, 
             Validators.email
             ]),
-      password: new FormControl('aaaaaaa', [
+      password: new FormControl('aaaaaa', [
             Validators.minLength(6),
             Validators.maxLength(24),
             Validators.required

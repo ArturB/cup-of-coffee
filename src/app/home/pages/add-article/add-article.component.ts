@@ -16,25 +16,21 @@ import { AuthService } from '../../../core/services/auth.service';
 export class AddArticleComponent implements OnInit {
 
   user: User;
- 
 
-  // artId: string;
-  // likes: Array<User>;
-
-
-  
   newArtForm: FormGroup;
 
-  // urlLink: string = '';
-
-
-  // titleName: string;
-  // description: string;
+  catOptions = [
+    { name: 'Nauka', value: 'nauka'},
+    { name: 'Sztuka', value: 'sztuka'},
+    { name: 'Filozofia', value: 'filozofia'},
+    { name: 'Psychologia', value: 'psychologia'}
+  ];
 
   iconsArray: Array<string> = [
     'fa-heart',
     'fa-home',
     'fa-music',
+    'fa-angellist',
     'fa-heart-o',
     'fa-birthday-cake',
     'fa-automobile',
@@ -42,11 +38,13 @@ export class AddArticleComponent implements OnInit {
     'fa-camera',
     'fa-camera-retro',
     'fa-comments-o',
+    'fa-line-chart',
+    'fa-money',
     'fa-heartbeat',
-    'fa-cogs',
     'fa-paw',
     'fa-diamond',
     'fa-cutlery',
+    'fa-credit-card',
     'fa-handshake-o',
     'fa-hourglass-half',
     'fa-gift',
@@ -75,7 +73,7 @@ export class AddArticleComponent implements OnInit {
     artColors: ['#fcfcfc', '#14563e', this.iconsArray[0]],
     //  = {tcolor: string, bcolor: string},
     title: '',
-    category: 'popularne',
+    category: this.catOptions[0].value,
     description: '',
     likes: [],
     dateModified: '',
@@ -289,7 +287,7 @@ export class AddArticleComponent implements OnInit {
       colorBgr: this.article.artColors[1],
       faIcon: this.iconsArray[0],
       author: this.user.username,
-      category: 'popularne'
+      category: this.catOptions[0].value
     });
     // if(this.router.url != '/dodaj-artykul') {
     //   this.router.navigate(['/moje-konto']);

@@ -2,14 +2,8 @@
 </app-search-form>
 
 <div class="container">
-  <!-- <div class="row"> -->
-    <!-- <h1>Kategoria: </h1> -->
-    <!-- <app-collapsed-category
-      class="mb-5"
-      *ngFor="let i of [1,2,3,4]">
-    </app-collapsed-category> -->
 
-    <div  *ngFor="let cat of categories">
+    <div *ngFor="let cat of categories">
       <app-collapsed-category
         class="mb-5"
         [category]="cat"
@@ -21,5 +15,4 @@
         </div>
       </app-collapsed-category>
     </div>
-  <!-- </div> -->
 </div>

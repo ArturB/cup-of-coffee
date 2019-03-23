@@ -16,10 +16,11 @@ export class SearchFormComponent implements OnInit {
   @Output() searchValue = new EventEmitter();
 
   catOptions = [
-    { value: "Wszystkie kategorie", name: "wszystkie" },
-    { value: "Popularne", name: "popularne" },
-    { value: "Sztuka", name: "sztuka" },
-    { value: "Psychologia", name: "psychologia" }
+    { name: 'Wszystkie kategorie', value: 'wszystkie'},
+    { name: 'Nauka', value: 'nauka'},
+    { name: 'Sztuka', value: 'sztuka'},
+    { name: 'Filozofia', value: 'filozofia'},
+    { name: 'Psychologia', value: 'psychologia'}
   ];
 
   selectedCat: string;
@@ -48,7 +49,7 @@ export class SearchFormComponent implements OnInit {
       else {
         // this.doSearch(params['term'])
         this.searchText = '';
-        this.selectedCat = this.catOptions[0].name;
+        this.selectedCat = this.catOptions[0].value;
       }
     });
     // this.searchText = "";
