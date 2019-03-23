@@ -42,17 +42,17 @@ Zestaw kolorystyczny obejmuje kolor tła artykułu, kolor tytułu oraz ikonkę i
 ### Dodawanie artykułów
 
 Jak już było wspomniane, tylko zweryfikowani użytkownicy mają dostęp do widoku dodawania artykułów. Zrealizowano to zostało za pomocą AuthGuard.
-Formularz dodawania i edycji artykułu (jest to ten sam komponent) został zrealizowany za pomocą Reactive Forms. W formularzu edycji w odróżnieniu od formularza dodawania artykułu wszystkie pola są już wypełnone przez dane otrzymane dzięki temu, że w url w tym przypadku przesyłane jest id wybranego artykułu. W formularzu konieczne jest wypełnienie wszystkich pól. W przypadku braku wypełnienia któregoś z pól lub niepoprawności wypełnienia (np. przekroczenia liczby znaków w tytule) wyświetlany jest odpowiedni komunikat. Ponadto pzycisk zatwierdzający formularz jest zablokowany do momentu popranego wypełnienia wszystkuch pól. Po stronie serwera dodatkowo jest sprawdzane czy tytuł artykułu jest unikalny.
+Formularz dodawania i edycji artykułu (jest to ten sam komponent) został zrealizowany za pomocą Reactive Forms. W formularzu edycji w odróżnieniu od formularza dodawania artykułu wszystkie pola są już wypełnione przez dane otrzymane dzięki temu, że w url w tym przypadku przesyłane jest id wybranego artykułu. W formularzu konieczne jest wypełnienie wszystkich pól. W przypadku braku wypełnienia któregoś z pól lub niepoprawności wypełnienia (np. przekroczenia liczby znaków w tytule) wyświetlany jest odpowiedni komunikat. Ponadto przycisk zatwierdzający formularz jest zablokowany do momentu popranego wypełnienia wszystkich pól. Po stronie serwera dodatkowo jest sprawdzana unikalność tytułu artykułu.
 Podczas tworzenia/ edycji artykułu użytkownik podaje tytuł, treść, wybiera kategorię, zestaw kolorystyczny (jestem dumna z tego pomysłu :D) i wybiera czy chce, żeby na artykule było widoczne jego username czy po prostu Anonim.
 
 
 ### Konto użytkownika
 
-Po wyborze zakładki Moje konto wyświetlana jet inforamcja o użytkowniku (username i email) oraz 2 opcje: Moje artykuły i Ulubione artykuły. Jak same nazwy mówią pierwsza opcja umożliwia wyświetlenie artykułów dodanych przez danego użytkownika, każdy z których ma przycisk Edytuj i Usuń, natomiast druga opcja pozwala na wyświetlenie polubionych przez użytkownika artykułów. Artykuły w tych dwóch przypadkach można sortować według kategorii. Jeśli użytkownik nie ma artykułów z którejść kategorii to jest wyświetlany komunikat z tą smutną informacją.
+Po wyborze zakładki Moje konto wyświetlana jest informacja o użytkowniku (username i email) oraz 2 opcje: Moje artykuły i Ulubione artykuły. Jak same nazwy mówią, pierwsza opcja umożliwia wyświetlenie artykułów dodanych przez danego użytkownika, każdy z których ma przycisk Edytuj i Usuń, natomiast druga opcja pozwala na wyświetlenie polubionych przez użytkownika artykułów. Artykuły w tych dwóch przypadkach można sortować według kategorii. Jeśli użytkownik nie ma artykułów z którejś kategorii to jest wyświetlany komunikat z tą smutną informacją.
 
-Po naciśnięciu przycisku Edytuj użytkownik jest przekierowywany na stronę edycji artykułu, z tym że w url wysyłany jest id wybranego artykułu dzięki czemu możliwe jest auto uzupełnienie pól formularza edycji przez dane artykułu.
+Po naciśnięciu przycisku Edytuj użytkownik jest przekierowywany na stronę edycji artykułu, z tym że w url wysyłany jest id wybranego artykułu, dzięki czemu możliwe jest auto uzupełnienie pól formularza edycji przez dane artykułu.
 
-Naciśnięcie przycisku Usuń wywołuje wyświetlenie modal window przez które użytkownik ma potwierdzić, że na pewno chce usunąć wybrany artykuł.
+Naciśnięcie przycisku Usuń wywołuje wyświetlenie modal window, przez które użytkownik ma potwierdzić, że na pewno chce usunąć wybrany artykuł.
 
 ## Dodatkowe moduły dodane do aplikacji
 * [bootstrap](https://www.npmjs.com/package/bootstrap) i [font-awesome](https://www.npmjs.com/package/font-awesome)
