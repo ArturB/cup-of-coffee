@@ -9,7 +9,7 @@ import { Article } from '../../../core/models/article.model';
 export class CollapsedArticleComponent implements OnInit {
 
   @Input() article: Article;
-  @Output() onShowArticle = new EventEmitter();
+  @Output() showArticle = new EventEmitter();
   
   // artLink: string;
 
@@ -45,9 +45,9 @@ export class CollapsedArticleComponent implements OnInit {
 
 
 
-  showArticle(article: Article) {
+  openArticle(article: Article) {
     // console.log(article.articleId);
-    this.onShowArticle.emit(article);
+    this.showArticle.emit(article);
   }
 
   // randIcon() {

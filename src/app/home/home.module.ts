@@ -21,6 +21,7 @@ import { UserAccountComponent } from './pages/user-account/user-account.componen
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ConfirmRemoveComponent } from './pages/user-account/confirm-remove/confirm-remove.component';
+import { IsArticlesComponent } from './pages/user-account/is-articles/is-articles.component';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { ConfirmRemoveComponent } from './pages/user-account/confirm-remove/conf
     SelectedCategoryComponent,
     ArticleComponent,
     HomeUsComponent, 
-    NotFoundComponent, ConfirmRemoveComponent,  
+    NotFoundComponent, ConfirmRemoveComponent, IsArticlesComponent,  
      
   ],
   imports: [

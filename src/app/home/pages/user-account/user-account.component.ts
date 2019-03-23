@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from "@angular/router";
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { AuthService } from '../../../core/services/auth.service';
   templateUrl: './user-account.component.html',
   styleUrls: ['./user-account.component.css']
 })
-export class UserAccountComponent implements OnInit {
+export class UserAccountComponent implements OnInit, OnDestroy {
 
   user: User;
   articles: Array<Article> = [];
@@ -22,21 +22,25 @@ export class UserAccountComponent implements OnInit {
   myArticles: boolean = false;
   myFavorites: boolean = false;
 
+  selCat: string;
+  favSelCat: string;
+
   private artsSub = new BehaviorSubject<any>(this.articles);
   private favArtsSub = new BehaviorSubject<any>(this.favArticles);
-  stopwatchValue$: Observable<any>;
+  private selCatSub = new BehaviorSubject<any>(this.selCat);
+  private favSelCatSub = new BehaviorSubject<any>(this.favSelCat);
   
   
-  catOptions = [
-    { name: "wszystkie", value: 1 },
-    { name: "popularne", value: 2 },
-    { name: "sztuka", value: 2 },
-    { name: "psychologia", value: 2 }
-  ];
+  // catOptions = [
+  //   { name: "wszystkie", value: 1 },
+  //   { name: "popularne", value: 2 },
+  //   { name: "sztuka", value: 2 },
+  //   { name: "psychologia", value: 2 }
+  // ];
 
-  selectedCat: string = this.catOptions[0].name;
+  // selectedCat: string = this.catOptions[0].name;
 
-  category: string;
+  // category: string;
 
   confRemove: boolean = false;
 
@@ -64,9 +68,10 @@ export class UserAccountComponent implements OnInit {
           this.articles = articles;
           this.artsSub.next(this.articles);
           this.myArticles = true;
-
-          
-
+          this.selCatSub.subscribe(cat => {
+            this.selCat = cat;
+            console.log('Cat',this.selCat)
+          })
         },
         err => { 
           console.log(err, err.status);
@@ -81,43 +86,72 @@ export class UserAccountComponent implements OnInit {
     
   }
 
-  selectCat() {
-    console.log(this.selectedCat);
+  onSelectCat(selectedCat: string) {
+    console.log(selectedCat);
     this.artsSub.subscribe(data => {
       // this.articles = data;
-      if (this.selectedCat != 'wszystkie') {
-        this.articles = data.filter(e => e.category === this.selectedCat); // pomijamy drugi element ze strumienia
-        console.log(this.articles)
+      if (selectedCat != 'wszystkie') {
+        this.articles = data.filter(e => e.category === selectedCat); // pomijamy drugi element ze strumienia
+        // console.log(this.articles)
 
       }
       else {
         this.articles = data;
       }
+
+      this.selCatSub.next(selectedCat);
+      console.log('selectedCat',selectedCat)
       
       console.log('User arts: ', this.articles, data);
 
     });
   }
+  showFavorites() {
+    if (!this.myFavorites) {
+      this.myArticles = false;
+      this.articleService.getFavorites().subscribe(
+        (articles: Array<Article>) => {
+        // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
+          // console.log(articles);
+          this.favArticles = articles;
+          this.favArtsSub.next(this.favArticles);
+          this.myFavorites = true;
+          this.favSelCatSub.subscribe(cat => {
+            this.favSelCat = cat;
+            console.log('Cat',this.favSelCat)
+          })
+        },
+        err => { 
+          console.log(err, err.status);
+        }
+      );
+    }
+    else {
+      this.myFavorites = false;
+    }
+  }
 
-  selectFavCat() {
-    console.log(this.selectedCat);
+  onSelectFavCat(selectedCat: string) {
+    console.log(selectedCat, this.articles);
     this.favArtsSub.subscribe(data => {
       // this.articles = data;
-      if (this.selectedCat != 'wszystkie') {
-        this.favArticles = data.filter(e => e.category === this.selectedCat); // pomijamy drugi element ze strumienia
+      if (selectedCat != 'wszystkie') {
+        this.favArticles = data.filter(e => e.category === selectedCat); // pomijamy drugi element ze strumienia
         console.log(this.favArticles)
 
       }
       else {
         this.favArticles = data;
       }
-      
+
+      this.favSelCatSub.next(selectedCat);
       console.log('User arts: ', this.favArticles, data);
 
     });
   }
 
-  gotoArticle(article: Article) {
+
+  onGotoArticle(article: Article) {
     this.router.navigate(['kategorie/',article.category, 'artykul', article._id]);
     console.log("Wybrany artykuł: ", article);
   }
@@ -172,32 +206,11 @@ export class UserAccountComponent implements OnInit {
 			);
   }
   
-  showFavorites() {
-    if (!this.myFavorites) {
-      this.myArticles = false;
-      this.articleService.getFavorites().subscribe(
-        (articles: Array<Article>) => {
-        // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
-          // console.log(articles);
-          this.favArticles = articles;
-          this.favArtsSub.next(this.favArticles);
-          this.myFavorites = true;
-
-          
-
-        },
-        err => { 
-          console.log(err, err.status);
-        }
-      );
-    }
-    else {
-      this.myFavorites = false;
-    }
-  }
+ 
 
   ngOnDestroy() {
     this.artsSub.unsubscribe();
+    console.log('unsubscribe',this.artsSub)
   }
 
 }

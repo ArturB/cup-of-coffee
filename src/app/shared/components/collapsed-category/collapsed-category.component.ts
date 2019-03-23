@@ -83,7 +83,7 @@ export class CollapsedCategoryComponent implements OnInit {
   }
 
 
-  gotoArticle(article: Article) {
+  onGotoArticle(article: Article) {
     this.router.navigate(['kategorie/',article.category, 'artykul', article._id]);
     console.log("Wybrany artykuł: ", article);
   }
