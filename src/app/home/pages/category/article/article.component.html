@@ -15,8 +15,9 @@
   
   <div class="container mt-n5 text-right">
     <button type="button" class="faBtn" (click)="onLike()">
-      <i class="fa fa-thumbs-up fa-3x iBtn"
-      [ngStyle]="{'background-color': isLiked ? '#FF5722' : '#08c5c5'}">
+      <i class="fa fa-thumbs-o-up fa-3x iBtn"
+      [ngStyle]="{'background-color': isLiked ? '#0888c5' : '#08c5c5'}"
+      [ngClass]="{'fa-thumbs-up': isLiked}">
       </i>
     </button>
     <!-- <button type="button" class="faBtn" (click)="onFavorite()">

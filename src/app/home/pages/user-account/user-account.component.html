@@ -18,7 +18,8 @@
         <div class="col-md-3 pb-4 text-center">
   
           <figure class="figure artFig" (click)="showUserArticles()">
-            <img src="assets/img/articles_300_inv.png" width="160" class="figure-img img-fluid rounded-circle artImgBgr" alt="articles">
+            <img src="assets/img/articles_300_inv.png" width="160" class="figure-img img-fluid rounded-circle artImgBgr" alt="articles"
+            [ngClass]="{'isArt': myArticles}">
             <figcaption class="figure-caption text-center"><h5>Moje artykuły</h5></figcaption>
             <!-- <i class="fa fa-arrow-alt-down"></i> -->
           </figure>
@@ -29,7 +30,8 @@
         <div class="col-md-3 pb-4 text-center">
   
           <figure class="figure favFig" (click)="showFavorites()">
-            <img src="assets/img/like_300_2_inv.png" width="160" class="figure-img img-fluid rounded-circle favoriteImgBgr" alt="favorite">
+            <img src="assets/img/like_300_2_inv.png" width="160" class="figure-img img-fluid rounded-circle favoriteImgBgr" alt="favorite articles"
+            [ngClass]="{'isFav': myFavorites}">
             <figcaption class="figure-caption text-center"><h5>Ulubione artykuły</h5></figcaption>
           </figure>
   
