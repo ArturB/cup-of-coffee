@@ -277,6 +277,7 @@ export class AddArticleComponent implements OnInit {
   onReset() {
     this.reset = true;
     console.log(this.reset);
+    this.article.title = '';
     this.tcolor = '#fcfcfc';
     this.bcolor = '#14563e';
     this.article.artColors[2] = this.iconsArray[0];

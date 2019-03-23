@@ -71,6 +71,19 @@
 .btn-group {
     display: block;
 }
+.btn-success {
+    background-color: #36b563;
+}
+.btn-danger {
+    background-color: #e44c5a;
+}
+.btn-success:hover {
+    background-color: #28a745;
+}
+.btn-danger:hover {
+    background-color: #dc3545;
+}
+
 @media screen and (max-width: 575px) {
     
     .btn {

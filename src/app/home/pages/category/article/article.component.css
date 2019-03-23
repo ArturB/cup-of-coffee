@@ -46,3 +46,20 @@
 p {
     line-height: 2;
 }
+.head h2 {
+    border-bottom: 2px solid #969696;
+    text-align: center;
+}
+.catName {
+    color: #a96f44;
+}
+.catName:hover {
+    color: #c75253;
+}
+
+@media (min-width: 992px) {
+    .head h2 {
+        width: 40%;
+        text-align: left;
+    }
+}

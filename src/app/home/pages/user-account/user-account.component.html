@@ -7,7 +7,7 @@
         </div> -->
         <div class="text-center profileText">
             <h1 class="pt-5">{{ user?.username }}</h1>
-            <h4><strong>Email: {{ user?.email }} </strong></h4>
+            <h4><strong>{{ user?.email }} </strong></h4>
             <!-- <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p> -->
             <!-- <p><strong>Skills: </strong> -->
         </div>
@@ -58,7 +58,7 @@
 
       </app-is-articles>
            
-      <div class="row">
+      <div class="row" *ngIf="articles.length > 0; else noArticles">
         <div class="col-6 col-md-4 col-lg-3 mb-4" *ngFor="let art of articles">
           <app-collapsed-article (showArticle)="onGotoArticle($event)"
           [article]="art">
@@ -88,9 +88,9 @@
       [artLength]="favArticles.length"
       [selCat]="favSelCat"
       (selectCat)=onSelectFavCat($event)>
-      </app-is-articles>
-
-      <div class="row">
+      </app-is-articles> 
+      
+      <div class="row" *ngIf="favArticles.length > 0; else noArticles">
         <div class="col-6 col-md-4 col-lg-3 mb-4" *ngFor="let art of favArticles">
           <app-collapsed-article (showArticle)="onGotoArticle($event)"
           [article]="art">
@@ -102,3 +102,9 @@
 
   </div>
 </div>
+
+<ng-template #noArticles>
+  <!-- <div class="container contBgr py-5"> -->
+    <h3 class="text-center">Nie masz artykułów z tej kategorii<i class="fa fa-frown-o pl-2"></i></h3>
+  <!-- </div> -->
+</ng-template>
