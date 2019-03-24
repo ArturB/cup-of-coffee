@@ -29,10 +29,10 @@ articleRoutes.route('/').get((req, res) => {
 
 
 articleRoutes.route('/category').get((req, res) => {
-    console.log(req.query.category);
+    // console.log(req.query.category);
     Article.find({category: req.query.category}, (err, articles) => {
     if(err){
-        console.log(req.query.category);
+        // console.log(req.query.category);
         res.send(err);
     }
     else {
@@ -71,7 +71,7 @@ articleRoutes.route('/article').get((req, res) => {
                 // }
                 
                 else {
-                    let likeId = article.likes.indexOf(user._id);
+                    let likeId = article.likes.indexOf(decoded.user._id);
                     // let likeStatus = false;
                     console.log('index of like ',likeId);
                     if(likeId != -1) {
@@ -129,7 +129,7 @@ articleRoutes.route('/favorites').get((req, res) => {
         res.send(err);
     }
     else {
-        console.log(articles);
+        console.log(articles.length);
         res.send(articles)
     //   res.json(articles);
     }
@@ -145,33 +145,39 @@ articleRoutes.route('/add-article').post((req, res)  => {
         if (err) {
             return res.sendStatus(500)
         }
-        console.log(user);
-        let article = new Article({
-            // link: req.body.link,	
-            artColors: req.body.artColors,	
-            title: req.body.title,	
-            category: req.body.category,	
-            author: req.body.author,	
-            description: req.body.description,	
-            likes: req.body.likes,	
-            dateModified: req.body.dateModified,	
-            // req.body, 
-            user: user
-        })
-        article.save((err, result) => {
-            if (err) {
-                if (err.name="ValidationError") {
-                    // res.status(422).send(valErrors)
-                    res.sendStatus(422)
+        else {
+            console.log(user);
+            let article = new Article({
+                // link: req.body.link,	
+                artColors: req.body.artColors,	
+                title: req.body.title,	
+                category: req.body.category,	
+                author: req.body.author,	
+                description: req.body.description,	
+                likes: req.body.likes,	
+                dateModified: req.body.dateModified,	
+                // req.body, 
+                user: user
+            })
+            article.save((err, result) => {
+                if (err) {
+                    if (err.name="ValidationError") {
+                        // res.status(422).send(valErrors)
+                        res.sendStatus(422)
+                    }
+                    // else if (err.status = 401) {
+                    //     console.log('401')
+                    // }
+                    else {
+                        res.send(err)
+                    }
                 }
-                else {
-                    res.send(err)
-                }
-            }
-            // user.article.push(result);
-            user.save();
-            res.send(result)
-        });
+                // user.article.push(result);
+                user.save();
+                res.send(result)
+            });
+        }
+        
 
 
     });
@@ -248,22 +254,75 @@ articleRoutes.route('/edit-article').post((req, res) =>  {
 
     console.log('artsssssssicle', decoded);
     console.log('Edit: ', req.query._id);
-    // console.log(decoded.user._id);
-    // console.log(req.article._id);
-    Article.findOneAndUpdate({_id: req.query._id}, req.body, {new: true}, (err, article) => {
-        // if(err) res.send(err);
-        if (err) {
-            if (err.name="ValidationError") {
-                // res.status(422).send(valErrors)
-                res.sendStatus(422)
-                console.log('ssss')
+
+    Article.findOne({_id: req.query._id}, (err, article) => {
+        if(err){
+            console.log('some err', err);
+            res.send(err);
+        }
+        else {
+            console.log('art', article.user._id, decoded.user._id)
+            if (decoded.user._id == article.user._id) {
+                console.log('ok')
+                Article.updateOne({_id: req.query._id}, req.body, {new: true}, (err, article) => {  
+                    if (err) {
+                        if (err.name="ValidationError") {
+                            // res.status(422).send(valErrors)
+                            res.sendStatus(422)
+                            console.log('ssss')
+                        }
+                        else {
+                            res.send(err)
+                        }
+                    }
+                    else {
+                        res.send(article);
+
+                    }
+                })
             }
             else {
-                res.send(err)
+                res.sendStatus(403)
+                console.log('403')
+
             }
+            // console.log(articles.length);
+            // res.send(article)
+        //   res.json(articles);
         }
-        else res.send(article);
     });
+
+    // Article.update({_id: req.query._id}, req.body, {new: true}, (err, article) => {     
+    //     console.log('author', article.user._id, decoded.user._id)       
+
+    //     if (decoded.user._id === article.user._id) {
+    //         console.log('yep');
+    //         if (err) {
+    //             if (err.name="ValidationError") {
+    //                 // res.status(422).send(valErrors)
+    //                 res.sendStatus(422)
+    //                 console.log('ssss')
+    //             }
+    //             else {
+    //                 res.send(err)
+    //             }
+    //         }
+    //         else {
+    //             res.send(article);
+
+    //         }
+    //     }
+    //     else {
+    //         res.sendStatus(403)
+
+    //     }
+    // // if(err) res.send(err);
+        
+    // });
+
+    // console.log(decoded.user._id);
+    // console.log(req.article._id);
+    
     // Article.deleteMany({_id: req.query._id}, (err, article) => {
     //     if(err) res.send(err);
     //     else {

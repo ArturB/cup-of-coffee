@@ -222,6 +222,10 @@ export class AddArticleComponent implements OnInit {
             this.error = 'Podczas wysyłania artykułu wystąpił błąd. Spróbuj zalogować się ponownie'
             setTimeout(() => this.error = null, 4000);
           }
+          else if (err.status === 403) {
+            this.error = 'Nie masz uprawnień do edycji wybranego artykułu'
+            setTimeout(() => this.error = null, 4000);
+          }
           else {
             this.error = 'Podczas wysyłania artykułu wystąpił nieoczekiwany błąd. Spróbuj ponownie'
             console.log("errrr "+ err);
