@@ -75,7 +75,7 @@
         
         <app-confirm-remove 
         *ngIf="confRemove"
-        [article]="article"
+        [articleTitle]="article.title"
         (removeAnsw)=onRemoveAnsw($event)
         ></app-confirm-remove>
         

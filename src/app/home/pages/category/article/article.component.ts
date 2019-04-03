@@ -52,7 +52,17 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit() {
     // this.artTitle = this.route.snapshot.params['title'];
-    this.user = this.authService.getProfile();
+    // this.user = this.authService.getProfile();
+
+    this.authService.getUserProfile().subscribe(
+      (user: User) => {
+        console.log(user);
+        this.user = user;
+      },
+      err => {
+        console.log('error', err)
+      }
+    );
 
     this.artId = this.route.snapshot.params['_id'];
     // let artrId: string = artId.toExponential();
@@ -118,7 +128,7 @@ export class ArticleComponent implements OnInit {
 
   onLike() {
     // this.user = this.authService.getProfile();
-    console.log('user', this.user);
+    // console.log('user', this.user);
 
     this.articleService.addLikeByUser(this.article)
       .subscribe(

@@ -106,8 +106,8 @@
     <div class="form-group">
       <label for="author" class="labelStyle">Widoczność autora w artykule</label>
       <div class="form-check">
-        <input class="form-check-input" type="radio" id="isAuthor" formControlName="author" [value]="user.username">
-        <label class="form-check-label" for="isAuthor">Pokaż autora</label>
+        <input class="form-check-input" type="radio" id="isAuthor" formControlName="author" [value]="user?.username">
+        <label class="form-check-label" for="isAuthor">Pokaż autora <strong>{{ user?.username }}</strong></label>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" id="noAuthor" formControlName="author" value="Anonim">

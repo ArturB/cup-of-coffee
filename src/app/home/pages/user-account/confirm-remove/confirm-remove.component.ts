@@ -10,13 +10,13 @@ import { ArticleService } from '../../../../core/services/article.service';
 })
 export class ConfirmRemoveComponent implements OnInit {
 
-  @Input() article: Article;
+  @Input() articleTitle: string;
   @Output() removeAnsw = new EventEmitter<boolean>();
 
   constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
-    console.log('aa', this.article)
+    console.log('aa', this.articleTitle)
   }
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -13,7 +13,7 @@ import { AuthService } from '../../../core/services/auth.service';
   templateUrl: './add-article.component.html',
   styleUrls: ['./add-article.component.css']
 })
-export class AddArticleComponent implements OnInit {
+export class AddArticleComponent implements OnInit, OnDestroy {
 
   user: User;
 
@@ -103,10 +103,36 @@ export class AddArticleComponent implements OnInit {
     ) {
       this.article._id = this.route.snapshot.params['_id'];
       console.log('artId',this.article._id);
+
+      this.authService.getUserProfile().subscribe(
+        (user: User) => {
+          console.log(user);
+          this.user = user;
+        },
+        err => {
+          console.log("error", err)
+          if (err.status == 401) {
+            console.log("error", err.status)
+            this.authService.logout();    
+            this.router.navigate(
+              ['/konto/logowanie'],
+              // w queryParams przesyłam dwa dodatkowe parametry:
+              // returnUrl żeby po zaogowaniu użytkownik wrócił do strony z której został przekirowany do logowania
+              // name daje info z jakiego komponentu user został przekierowany do logowania żeby wyświetlić odpowiedni komunikat
+              { queryParams: { returnUrl: 'dodaj-artykul', name: 'authError' } }   
+            );                  
+            
+  
+          }
+        }
+      );
+      
+      // console.log(this.article.author);
+      
      }
 
   ngOnInit() {
-    // sprawdzanie czy znjudzujemy się na stronie dodawania czy edycji linków
+    // sprawdzanie czy znjudzujemy się na stronie dodawania czy edycji linków 
     if(this.router.url != '/dodaj-artykul') {
       this.onEdit = true;
       
@@ -133,23 +159,29 @@ export class AddArticleComponent implements OnInit {
           
         }
       )
-    }
+    } 
+    // else {
+    //   this.art.next(this.article);
+
+    // }
+
+    
     
 
-    this.user = this.authService.getProfile();
-    // this.authService.getUserProfile().subscribe((user: User) => {
-    //   this.user = user;
-    // });
+    // this.user = this.authService.getProfile();
+    
     
 
     this.art.subscribe(data => {
+      console.log('use', this.user)
       this.article = data;
-      // console.log(this.article);
+      console.log('art', this.article);
     
 
       this.tcolor = this.article.artColors[0];
       this.bcolor = this.article.artColors[1];
       console.log(this.article);
+
 
       this.newArtForm = new FormGroup({
         colorText: new FormControl(this.tcolor, Validators.required),
@@ -162,12 +194,15 @@ export class AddArticleComponent implements OnInit {
           ]),
         category: new FormControl(this.article.category, Validators.required),
         // author: new FormControl(null),
-        author: new FormControl(this.user.username, Validators.required),
+        // author: new FormControl(this.user.username, Validators.required),
+        author: new FormControl(this.article.author, Validators.required),
+        // author: new FormControl(null, Validators.required),
         description: new FormControl(this.article.description, [
           Validators.required,
         ]),
 
       });
+      
     });
   }
 
@@ -218,10 +253,10 @@ export class AddArticleComponent implements OnInit {
             this.error = 'Artykuł o podanym tytule już istnieje. Wybierz inną nazwę i spróbuj ponownie'
             setTimeout(() => this.error = null, 4000);
           }
-          else if (err.status === 401) {
-            this.error = 'Podczas wysyłania artykułu wystąpił błąd. Spróbuj zalogować się ponownie'
-            setTimeout(() => this.error = null, 4000);
-          }
+          // else if (err.status === 401) {
+          //   this.error = 'Podczas wysyłania artykułu wystąpił błąd. Spróbuj zalogować się ponownie'
+          //   setTimeout(() => this.error = null, 4000);
+          // }
           else if (err.status === 403) {
             this.error = 'Nie masz uprawnień do edycji wybranego artykułu'
             setTimeout(() => this.error = null, 4000);
@@ -262,8 +297,13 @@ export class AddArticleComponent implements OnInit {
             setTimeout(() => this.error = null, 4000);
           }
           else if (err.status === 401) {
-            this.error = 'Podczas wysyłania artykułu wystąpił błąd. Spróbuj zalogować się ponownie'
-            setTimeout(() => this.error = null, 4000);
+            // this.error = 'Podczas wysyłania artykułu wystąpił błąd. Spróbuj zalogować się ponownie'
+            // setTimeout(() => this.error = null, 4000);
+            this.authService.logout();    
+            this.router.navigate(
+              ['/konto/logowanie'],
+              { queryParams: { returnUrl: 'dodaj-artykul', name: 'authError' } }   
+            );     
           }
           else {
             this.error = 'Podczas wysyłania artykułu wystąpił nieoczekiwany błąd. Spróbuj ponownie'
@@ -297,6 +337,11 @@ export class AddArticleComponent implements OnInit {
     // if(this.router.url != '/dodaj-artykul') {
     //   this.router.navigate(['/moje-konto']);
     // }
+  }
+
+  ngOnDestroy() {
+    this.art.unsubscribe();
+    console.log('unsubscribe',this.art)
   }
 
 

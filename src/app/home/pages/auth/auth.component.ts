@@ -11,12 +11,20 @@ export class AuthComponent implements OnInit, DoCheck {
   authTitle: string;
   info: string;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute) { 
+    // if (localStorage.getItem('access_token') != null) {
+    //   this.router.navigate(['kategorie/']);
+
+    // }
+  }
 
   ngOnInit() {
+    
     let paramName = this.route.snapshot.queryParams['name'];
     if(paramName == 'AddArticleComponent') {
       this.info = 'Tylko zalogowani użytkownicy mogą dodawać i edytować artykuły';
+    } else if (paramName == 'authError') {
+      this.info = 'Wystąpił błąd autoryzacji. Zaloguj się ponownie'
     } else if (paramName != 'AddArticleComponent' && paramName != null) {
       this.info = 'Żeby dostać dostęp do tej strony musisz być zalogowany'
     } else {

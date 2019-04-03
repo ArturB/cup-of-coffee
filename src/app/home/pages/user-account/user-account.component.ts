@@ -45,12 +45,31 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   confRemove: boolean = false;
 
   constructor(private router: Router, private authService: AuthService, private articleService: ArticleService) {
-    this.user = this.authService.getProfile();
+    // this.user = this.authService.getProfile();
 
-    // this.authService.getUserProfile().subscribe((user: User) => {
-    //   console.log(user);
-    //   this.user = user;
-    // });
+    this.authService.getUserProfile().subscribe(
+      (user: User) => {
+        console.log(user);
+        this.user = user;
+      },
+      err => {
+        console.log("error", err)
+        if (err.status == 401) {
+          console.log("error", err.status)
+          this.authService.logout();    
+          this.router.navigate(
+            
+            ['/konto/logowanie'],
+            // w queryParams przesyłam dwa dodatkowe parametry:
+            // returnUrl żeby po zaogowaniu użytkownik wrócił do strony z której został przekirowany do logowania
+            // name daje info z jakiego komponentu user został przekierowany do logowania żeby wyświetlić odpowiedni komunikat
+            { queryParams: { returnUrl: 'moje-konto', name: 'authError' } }   
+          );                  
+          
+
+        }
+      }
+    );
     console.log(this.user);
    }
 
@@ -76,6 +95,14 @@ export class UserAccountComponent implements OnInit, OnDestroy {
         err => { 
           console.log(err, err.status);
           // this.artsSub.unsubscribe();
+          if (err.status == 401) {
+            console.log("error", err.status)
+            this.authService.logout();    
+            this.router.navigate(              
+              ['/konto/logowanie'],
+              { queryParams: { returnUrl: 'moje-konto', name: 'authError' } }   
+            ); 
+          }
         }
       );
     }
@@ -123,6 +150,14 @@ export class UserAccountComponent implements OnInit, OnDestroy {
         },
         err => { 
           console.log(err, err.status);
+          if (err.status == 401) {
+            console.log("error", err.status)
+            this.authService.logout();    
+            this.router.navigate(              
+              ['/konto/logowanie'],
+              { queryParams: { returnUrl: 'moje-konto', name: 'authError' } }   
+            ); 
+          }
         }
       );
     }

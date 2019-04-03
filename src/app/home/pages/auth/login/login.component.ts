@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     // })
 
     this.logForm = new FormGroup({
-      email: new FormControl('cup_of_coffee@outlook.com', [
+      email: new FormControl('a@a', [
             Validators.required, 
             Validators.email
             ]),
@@ -61,7 +61,9 @@ export class LoginComponent implements OnInit {
           .subscribe(
             data => {
               // this.error = data.success;
-              this.router.navigate([this.returnUrl])
+              console.log(this.returnUrl)
+              this.router.navigateByUrl(this.returnUrl)
+              // this.router.navigate([this.returnUrl])
             },
             err => {
               this.error = 'Nieprawidłowy login lub hasło'
