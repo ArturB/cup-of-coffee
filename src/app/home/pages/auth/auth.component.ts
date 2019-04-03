@@ -12,14 +12,14 @@ export class AuthComponent implements OnInit, DoCheck {
   info: string;
 
   constructor(private router: Router, private route: ActivatedRoute) { 
-    // if (localStorage.getItem('access_token') != null) {
-    //   this.router.navigate(['kategorie/']);
-
-    // }
+  
   }
 
   ngOnInit() {
-    
+    if (localStorage.getItem('access_token') != null) {
+      this.router.navigate(['kategorie/']);
+
+    }
     let paramName = this.route.snapshot.queryParams['name'];
     if(paramName == 'AddArticleComponent') {
       this.info = 'Tylko zalogowani użytkownicy mogą dodawać i edytować artykuły';
