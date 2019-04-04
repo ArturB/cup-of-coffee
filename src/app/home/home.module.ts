@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ColorPickerModule } from 'ngx-color-picker';
 
 import { HomeRoutingModule } from './home-routing.module';
-
-// import { AuthModule } from './pages/auth/auth.module';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -20,6 +18,7 @@ import { AddArticleComponent } from './pages/add-article/add-article.component';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+
 import { ConfirmRemoveComponent } from './pages/user-account/confirm-remove/confirm-remove.component';
 import { IsArticlesComponent } from './pages/user-account/is-articles/is-articles.component';
 
@@ -32,7 +31,9 @@ import { IsArticlesComponent } from './pages/user-account/is-articles/is-article
     SelectedCategoryComponent,
     ArticleComponent,
     HomeUsComponent, 
-    NotFoundComponent, ConfirmRemoveComponent, IsArticlesComponent,  
+    NotFoundComponent,
+    ConfirmRemoveComponent,
+    IsArticlesComponent,  
      
   ],
   imports: [
@@ -43,12 +44,8 @@ import { IsArticlesComponent } from './pages/user-account/is-articles/is-article
     
     ColorPickerModule,
     HomeRoutingModule,
-    // AuthModule,
     SharedModule
   ],
-  exports: [
-    // CollapsedCategoryComponent,
-    // CollapsedArticleComponent
-  ]
+
 })
 export class HomeModule { }

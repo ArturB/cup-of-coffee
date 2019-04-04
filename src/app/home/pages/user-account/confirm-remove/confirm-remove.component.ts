@@ -1,8 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
-import { Article } from '../../../../core/models/article.model';
-import { ArticleService } from '../../../../core/services/article.service';
-
 @Component({
   selector: 'app-confirm-remove',
   templateUrl: './confirm-remove.component.html',
@@ -13,10 +10,9 @@ export class ConfirmRemoveComponent implements OnInit {
   @Input() articleTitle: string;
   @Output() removeAnsw = new EventEmitter<boolean>();
 
-  constructor(private articleService: ArticleService) { }
+  constructor() { }
 
   ngOnInit() {
-    console.log('aa', this.articleTitle)
   }
 
 
@@ -26,10 +22,6 @@ export class ConfirmRemoveComponent implements OnInit {
 
   closeModal() {
     this.removeAnsw.emit(false);
-  }
-
-  ngOnDestroy() {
-
   }
 
 }

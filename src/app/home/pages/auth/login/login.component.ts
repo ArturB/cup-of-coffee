@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
 import { first } from 'rxjs/operators';
@@ -12,6 +12,8 @@ import { AuthService } from '../../../../core/services/auth.service';
   styleUrls: ['../register/register.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  @Output() emitTitle = new EventEmitter<boolean>();
 
   logForm: FormGroup;
 
@@ -28,13 +30,6 @@ export class LoginComponent implements OnInit {
     
     // pobieranie returnUrl z queryParams żeby po zalogowaniu wrócić na stronę z której user został przekierowany
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    // this.route.params.subscribe(params => {
-    //   if(params['name']) {
-    //     this.info = 'Zaloguj się aby móc dodawać artykuły na stronie ' + params['name'];
-    //   } else {
-    //     this.info = null;
-    //   }s
-    // })
 
     this.logForm = new FormGroup({
       email: new FormControl('a@a', [
@@ -52,7 +47,6 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     const user = new User(
-      // this.logForm.value.userId = 4,
       this.logForm.value.email, 
       this.logForm.value.password
       );
@@ -60,17 +54,27 @@ export class LoginComponent implements OnInit {
           .pipe(first())
           .subscribe(
             data => {
-              // this.error = data.success;
-              console.log(this.returnUrl)
               this.router.navigateByUrl(this.returnUrl)
-              // this.router.navigate([this.returnUrl])
+              this.logForm.reset();
             },
             err => {
-              this.error = 'Nieprawidłowy login lub hasło'
-              setTimeout(() => this.error = null, 4000);
+              if (err.status === 401) {
+                this.error = 'Nieprawidłowy login lub hasło'
+                setTimeout(() => this.error = null, 4000);
+              }
+              else {
+                this.error = 'Wystąpił nieoczekiwany błąd. Spróbuj zalogować się ponownie'
+                setTimeout(() => this.error = null, 4000);
+              }
             }
           );
 
+  }
+
+  // zmiana tytułu nad formularzem
+  changeTitle(title: boolean) {
+    this.emitTitle.emit(title);
+    // return this.authTitle
   }
   
 }

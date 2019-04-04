@@ -1,18 +1,15 @@
-import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
 
 import { Article } from '../../../../core/models/article.model';
 
 @Component({
   selector: 'app-selected-category',
-  templateUrl: './selected-category.component.html',
-  styleUrls: ['./selected-category.component.css'],
+  templateUrl: './selected-category.component.html'
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectedCategoryComponent implements OnInit {
-  
-  // @Output() searchValue = new EventEmitter();
-  
+    
   articles: Article[] = [];
 
   category: string;
@@ -21,12 +18,7 @@ export class SelectedCategoryComponent implements OnInit {
 
   searchText;
 
-
-  constructor(
-    private route: ActivatedRoute, 
-    ) { 
-    
-  }
+  constructor(private route: ActivatedRoute) { }
   
   ngOnInit() {
     this.route.paramMap.subscribe((param: Params) => {
@@ -38,7 +30,6 @@ export class SelectedCategoryComponent implements OnInit {
 
   searchVal(text: string) {
     this.searchText = text;
-    // this.searchValue.emit(text);
     
   }
 

@@ -12,22 +12,12 @@
     </div>
     
     <div class="row" *ngIf="articles?.length > 0; else noArticles">
-      <!-- wyświetla ostatnie 4 elementy listy -->
-      <!-- <div class="col-6 col-lg-3" *ngFor="let art of filteredArticles | search: {articleTitle: searchText} : false"> -->
-      <!-- <div class="col-6 col-md-4 col-lg-3" *ngFor="let art of filteredArticles | sortTitle"> -->
       <div class="col-6 col-md-4 col-lg-3" *ngFor="let art of filteredArticles | search: {title: searchText} :false">
-      <!-- <div class="col-6 col-lg-3" *ngFor="let art of filteredArticles"> -->
-        <!-- <ng-container> -->
           <app-collapsed-article (showArticle)="onGotoArticle($event)"
           [article]="art">
           </app-collapsed-article>
-        <!-- </ng-container> -->
       </div>
     </div>
-    <!-- <div class="btnSeeMore mt-4 mr-md-3">
-      <app-btn-see-more
-      [articleCategory]="category"></app-btn-see-more>
-    </div> -->
     <ng-content></ng-content>
   </div>
 </ng-container>

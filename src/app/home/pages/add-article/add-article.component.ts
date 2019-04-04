@@ -71,19 +71,17 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   
   article: Article = {
     artColors: ['#fcfcfc', '#14563e', this.iconsArray[0]],
-    //  = {tcolor: string, bcolor: string},
     title: '',
     category: this.catOptions[0].value,
     description: '',
     likes: [],
     dateModified: '',
     author: '',
-    // user: User,
     _id: ''
   };
   tcolor: string = '';
   bcolor: string = '';
-  // icon: string = this.iconsArray[0];
+
   private art = new BehaviorSubject<Article>(this.article);
 
   newArt: Article;
@@ -102,17 +100,15 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     private authService: AuthService
     ) {
       this.article._id = this.route.snapshot.params['_id'];
-      console.log('artId',this.article._id);
 
       this.authService.getUserProfile().subscribe(
         (user: User) => {
-          console.log(user);
           this.user = user;
         },
         err => {
           console.log("error", err)
           if (err.status == 401) {
-            console.log("error", err.status)
+            console.log(err)
             this.authService.logout();    
             this.router.navigate(
               ['/konto/logowanie'],
@@ -126,9 +122,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
           }
         }
       );
-      
-      // console.log(this.article.author);
-      
+            
      }
 
   ngOnInit() {
@@ -160,28 +154,14 @@ export class AddArticleComponent implements OnInit, OnDestroy {
         }
       )
     } 
-    // else {
-    //   this.art.next(this.article);
 
-    // }
-
-    
-    
-
-    // this.user = this.authService.getProfile();
-    
     
 
     this.art.subscribe(data => {
-      console.log('use', this.user)
-      this.article = data;
-      console.log('art', this.article);
-    
+      this.article = data;    
 
       this.tcolor = this.article.artColors[0];
       this.bcolor = this.article.artColors[1];
-      console.log(this.article);
-
 
       this.newArtForm = new FormGroup({
         colorText: new FormControl(this.tcolor, Validators.required),
@@ -193,10 +173,8 @@ export class AddArticleComponent implements OnInit, OnDestroy {
           Validators.maxLength(120)
           ]),
         category: new FormControl(this.article.category, Validators.required),
-        // author: new FormControl(null),
         // author: new FormControl(this.user.username, Validators.required),
         author: new FormControl(this.article.author, Validators.required),
-        // author: new FormControl(null, Validators.required),
         description: new FormControl(this.article.description, [
           Validators.required,
         ]),
@@ -211,19 +189,12 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     // console.log(this.article.title)
   }
 
-  chooseIc() {
-    
+  chooseIc() {    
     this.article.artColors[2] = this.newArtForm.value.faIcon;
-    console.log(this.newArtForm.value.colorText)
-    // return this.icon
-    
   }
 
 
   addArticle() {
-    console.log(this.newArtForm);
-    console.log(this.user);
-
     if(this.router.url != '/dodaj-artykul') {
       let art = new Article(
       
@@ -236,12 +207,11 @@ export class AddArticleComponent implements OnInit, OnDestroy {
         this.newArtForm.value.author,
         this.article.user
       );
-      console.log(art, typeof(this.article._id));
 
       this.articleService.editArticle(art, this.article._id)
       .subscribe(
         data => {
-          console.log('ok',data);
+          console.log('OK',data);
           art = data;
           this.success = 'Artukuł został zauktualizowany'
           setTimeout(() => this.success = null, 4000);
@@ -253,10 +223,6 @@ export class AddArticleComponent implements OnInit, OnDestroy {
             this.error = 'Artykuł o podanym tytule już istnieje. Wybierz inną nazwę i spróbuj ponownie'
             setTimeout(() => this.error = null, 4000);
           }
-          // else if (err.status === 401) {
-          //   this.error = 'Podczas wysyłania artykułu wystąpił błąd. Spróbuj zalogować się ponownie'
-          //   setTimeout(() => this.error = null, 4000);
-          // }
           else if (err.status === 403) {
             this.error = 'Nie masz uprawnień do edycji wybranego artykułu'
             setTimeout(() => this.error = null, 4000);
@@ -280,11 +246,10 @@ export class AddArticleComponent implements OnInit, OnDestroy {
         new Date().toDateString(),
         this.newArtForm.value.author,
       );
-      console.log(art, typeof(this.article._id));
       this.articleService.addArticle(art)
       .subscribe(
         data => {
-          console.log(art);
+          console.log('OK', art);
           art = data;
           this.success = 'Artukuł został dodany'
           setTimeout(() => this.success = null, 4000);
@@ -297,8 +262,6 @@ export class AddArticleComponent implements OnInit, OnDestroy {
             setTimeout(() => this.error = null, 4000);
           }
           else if (err.status === 401) {
-            // this.error = 'Podczas wysyłania artykułu wystąpił błąd. Spróbuj zalogować się ponownie'
-            // setTimeout(() => this.error = null, 4000);
             this.authService.logout();    
             this.router.navigate(
               ['/konto/logowanie'],
@@ -320,7 +283,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
 
   onReset() {
     this.reset = true;
-    console.log(this.reset);
+    console.log('Reset status: ', this.reset);
     this.article.title = '';
     this.tcolor = '#fcfcfc';
     this.bcolor = '#14563e';
@@ -331,17 +294,14 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       colorText: this.article.artColors[0],
       colorBgr: this.article.artColors[1],
       faIcon: this.iconsArray[0],
-      author: this.user.username,
+      // author: this.user.username,
+      author: '',
       category: this.catOptions[0].value
     });
-    // if(this.router.url != '/dodaj-artykul') {
-    //   this.router.navigate(['/moje-konto']);
-    // }
   }
 
   ngOnDestroy() {
     this.art.unsubscribe();
-    console.log('unsubscribe',this.art)
   }
 
 

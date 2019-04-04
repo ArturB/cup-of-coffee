@@ -50,5 +50,5 @@
       class="btn btn-lg btnPink btn-block text-uppercase mt-5" 
     >Zaloguj</button>
     <hr class="my-4">
-    <p class="text-center">Nie masz konta? <a class="bottomLink" [routerLink]="[ '/konto/', 'rejestracja' ]">Zarejestruj się!</a></p>
+    <p class="text-center">Nie masz konta? <a class="bottomLink" (click)="changeTitle(true)" [routerLink]="[ '/konto/', 'rejestracja' ]">Zarejestruj się!</a></p>
   </form>

@@ -1,25 +1,10 @@
 <div class="card articleFig mb-4" (click)="openArticle(article)">
-  <!-- <img class="card-img-top" src="https://placehold.it/300x150" alt="Obrazek w karcie"> -->
   <div class="art">
-    <!-- <ng-container *ngIf="artColor; else noArtColor">
-        <div class="card-img-top imgArtcicle" [ngStyle]="{'background-color': getImgBgr()}"></div>
-    </ng-container>
-    <ng-template #noArtColor>
-        <div class="card-img-top imgArtcicle" [ngStyle]="{'background-image': getImgBgr()}"></div>
-      
-    </ng-template> -->
-    
+
     <div class="card-img-top imgArtcicle text-center" [style.background]="bcolor">
-      <!-- <p class="text-center">{{ article.title }}</p> -->
       <i class="fa fa-3x mt-5" [ngClass]="faIcon" [style.color]="tcolor"></i>
     </div>
-    
-    <!-- 
-    <img 
-      class="card-img-top imgArtcicle" 
-      [src]="artLink" 
-      alt="Obrazek w karcie"
-      [ngStyle]="{'background-image': getImgBgr()}"> -->
+
     <div class="infoArticle text-right mb-1">
       <span class="mr-3" [style.color]="tcolor"><i class="fa fa-thumbs-up pr-2" [style.color]="tcolor"></i>{{ likes }}</span>
       <span class="mr-3" [style.color]="tcolor"><i class="fa fa-calendar pr-2" [style.color]="tcolor"></i>{{ article.dateModified | date: "dd.MM.yy" }}</span>

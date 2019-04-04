@@ -1,19 +1,9 @@
-.container-fluid {
-    /* background: linear-gradient(to bottom, #093637, #499273); */
-}
 .card-container.card {
     max-width: 360px;
-    /* padding: 40px 40px; */
 }
 .card {
     background-color: #F7F7F7;
-    /* just in case there no content*/
     padding: 20px 5px 10px;
-    /* margin: 0 auto 25px; */
-    /* margin-top: 50px; */
-    /* shadows and rounded borders */
-    /* border-radius: 2px;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3); */
 }
 .faProfile {
     font-size: 7em;

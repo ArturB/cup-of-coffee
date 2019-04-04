@@ -7,7 +7,7 @@
                 <i class="fa fa-user-circle-o faProfile"></i>
             </div>     
             <h5 class="card-title text-center mt-3 mb-4 text-uppercase">{{ authTitle }}</h5>
-                <router-outlet></router-outlet>
+                <router-outlet (emitTitle)="onEmitTitle($event)"></router-outlet>
             
         </div>
     </div>

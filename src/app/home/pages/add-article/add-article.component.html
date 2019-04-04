@@ -39,11 +39,6 @@
           {{cat.name}}
         </option>
       </select>
-      <!-- <select class="form-control custom-select" id="category" formControlName="category">
-        <option value="popularne">Popularne</option>
-        <option value="sztuka">Sztuka</option>
-        <option value="psychologia">Psychologia</option>
-      </select> -->
     </div>
 
     <div class="form-group">
@@ -62,8 +57,6 @@
         [value]="tcolor" 
         formControlName="colorText"
         (click)="updateName()">
-    <!-- </div> -->
-    <!-- <div class="form-group form-inline"> -->
       <label for="colorBgr" class="labelStyle">Kolor tła</label>
       <input 
         [(colorPicker)]="bcolor"
@@ -98,11 +91,6 @@
 
     </div>
 
-        <!-- <input type="button" class="form-control" id="icon" formControlName="icon" value={{ic}}> -->
-        <!-- <li *ngFor="let ic of iconsArray" class="list-inline-item"> -->
-            <!-- <i class="fa fa-heart fa-3x mt-5" [ngClass]="randIcon()" [style.color]="tcolor"></i> -->
-      
-
     <div class="form-group">
       <label for="author" class="labelStyle">Widoczność autora w artykule</label>
       <div class="form-check">
@@ -133,15 +121,8 @@
       </button>
     </div> 
 
-    <!-- <div *ngIf="reset && newArtForm.get('title').untouched && newArtForm.get('description').untouched" class="alert alert-info mt-2">
-        Forma została zresetowana
-    </div> -->
     <p *ngIf="success" class="mt-4 mb-4 alert alert-success mt-2">{{success}}</p>
-    <!-- <p *ngIf="onReset()" class="text-center mt-4 mb-4 alert alert-success mt-2">aaaa</p> -->
     <p *ngIf="error" class="mt-4 mb-4 alert alert-danger mt-2">{{error}}</p>
-    <!-- <div *ngIf="submit && newArtForm.get('title').untouched && newArtForm.get('description').untouched" class="alert alert-success mt-2">
-        Artukuł został dodany
-    </div> -->
 
   </form>
 </div>

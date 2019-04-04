@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { first } from 'rxjs/operators';
@@ -15,15 +15,16 @@ import { AuthService } from '../../../../core/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
+  @Output() emitTitle = new EventEmitter<boolean>();
+
   logForm: FormGroup;
+
   error: string;
   success: string;
-  // showSucessMessage: boolean;
 
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-
     this.logForm = new FormGroup({
       username: new FormControl(null, [
             Validators.required,
@@ -58,9 +59,6 @@ export class RegisterComponent implements OnInit {
     this.authService.signup(user)
           .subscribe(
             data => {
-              // this.showSucessMessage = true;
-              // console.log(this.showSucessMessage);
-              // setTimeout(() => this.showSucessMessage = false, 4000);
               this.success = 'Rejestracja przebiegła pomyślnie. Możesz się zalogować'
               const userLogin = new User(
                 this.logForm.value.email,
@@ -73,11 +71,18 @@ export class RegisterComponent implements OnInit {
                     // this.error = data.success;
                     this.router.navigate(['/'])
                   },
-                  err => this.error = 'Nieprawidłowy login lub hasło'
+                  err => {
+                    if (err.status === 401) {
+                      this.error = 'Nieprawidłowy login lub hasło'
+                      setTimeout(() => this.error = null, 4000);
+                    }
+                    else {
+                      this.error = 'Wystąpił nieoczekiwany błąd. Spróbuj zalogować się ponownie'
+                      setTimeout(() => this.error = null, 4000);
+                    }
+                  }
                 );
               this.logForm.reset();
-
-
             },
             err => {              
               if (err.error.text == 'username') {
@@ -100,6 +105,10 @@ export class RegisterComponent implements OnInit {
 
             }
           );
+  }
+
+  changeTitle(title: boolean) {
+    this.emitTitle.emit(title);
   }
 
 }

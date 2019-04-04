@@ -10,7 +10,6 @@ import { UserAccountComponent } from './pages/user-account/user-account.componen
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
-import { AuthComponent } from './pages/auth/auth.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
@@ -22,21 +21,13 @@ const routes: Routes = [
       {path: 'artykul/:_id', component: ArticleComponent}
     ]
   },
-  // { path: 'kategoria/artykul/:articleId', component: ArticleComponent},
   {path: 'dodaj-artykul', component: AddArticleComponent, canActivate: [AuthGuard]},
   {path: 'edytuj-artykul/:_id', component: AddArticleComponent, canActivate: [AuthGuard]},
   {path: 'konto', loadChildren: './pages/auth/auth.module#AuthModule'},
-  {path: 'moje-konto', component: UserAccountComponent, canActivate: [AuthGuard],
-    // children: [
-    //   {path: 'moje-artykuly', component: SelectedCategoryComponent},
-    //   {path: 'artykul/:title', component: ArticleComponent}
-    // ]
-  },
+  {path: 'moje-konto', component: UserAccountComponent, canActivate: [AuthGuard]},
 
-  // { path: 'konto', component: UserAccountComponent},
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}
-  // {path: '**', component: NotFoundComponent }
 ];
  
  

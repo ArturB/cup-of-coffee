@@ -86,17 +86,14 @@
     </div>
   </div>
 
-  <!-- <div class="custom-control custom-checkbox mb-3">
-    <input type="checkbox" class="custom-control-input" id="customCheck1">
-    <label class="custom-control-label" for="customCheck1">Zapamiętaj mnie</label>
-  </div> -->
   <p *ngIf="success" class="text-center mt-4 mb-4 alert alert-success">{{success}}</p>
   <p *ngIf="error" class="text-center mt-4 mb-4 alert alert-danger">{{error}}</p>
+  
   <button
     type="submit"
     [disabled]="logForm.invalid"
     class="btn btn-lg btnPink btn-block text-uppercase mt-5" 
   >zarejestruj</button>
   <hr class="my-4">
-  <p class="text-center">Masz już konto? <a class="bottomLink" [routerLink]="[ '/konto/', 'logowanie' ]">Zaloguj się!</a></p>
+  <p class="text-center">Masz już konto? <a class="bottomLink" (click)="changeTitle(false)" [routerLink]="[ '/konto/', 'logowanie' ]">Zaloguj się!</a></p>
 </form>

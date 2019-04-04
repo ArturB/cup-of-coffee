@@ -11,7 +11,7 @@ export function matchOtherValidator (otherControlName: string) {
       return null;
     }
 
-    // Initializing the validator.
+    // Initializing the validator
     if (!thisControl) {
       thisControl = control;
       otherControl = control.parent.get(otherControlName) as FormControl;

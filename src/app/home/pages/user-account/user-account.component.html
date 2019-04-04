@@ -1,17 +1,10 @@
 <div class="container py-5">
   <div class="profileBgr pb-5">
     <div class="heading py-5 px-md-5">
-      <!-- <div class="row justify-content-center"> -->
-        <!-- <div class="col-lg-4 profileImg">
-            <img src="assets/img/profile1.png" width="240px">
-        </div> -->
         <div class="text-center profileText">
             <h1 class="pt-5">{{ user?.username }}</h1>
             <h4><strong>{{ user?.email }} </strong></h4>
-            <!-- <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p> -->
-            <!-- <p><strong>Skills: </strong> -->
         </div>
-      <!-- </div> -->
     </div>
     <div class="info pt-5 pb-3">
       <div class="row justify-content-center pt-4">
@@ -21,11 +14,8 @@
             <img src="assets/img/articles_300_inv.png" width="160" class="figure-img img-fluid rounded-circle artImgBgr" alt="articles"
             [ngClass]="{'isArt': myArticles}">
             <figcaption class="figure-caption text-center"><h5>Moje artykuły</h5></figcaption>
-            <!-- <i class="fa fa-arrow-alt-down"></i> -->
           </figure>
   
-          <!-- <h2><strong> 20,7K </strong></h2>                    
-          <p>Moje artykuły</p> -->
         </div>
         <div class="col-md-3 pb-4 text-center">
   
@@ -34,18 +24,7 @@
             [ngClass]="{'isFav': myFavorites}">
             <figcaption class="figure-caption text-center"><h5>Ulubione artykuły</h5></figcaption>
           </figure>
-  
-          <!-- <h2><strong> 20,7K </strong></h2>                    
-          <p>Moje artykuły</p> -->
         </div>
-        <!-- <div class="col-md-3 pb-4 text-center">
-  
-          <figure class="figure setFig">
-            <img src="assets/img/settings_300_inv.png" width="160" class="figure-img img-fluid rounded-circle setImgBgr" alt="settings">
-            <figcaption class="figure-caption text-center"><h5>Ustawienia konta</h5></figcaption>
-          </figure>
-  
-        </div> -->
       </div>
     </div>
 
@@ -104,7 +83,5 @@
 </div>
 
 <ng-template #noArticles>
-  <!-- <div class="container contBgr py-5"> -->
     <h3 class="text-center">Nie masz artykułów z tej kategorii<i class="fa fa-frown-o pl-2"></i></h3>
-  <!-- </div> -->
 </ng-template>

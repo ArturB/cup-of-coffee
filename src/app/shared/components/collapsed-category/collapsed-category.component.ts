@@ -11,7 +11,6 @@ import { ArticleService } from '../../../core/services/article.service';
 })
 export class CollapsedCategoryComponent implements OnInit {
 
-  // articles: Article[] = [];
   filteredArticles: Article[] = [];
   
   articleTitle: string;
@@ -28,24 +27,13 @@ export class CollapsedCategoryComponent implements OnInit {
    }
 
   ngOnInit() {
-    // this.articleService.getArticleObsByCategory(this.category).subscribe((articles: Array<Article>) => {
-    //   // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
-    //   this.articles = articles.slice();
-    // });
-    // console.log(this.category);
-    // //this.articles = this.articleService.getArticleByCategory(this.category);
-    // this.filteredArticles = this.sliceFour();
-
     if (this.category === 'wszystkie') {
       //retry sprawia, że jeżeli nasze zapytanie się nie powiodło to jeszcze 3 razy będzie wykonana próba zapytania
       // this.articleService.getArticlesObs().retry(3).subscribe((articles: Array<Article>) => {
       this.articleService.getArticlesObs().subscribe(
-        (articles: Array<Article>) => {
-          // console.log(articles);
-          // this.articles = articles.slice();        
+        (articles: Array<Article>) => {     
           this.articles = articles;        
           this.filteredArticles = this.sliceFour();
-          console.log(this.articles, this.filteredArticles);
         },
         err => { 
           console.log(err, err.status);
@@ -54,23 +42,15 @@ export class CollapsedCategoryComponent implements OnInit {
     } else {
       this.articleService.getArticleObsByCategory(this.category).subscribe(
         (articles: Array<Article>) => {
-        // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
-          // console.log(articles);
-          // this.articles = articles.slice();
           this.articles = articles;
           this.filteredArticles = this.sliceFour();
-          console.log(this.articles, this.filteredArticles);
         },
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.status);
-        // }
+
         err => { 
-          console.log(err, err.status);
+          console.log(err);
         }
       );
     }
-    console.log('collapsed articles: ', this.articles);
-    //this.articles = this.articleService.getArticleByCategory(this.category);
   }
 
   sliceFour() {

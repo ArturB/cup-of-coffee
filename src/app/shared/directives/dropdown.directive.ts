@@ -13,15 +13,11 @@ export class DropdownDirective implements OnInit {
 
   @HostListener('mouseenter')
   mouseenter(event: Event) {
-    // console.log(this.el.nativeElement)
     this.renderer.addClass(this.el.nativeElement, 'drop');
     
-    // this.renderer.setStyle(li, 'display', 'block');
   }
   @HostListener('mouseleave')
   mouseleave(event: Event) {
-    // console.log("leave");
-    // let li = this.el.nativeElement;
     this.renderer.removeClass(this.el.nativeElement, 'drop');
   }
     

@@ -2,13 +2,10 @@
     max-width: 1140px;
 }
 .profileBgr {
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     box-shadow: 0 0px 20px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-/* .profileImg, .profileText {
-    text-align: center;
-} */
+
 @media screen and (min-width: 992px) {
     .profileImg {
         text-align: right;
@@ -18,8 +15,6 @@
     }
 }
 .heading {
-    /* background-color: #f3f1f1;
-    border-bottom: 2px solid #e8e8e8; */
     background: #f3f1f1 url('/assets/img/account2.jpg') no-repeat center;
     background-size: cover;
     min-height: 340px;
@@ -31,35 +26,25 @@
     color: #ff0d85;
 }
 .artImgBgr {
-    /* background-color: #ffc107; */
     background-color: #ffc926;;
 }
 .favoriteImgBgr {
     background-color: #08c5c5;
 }
-/* .setImgBgr {
-    background-color: #2ba27c;
-} */
+
 .artFig:hover .artImgBgr, .artFig .isArt {
-    /* background-color: #f1b500; */
     background-color: #ff9426;
     -webkit-transition: background-color 100ms linear;
     -ms-transition: background-color 100ms linear;
     transition: background-color 100ms linear;
 }
 .favFig:hover .favoriteImgBgr, .favFig .isFav {
-    /* background-color: #07bbbb; */
     background-color: #0888c5;
     -webkit-transition: background-color 100ms linear;
     -ms-transition: background-color 100ms linear;
     transition: background-color 100ms linear;
 }
-/* .setFig:hover .setImgBgr {
-    background-color: #21926e;
-    -webkit-transition: background-color 100ms linear;
-    -ms-transition: background-color 100ms linear;
-    transition: background-color 100ms linear;
-} */
+
 
 .figure {
     cursor: pointer;

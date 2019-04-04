@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from "@angular/router";
-import { BehaviorSubject, Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 import { User } from '../../../core/models/user.model';
 import { Article } from '../../../core/models/article.model';
@@ -30,17 +29,6 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   private selCatSub = new BehaviorSubject<any>(this.selCat);
   private favSelCatSub = new BehaviorSubject<any>(this.favSelCat);
   
-  
-  // catOptions = [
-  //   { name: "wszystkie", value: 1 },
-  //   { name: "popularne", value: 2 },
-  //   { name: "sztuka", value: 2 },
-  //   { name: "psychologia", value: 2 }
-  // ];
-
-  // selectedCat: string = this.catOptions[0].name;
-
-  // category: string;
 
   confRemove: boolean = false;
 
@@ -49,13 +37,12 @@ export class UserAccountComponent implements OnInit, OnDestroy {
 
     this.authService.getUserProfile().subscribe(
       (user: User) => {
-        console.log(user);
         this.user = user;
       },
       err => {
         console.log("error", err)
         if (err.status == 401) {
-          console.log("error", err.status)
+          console.log("error", err)
           this.authService.logout();    
           this.router.navigate(
             
@@ -70,7 +57,6 @@ export class UserAccountComponent implements OnInit, OnDestroy {
         }
       }
     );
-    console.log(this.user);
    }
 
   ngOnInit() {
@@ -82,21 +68,17 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       this.myFavorites = false;
       this.articleService.getUserArticlesObs().subscribe(
         (articles: Array<Article>) => {
-        // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
-          // console.log(articles);
           this.articles = articles;
           this.artsSub.next(this.articles);
           this.myArticles = true;
           this.selCatSub.subscribe(cat => {
             this.selCat = cat;
-            console.log('Cat',this.selCat)
           })
         },
         err => { 
-          console.log(err, err.status);
-          // this.artsSub.unsubscribe();
+          console.log(err);
           if (err.status == 401) {
-            console.log("error", err.status)
+            console.log(err)
             this.authService.logout();    
             this.router.navigate(              
               ['/konto/logowanie'],
@@ -109,27 +91,19 @@ export class UserAccountComponent implements OnInit, OnDestroy {
     else {
       this.myArticles = false;
     }
-    // console.log(this.user);
     
   }
 
   onSelectCat(selectedCat: string) {
-    console.log(selectedCat);
     this.artsSub.subscribe(data => {
-      // this.articles = data;
       if (selectedCat != 'wszystkie') {
-        this.articles = data.filter(e => e.category === selectedCat); // pomijamy drugi element ze strumienia
-        // console.log(this.articles)
-
+        this.articles = data.filter(e => e.category === selectedCat);
       }
       else {
         this.articles = data;
       }
 
       this.selCatSub.next(selectedCat);
-      console.log('selectedCat',selectedCat)
-      
-      console.log('User arts: ', this.articles, data);
 
     });
   }
@@ -138,20 +112,17 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       this.myArticles = false;
       this.articleService.getFavorites().subscribe(
         (articles: Array<Article>) => {
-        // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
-          // console.log(articles);
           this.favArticles = articles;
           this.favArtsSub.next(this.favArticles);
           this.myFavorites = true;
           this.favSelCatSub.subscribe(cat => {
             this.favSelCat = cat;
-            console.log('Cat',this.favSelCat)
           })
         },
         err => { 
-          console.log(err, err.status);
+          console.log(err);
           if (err.status == 401) {
-            console.log("error", err.status)
+            console.log(err)
             this.authService.logout();    
             this.router.navigate(              
               ['/konto/logowanie'],
@@ -167,20 +138,15 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   }
 
   onSelectFavCat(selectedCat: string) {
-    console.log(selectedCat, this.articles);
     this.favArtsSub.subscribe(data => {
-      // this.articles = data;
       if (selectedCat != 'wszystkie') {
-        this.favArticles = data.filter(e => e.category === selectedCat); // pomijamy drugi element ze strumienia
-        console.log(this.favArticles)
-
+        this.favArticles = data.filter(e => e.category === selectedCat);
       }
       else {
         this.favArticles = data;
       }
 
       this.favSelCatSub.next(selectedCat);
-      console.log('User arts: ', this.favArticles, data);
 
     });
   }
@@ -192,15 +158,12 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   }
 
   onEdit(art: Article) {
-    console.log('art._id',art._id);
-
     this.router.navigate(['edytuj-artykul', art._id]);
 
   }
 
   onRemoveAnsw(answ: boolean) {
     this.confRemove = false;
-    console.log('ddd',this.article)
     if(answ) {
       this.removeArticle(this.article);
     } 
@@ -215,37 +178,28 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   removeArticle(art: Article) {
     
     this.article = art;
-    console.log(this.article);
 		this.articleService.deleteArticle(this.article)
 			.subscribe(
         data => {
-          // this.articles = this.articles.slice();
-          // let lol =data._id.toString();
           this.articleService.getUserArticlesObs().subscribe(
             (articles: Array<Article>) => {
-            // sclice() żeby przy zmianie listy zwracana była nowa referencja z posortkowaną listą
-              // console.log(articles);
               this.articles = articles;
               this.artsSub.next(this.articles);
     
             },
             err => { 
-              console.log(err, err.status);
+              console.log(err);
             }
           );
-          // this.articles.splice(Number(data._id), 1);
           
           console.log('Artykuł usunięty', data)
         },
 				err => console.log(err)
 			);
   }
-  
- 
 
   ngOnDestroy() {
     this.artsSub.unsubscribe();
-    console.log('unsubscribe',this.artsSub)
   }
 
 }

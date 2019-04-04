@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bgPink py-2">
   <div class="container">
-    <a class="navbar-brand mr-lg-5" [routerLink]="['/kategorie']"><img src="/assets/img/logo13.png" width="260px"></a>
+    <a class="navbar-brand mr-lg-5" [routerLink]="['/kategorie']"><img src="/assets/img/logo13.png" alt="logo" width="260px"></a>
     
     <button (click)="toggle()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span><i [class]="toggleIcon()"></i></span>
@@ -16,23 +16,11 @@
             <li class="nav-item" routerLinkActive="active" *ngFor="let cat of categories">
               <a class="nav-link" [routerLink]="['/kategorie', cat]">{{ cat }}</a>
             </li>
-            <!-- <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" [routerLink]="['/kategorie', 'popularne']">Popularne</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" [routerLink]="['/kategorie', 'sztuka']">Sztuka</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" [routerLink]="['/kategorie', 'psychologia']">Psychologia</a>
-            </li> -->
           </ul>
         </li>
         <li class="nav-item px-md-4" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/dodaj-artykul']"><i class="fa fa-plus-square-o fa-2x faNav mb-1"></i>dodaj artykuł</a>
         </li>
-        <!-- <li class="nav-item px-md-4" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/konto']"><i class="fa fa-user-o fa-2x faNav mb-1"></i>konto</a>
-        </li> -->
         <li class="nav-item px-md-4" routerLinkActive="active"
         [ngClass]="{'isLogged': isLoggedIn$ | async}">
           <a class="nav-link" [routerLink]="['/konto/rejestracja']"><i class="fa fa-user-plus fa-2x faNav mb-1"></i>zarejestruj</a>
@@ -48,7 +36,6 @@
           <a class="nav-link" (click)="onLogout()"><i class="fa fa-sign-out fa-2x faNav mb-1"></i>Wyloguj</a>
         </li>
       </ul>
-      <!-- </div> -->
     </div>
   </div>
 </nav>

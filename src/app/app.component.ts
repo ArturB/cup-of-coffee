@@ -35,6 +35,3 @@ export class AppComponent {
     }
   }
 }
-
-// /pages: компоненты с маршрутами
-// /components: компоненты для визуализации данных
