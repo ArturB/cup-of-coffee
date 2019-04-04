@@ -31,11 +31,11 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
     this.logForm = new FormGroup({
-      email: new FormControl('a@a', [
+      email: new FormControl(null, [
             Validators.required,
             Validators.email
             ]),
-      password: new FormControl('aaaaaa', [
+      password: new FormControl(null, [
             Validators.minLength(6),
             Validators.maxLength(24),
             Validators.required
