@@ -9,10 +9,10 @@ const articleRoute  = require('./server/routes/article.route');
 const userRoute  = require('./server/routes/user.route');
 const profileRoute  = require('./server/routes/profile.route');
 
-const options = { user: 'cup-of-coffee', pass: 'xRn7Y7vFLIUhRpjGe1tKBglXQ3tlCzc32WmFQ3PkYeX8GSNkvR6YiDyIuG8Rp215j8kEpcADzNmNzJfxnJXWqw==' };
+// const options = { user: 'cup-of-coffee', pass: 'xRn7Y7vFLIUhRpjGe1tKBglXQ3tlCzc32WmFQ3PkYeX8GSNkvR6YiDyIuG8Rp215j8kEpcADzNmNzJfxnJXWqw==' };
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.uri, options).then(
+mongoose.connect(config.uri, { useNewUrlParser: true }).then(
   () => {console.log('Database is connected') },
   err => { console.log('Can not connect to the database'+ err)}
 );
