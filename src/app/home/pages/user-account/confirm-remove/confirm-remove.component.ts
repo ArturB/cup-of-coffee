@@ -21,11 +21,8 @@ export class ConfirmRemoveComponent implements OnInit {
   }
 
   closeModal() {
-    
-  }
-
-  onClickedOutside(e: Event) {
     this.removeAnsw.emit(false);
+    
   }
 
 }

@@ -54,12 +54,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  onClickedOutside(e: Event) {
-    if (this.toggleBtn) {
-      this.toggleBtn = false;
-    }
-  }
-
   private navigationInterceptor(event: Event): void {
     if (this.toggleBtn) {
       if (event instanceof NavigationStart) {
