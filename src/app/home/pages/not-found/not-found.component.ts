@@ -19,9 +19,8 @@ export class NotFoundComponent implements OnInit {
       console.log(params);
       if (params['artNF']) {
         this.error = params['artNF'];
-      }
-      else if (params['artgetNF']) {
-        this.error = params['artgetNF'];
+      } else if (params['artgetNF']) {
+          this.error = params['artgetNF'];
       }
     });
    }

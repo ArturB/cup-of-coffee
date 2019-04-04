@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
@@ -28,8 +28,8 @@ export class ArticleComponent implements OnInit {
 
   private isLike = new BehaviorSubject<any>(this.mes);
 
-  isLiked: boolean = false;
-  isFavorited: boolean = false;
+  isLiked = false;
+  isFavorited = false;
 
   artTitle: string;
   artId: string;
@@ -37,12 +37,10 @@ export class ArticleComponent implements OnInit {
   likeStatus: boolean;
 
   constructor(
-    private route: ActivatedRoute, 
-    private router: Router, 
+    private route: ActivatedRoute,
+    private router: Router,
     private articleService: ArticleService,
-    private authService: AuthService
-    ) { 
-  }
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.authService.getUserProfile().subscribe(
@@ -50,7 +48,7 @@ export class ArticleComponent implements OnInit {
         this.user = user;
       },
       err => {
-        console.log(err)
+        console.log(err);
       }
     );
 
@@ -58,14 +56,12 @@ export class ArticleComponent implements OnInit {
     this.getArt();
 
     this.isLike.subscribe(data => {
-      if (data == 'likeAdded') {
+      if (data === 'likeAdded') {
         this.isLiked = true;
       } else {
         this.isLiked = false;
-        
       }
     });
-   
   }
 
   getArt() {
@@ -81,32 +77,28 @@ export class ArticleComponent implements OnInit {
 
         this.likes = this.article.likes;
         this.isLike.next(result.message);
-        
       },
       err => {
-        let artgetNF: string = 'Artykuł nie został znaleziony'
-        if (err.status == 410) {
+        const artgetNF = 'Artykuł nie został znaleziony';
+        if (err.status === 410) {
           console.log(err);
           this.router.navigate(['/404', {artNF: artgetNF}]);
+        } else if (err.status === 404) {
+            console.log(err);
+            this.router.navigate(['/404', {artNF: artgetNF}]);
+        } else {
+            console.log(err);
+            this.router.navigate(['/404', , {artNF: artgetNF}]);
         }
-        else if (err.status == 404) {
-          console.log(err);
-          this.router.navigate(['/404', {artNF: artgetNF}]);
-        }
-        else {
-          console.log(err);
-          this.router.navigate(['/404', , {artNF: artgetNF}]);
-        }
-        
       }
-    )
+    );
   }
 
   onLike() {
     this.articleService.addLikeByUser(this.article)
       .subscribe(
-        data => {
-          this.mes = data;
+        likedata => {
+          this.mes = likedata;
           this.isLike.next(this.mes.message);
 
           this.articleService.getArticleObsById(this.artId).subscribe(
@@ -117,41 +109,31 @@ export class ArticleComponent implements OnInit {
               this.tcolor = this.article.artColors[0];
               this.bcolor = this.article.artColors[1];
               this.faIcon = this.article.artColors[2];
-      
-      
               this.likes = this.article.likes;
-              
             },
             err => {
               console.log(err);
               this.router.navigate(['/404']);
             }
-
-          )
+          );
         },
-        err => { 
+        err => {
           if (err.status === 401) {
             console.log(err);
-            this.error = 'Żyby postawić lajka musisz być zalogowany'
+            this.error = 'Żyby postawić lajka musisz być zalogowany';
             setTimeout(() => this.error = null, 4000);
-          }
-          else {
-            if (err.status == 410) {
-              console.log(err);
-              let artNF: string = 'Artykuł został usunięty przez autora :(';
-              this.router.navigate(['/404', {artNF: artNF}]);
+          } else {
+              if (err.status === 410) {
+                console.log(err);
+                const artNF = 'Artykuł został usunięty przez autora :(';
+                this.router.navigate(['/404', {artNF: artNF}]);
+            } else {
+                console.log(err);
+                this.error = 'Wystąpił noeioczekiwany błąd podczas stawiania/ usuwania lajka. Spróbuj później';
+                console.log(this.error);
             }
-            else {
-              console.log(err);
-              this.error = 'Wystąpił noeioczekiwany błąd podczas stawiania/ usuwania lajka. Spróbuj później'            
-              console.log(this.error);
-            }
-        
           }
         }
       );
-    
   }
-
-
 }

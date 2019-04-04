@@ -12,7 +12,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class HeaderComponent implements OnInit {
 
   // jeśli false to menu burger bara jest niewidoczne. Przy zmianie na true dla małych rozdzielczości pojawia się menu burger bara
-  toggleBtn: boolean = false;   
+  toggleBtn = false;
 
   // zmienna przechowująca stan użytkownika (zalogowany czy nie)
   isLoggedIn$: Observable<boolean>;
@@ -29,10 +29,10 @@ export class HeaderComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
   }
-  
+
   // metoda wywoływana przy naciśnięciu na przycisk Wyloguj z menu nawigacji
-  onLogout(){
-    this.authService.logout();                    
+  onLogout() {
+    this.authService.logout();
     this.router.navigate(['/']);
   }
 
@@ -40,13 +40,14 @@ export class HeaderComponent implements OnInit {
   toggle() {
     this.toggleBtn = !this.toggleBtn;
   }
-  
+
   // zmiana icon bar w zależności od tego, czy menu jest otwarte czy zamknięte
   toggleIcon() {
     if (this.toggleBtn) {
-      return "fa fa-times"
+      return 'fa fa-times';
+    } else {
+        return 'fa fa-bars';
     }
-    else return "fa fa-bars"
   }
 
 

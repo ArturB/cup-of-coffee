@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-btn-see-more',
-  template: '<button type="button" class="btn btnPink" (click)="goToCategory()">Zobacz więcej<i class="fa fa-angle-double-right ml-2 my-auto"></i></button>',
+  templateUrl: './btn-see-more.component.html'
 })
 export class BtnSeeMoreComponent implements OnInit {
   @Input() articleCategory: string;
@@ -14,7 +14,7 @@ export class BtnSeeMoreComponent implements OnInit {
   }
 
   goToCategory() {
-    this.router.navigate(['/kategorie', this.articleCategory])
+    this.router.navigate(['/kategorie', this.articleCategory]);
   }
 
 }

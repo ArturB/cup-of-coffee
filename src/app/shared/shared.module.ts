@@ -18,12 +18,12 @@ import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
-    HeaderComponent, 
-    CollapsedCategoryComponent, 
-    CollapsedArticleComponent, 
-    BtnSeeMoreComponent, 
-    SearchFormComponent, 
-    DropdownDirective, 
+    HeaderComponent,
+    CollapsedCategoryComponent,
+    CollapsedArticleComponent,
+    BtnSeeMoreComponent,
+    SearchFormComponent,
+    DropdownDirective,
     SearchPipe
   ],
   imports: [
@@ -41,7 +41,6 @@ import { SearchPipe } from './pipes/search.pipe';
     SearchFormComponent,
     DropdownDirective,
     SearchPipe
-    
   ]
 })
 export class SharedModule { }

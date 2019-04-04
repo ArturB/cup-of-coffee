@@ -68,7 +68,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     'fa-bullseye',
     'fa-bell-o',
   ];
-  
+
   article: Article = {
     artColors: ['#fcfcfc', '#14563e', this.iconsArray[0]],
     title: '',
@@ -79,23 +79,23 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     author: '',
     _id: ''
   };
-  tcolor: string = '';
-  bcolor: string = '';
+  tcolor = '';
+  bcolor = '';
 
   private art = new BehaviorSubject<Article>(this.article);
 
   newArt: Article;
 
-  reset: boolean = false;
+  reset = false;
 
   success: string;
   error: string;
 
-  onEdit: boolean = false;
+  onEdit = false;
 
   constructor(
-    private route: ActivatedRoute, 
-    private router: Router, 
+    private route: ActivatedRoute,
+    private router: Router,
     private articleService: ArticleService,
     private authService: AuthService
     ) {
@@ -106,59 +106,51 @@ export class AddArticleComponent implements OnInit, OnDestroy {
           this.user = user;
         },
         err => {
-          console.log("error", err)
-          if (err.status == 401) {
-            console.log(err)
-            this.authService.logout();    
+          console.log(err);
+          if (err.status === 401) {
+            console.log(err);
+            this.authService.logout();
             this.router.navigate(
               ['/konto/logowanie'],
               // w queryParams przesyłam dwa dodatkowe parametry:
               // returnUrl żeby po zaogowaniu użytkownik wrócił do strony z której został przekirowany do logowania
               // name daje info z jakiego komponentu user został przekierowany do logowania żeby wyświetlić odpowiedni komunikat
-              { queryParams: { returnUrl: 'dodaj-artykul', name: 'authError' } }   
-            );                  
-            
-  
+              { queryParams: { returnUrl: 'dodaj-artykul', name: 'authError' } }
+            );
+
           }
         }
       );
-            
-     }
+    }
 
   ngOnInit() {
-    // sprawdzanie czy znjudzujemy się na stronie dodawania czy edycji linków 
-    if(this.router.url != '/dodaj-artykul') {
+    // sprawdzanie czy znjudzujemy się na stronie dodawania czy edycji linków
+    if (this.router.url !== '/dodaj-artykul') {
       this.onEdit = true;
-      
+
      this.articleService.getArticleObsById(this.article._id).subscribe(
         data => {
           let result;
           result = data;
           // this.article = result.article;
           this.art.next(result.article);
-          
         },
         err => {
-          let artgetNF: string = 'Artykuł nie został znaleziony'
-          if (err.status == 410) {
+          const artgetNF = 'Artykuł nie został znaleziony';
+          if (err.status === 410) {
             this.router.navigate(['/404', {artNF: artgetNF}]);
+          } else if (err.status === 404) {
+              this.router.navigate(['/404', {artNF: artgetNF}]);
+          } else {
+              console.log(err);
+              this.router.navigate(['/404', , {artNF: artgetNF}]);
           }
-          else if (err.status == 404) {
-            this.router.navigate(['/404', {artNF: artgetNF}]);
-          }
-          else {
-            console.log('error',err.status);
-            this.router.navigate(['/404', , {artNF: artgetNF}]);
-          }
-          
         }
-      )
-    } 
-
-    
+      );
+    }
 
     this.art.subscribe(data => {
-      this.article = data;    
+      this.article = data;
 
       this.tcolor = this.article.artColors[0];
       this.bcolor = this.article.artColors[1];
@@ -180,7 +172,6 @@ export class AddArticleComponent implements OnInit, OnDestroy {
         ]),
 
       });
-      
     });
   }
 
@@ -189,15 +180,14 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     // console.log(this.article.title)
   }
 
-  chooseIc() {    
+  chooseIc() {
     this.article.artColors[2] = this.newArtForm.value.faIcon;
   }
 
 
   addArticle() {
-    if(this.router.url != '/dodaj-artykul') {
+    if (this.router.url !== '/dodaj-artykul') {
       let art = new Article(
-      
         [this.tcolor, this.bcolor, this.newArtForm.value.faIcon],
         this.newArtForm.value.title,
         this.newArtForm.value.category,
@@ -211,74 +201,65 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       this.articleService.editArticle(art, this.article._id)
       .subscribe(
         data => {
-          console.log('OK',data);
+          console.log('OK', data);
           art = data;
-          this.success = 'Artukuł został zauktualizowany'
+          this.success = 'Artukuł został zauktualizowany';
           setTimeout(() => this.success = null, 4000);
           this.onReset();
         },
 
         err => {
           if (err.status === 422) {
-            this.error = 'Artykuł o podanym tytule już istnieje. Wybierz inną nazwę i spróbuj ponownie'
+            this.error = 'Artykuł o podanym tytule już istnieje. Wybierz inną nazwę i spróbuj ponownie';
             setTimeout(() => this.error = null, 4000);
-          }
-          else if (err.status === 403) {
-            this.error = 'Nie masz uprawnień do edycji wybranego artykułu'
-            setTimeout(() => this.error = null, 4000);
-          }
-          else {
-            this.error = 'Podczas wysyłania artykułu wystąpił nieoczekiwany błąd. Spróbuj ponownie'
-            console.log("errrr "+ err);
+          } else if (err.status === 403) {
+              this.error = 'Nie masz uprawnień do edycji wybranego artykułu';
+              setTimeout(() => this.error = null, 4000);
+          } else {
+              this.error = 'Podczas wysyłania artykułu wystąpił nieoczekiwany błąd. Spróbuj ponownie';
+              console.log(err);
           }
 
         }
       );
+    } else {
+        let art = new Article(
+          [this.tcolor, this.bcolor, this.newArtForm.value.faIcon],
+          this.newArtForm.value.title,
+          this.newArtForm.value.category,
+          this.newArtForm.value.description,
+          [],
+          new Date().toDateString(),
+          this.newArtForm.value.author,
+        );
+        this.articleService.addArticle(art)
+        .subscribe(
+          data => {
+            console.log('OK', art);
+            art = data;
+            this.success = 'Artukuł został dodany';
+            setTimeout(() => this.success = null, 4000);
+            this.onReset();
+          },
+
+          err => {
+            if (err.status === 422) {
+              this.error = 'Artykuł o podanym tytule już istnieje. Wybierz inną nazwę i spróbuj ponownie';
+              setTimeout(() => this.error = null, 4000);
+            } else if (err.status === 401) {
+                this.authService.logout();
+                this.router.navigate(
+                  ['/konto/logowanie'],
+                  { queryParams: { returnUrl: 'dodaj-artykul', name: 'authError' } }
+                );
+            } else {
+                this.error = 'Podczas wysyłania artykułu wystąpił nieoczekiwany błąd. Spróbuj ponownie';
+                console.log(err);
+            }
+
+          }
+        );
     }
-    else {
-      let art = new Article(
-      
-        [this.tcolor, this.bcolor, this.newArtForm.value.faIcon],
-        this.newArtForm.value.title,
-        this.newArtForm.value.category,
-        this.newArtForm.value.description,
-        [],
-        new Date().toDateString(),
-        this.newArtForm.value.author,
-      );
-      this.articleService.addArticle(art)
-      .subscribe(
-        data => {
-          console.log('OK', art);
-          art = data;
-          this.success = 'Artukuł został dodany'
-          setTimeout(() => this.success = null, 4000);
-          this.onReset();
-        },
-
-        err => {
-          if (err.status === 422) {
-            this.error = 'Artykuł o podanym tytule już istnieje. Wybierz inną nazwę i spróbuj ponownie'
-            setTimeout(() => this.error = null, 4000);
-          }
-          else if (err.status === 401) {
-            this.authService.logout();    
-            this.router.navigate(
-              ['/konto/logowanie'],
-              { queryParams: { returnUrl: 'dodaj-artykul', name: 'authError' } }   
-            );     
-          }
-          else {
-            this.error = 'Podczas wysyłania artykułu wystąpił nieoczekiwany błąd. Spróbuj ponownie'
-            console.log("errrr "+ err);
-          }
-
-        }
-      );
-    }
-
-
-    
   }
 
   onReset() {

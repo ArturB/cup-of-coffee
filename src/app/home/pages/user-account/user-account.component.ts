@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 import { User } from '../../../core/models/user.model';
@@ -18,8 +18,8 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   articles: Array<Article> = [];
   favArticles: Array<Article> = [];
   article: Article;
-  myArticles: boolean = false;
-  myFavorites: boolean = false;
+  myArticles = false;
+  myFavorites = false;
 
   selCat: string;
   favSelCat: string;
@@ -28,9 +28,8 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   private favArtsSub = new BehaviorSubject<any>(this.favArticles);
   private selCatSub = new BehaviorSubject<any>(this.selCat);
   private favSelCatSub = new BehaviorSubject<any>(this.favSelCat);
-  
 
-  confRemove: boolean = false;
+  confRemove = false;
 
   constructor(private router: Router, private authService: AuthService, private articleService: ArticleService) {
     // this.user = this.authService.getProfile();
@@ -40,28 +39,24 @@ export class UserAccountComponent implements OnInit, OnDestroy {
         this.user = user;
       },
       err => {
-        console.log("error", err)
-        if (err.status == 401) {
-          console.log("error", err)
-          this.authService.logout();    
+        console.log(err);
+        if (err.status === 401) {
+          console.log(err);
+          this.authService.logout();
           this.router.navigate(
-            
             ['/konto/logowanie'],
             // w queryParams przesyłam dwa dodatkowe parametry:
             // returnUrl żeby po zaogowaniu użytkownik wrócił do strony z której został przekirowany do logowania
             // name daje info z jakiego komponentu user został przekierowany do logowania żeby wyświetlić odpowiedni komunikat
-            { queryParams: { returnUrl: 'moje-konto', name: 'authError' } }   
-          );                  
-          
+            { queryParams: { returnUrl: 'moje-konto', name: 'authError' } }
+          );
 
         }
       }
     );
    }
 
-  ngOnInit() {
-  
-  }
+  ngOnInit() { }
 
   showUserArticles() {
     if (!this.myArticles) {
@@ -73,34 +68,31 @@ export class UserAccountComponent implements OnInit, OnDestroy {
           this.myArticles = true;
           this.selCatSub.subscribe(cat => {
             this.selCat = cat;
-          })
+          });
         },
-        err => { 
+        err => {
           console.log(err);
-          if (err.status == 401) {
-            console.log(err)
-            this.authService.logout();    
-            this.router.navigate(              
+          if (err.status === 401) {
+            console.log(err);
+            this.authService.logout();
+            this.router.navigate(
               ['/konto/logowanie'],
-              { queryParams: { returnUrl: 'moje-konto', name: 'authError' } }   
-            ); 
+              { queryParams: { returnUrl: 'moje-konto', name: 'authError' } }
+            );
           }
         }
       );
+    } else {
+        this.myArticles = false;
     }
-    else {
-      this.myArticles = false;
-    }
-    
   }
 
   onSelectCat(selectedCat: string) {
     this.artsSub.subscribe(data => {
-      if (selectedCat != 'wszystkie') {
+      if (selectedCat !== 'wszystkie') {
         this.articles = data.filter(e => e.category === selectedCat);
-      }
-      else {
-        this.articles = data;
+      } else {
+          this.articles = data;
       }
 
       this.selCatSub.next(selectedCat);
@@ -117,33 +109,31 @@ export class UserAccountComponent implements OnInit, OnDestroy {
           this.myFavorites = true;
           this.favSelCatSub.subscribe(cat => {
             this.favSelCat = cat;
-          })
+          });
         },
-        err => { 
+        err => {
           console.log(err);
-          if (err.status == 401) {
-            console.log(err)
-            this.authService.logout();    
-            this.router.navigate(              
+          if (err.status === 401) {
+            console.log(err);
+            this.authService.logout();
+            this.router.navigate(
               ['/konto/logowanie'],
-              { queryParams: { returnUrl: 'moje-konto', name: 'authError' } }   
-            ); 
+              { queryParams: { returnUrl: 'moje-konto', name: 'authError' } }
+            );
           }
         }
       );
-    }
-    else {
-      this.myFavorites = false;
+    } else {
+        this.myFavorites = false;
     }
   }
 
   onSelectFavCat(selectedCat: string) {
     this.favArtsSub.subscribe(data => {
-      if (selectedCat != 'wszystkie') {
+      if (selectedCat !== 'wszystkie') {
         this.favArticles = data.filter(e => e.category === selectedCat);
-      }
-      else {
-        this.favArticles = data;
+      } else {
+          this.favArticles = data;
       }
 
       this.favSelCatSub.next(selectedCat);
@@ -153,8 +143,8 @@ export class UserAccountComponent implements OnInit, OnDestroy {
 
 
   onGotoArticle(article: Article) {
-    this.router.navigate(['kategorie/',article.category, 'artykul', article._id]);
-    console.log("Wybrany artykuł: ", article);
+    this.router.navigate(['kategorie/', article.category, 'artykul', article._id]);
+    console.log('Wybrany artykuł: ', article);
   }
 
   onEdit(art: Article) {
@@ -164,9 +154,9 @@ export class UserAccountComponent implements OnInit, OnDestroy {
 
   onRemoveAnsw(answ: boolean) {
     this.confRemove = false;
-    if(answ) {
+    if (answ) {
       this.removeArticle(this.article);
-    } 
+    }
   }
 
   remArticle(art: Article) {
@@ -176,26 +166,23 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   }
 
   removeArticle(art: Article) {
-    
     this.article = art;
-		this.articleService.deleteArticle(this.article)
-			.subscribe(
+    this.articleService.deleteArticle(this.article)
+      .subscribe(
         data => {
           this.articleService.getUserArticlesObs().subscribe(
             (articles: Array<Article>) => {
               this.articles = articles;
               this.artsSub.next(this.articles);
-    
             },
-            err => { 
+            err => {
               console.log(err);
             }
           );
-          
-          console.log('Artykuł usunięty', data)
+          console.log('Artykuł usunięty', data);
         },
-				err => console.log(err)
-			);
+        err => console.log(err)
+      );
   }
 
   ngOnDestroy() {

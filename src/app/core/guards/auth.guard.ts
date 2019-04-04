@@ -43,10 +43,10 @@
 // }
 
 import { Injectable } from '@angular/core';
-import { 
-  ActivatedRouteSnapshot, 
-  CanActivate, 
-  Router, 
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
   RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
@@ -66,22 +66,23 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    return this.authService.isLoggedIn        
+    return this.authService.isLoggedIn
       .pipe(
-        take(1),                              
-        map((isLoggedIn: boolean) => {       
-          if (!isLoggedIn){   // jeśli user nie jest zalogowany to jest przekierowywany do strony logowania
+        take(1),
+        map((isLoggedIn: boolean) => {
+          // jeśli user nie jest zalogowany to jest przekierowywany do strony logowania
+          if (!isLoggedIn) {
             this.router.navigate(
               ['/konto/logowanie'],
               // w queryParams przesyłam dwa dodatkowe parametry:
               // returnUrl żeby po zaogowaniu użytkownik wrócił do strony z której został przekirowany do logowania
               // name daje info z jakiego komponentu user został przekierowany do logowania żeby wyświetlić odpowiedni komunikat
-              { queryParams: { returnUrl: state.url, name: next.component['name'] } }   
-            );  
+              { queryParams: { returnUrl: state.url, name: next.component['name'] } }
+            );
             return false;
           }
-          return true
+          return true;
         })
-      )
+      );
   }
 }

@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class HomeUsComponent implements OnInit {
 
   categories = ['nauka', 'sztuka', 'filozofia', 'psychologia'];
-  showFour: boolean = true;
-  
+  showFour = true;
+
   constructor() { }
 
   ngOnInit() {

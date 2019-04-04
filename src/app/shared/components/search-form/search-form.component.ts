@@ -7,11 +7,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent implements OnInit {
-  
-  searchText: string = '';
-  searchPlaceholder: string = 'Szukaj ...';
 
-  goSearch: boolean = false;
+  searchText = '';
+  searchPlaceholder = 'Szukaj ...';
+
+  goSearch = false;
 
   @Output() searchValue = new EventEmitter();
 
@@ -27,20 +27,17 @@ export class SearchFormComponent implements OnInit {
 
   @ViewChild('mySearch') mySearch: ElementRef;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    
-  }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['text']) {
         this.searchText = params['text'];
-        this.selectedCat = params['category']
+        this.selectedCat = params['category'];
         this.mySearch.nativeElement.click();
-      }
-      else {
-        this.searchText = '';
-        this.selectedCat = this.catOptions[0].value;
+      } else {
+          this.searchText = '';
+          this.selectedCat = this.catOptions[0].value;
       }
     });
   }
@@ -51,15 +48,12 @@ export class SearchFormComponent implements OnInit {
   }
 
   onSearch() {
-    if(this.router.url != '/kategorie/' + this.selectedCat) {
-      let text: string = this.searchText;
-      this.router.navigate(['kategorie/',this.selectedCat, {text: text, category: this.selectedCat}]);
-    } 
+    if (this.router.url !== '/kategorie/' + this.selectedCat) {
+      const text: string = this.searchText;
+      this.router.navigate(['kategorie/', this.selectedCat, {text: text, category: this.selectedCat}]);
+    }
 
     this.searchValue.emit(this.searchText);
-    
-
-
 
   }
 

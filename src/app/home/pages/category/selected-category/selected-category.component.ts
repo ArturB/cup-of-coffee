@@ -9,29 +9,26 @@ import { Article } from '../../../../core/models/article.model';
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectedCategoryComponent implements OnInit {
-    
+
   articles: Article[] = [];
 
   category: string;
 
-  showFour: boolean = false;
+  showFour = false;
 
   searchText;
 
   constructor(private route: ActivatedRoute) { }
-  
+
   ngOnInit() {
     this.route.paramMap.subscribe((param: Params) => {
       this.category = param.get('category');
     });
-    console.log("category: ", this.category);
-
+    console.log('category: ', this.category);
   }
 
   searchVal(text: string) {
     this.searchText = text;
-    
   }
-
 
 }

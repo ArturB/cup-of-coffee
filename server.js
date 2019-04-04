@@ -15,31 +15,13 @@ mongoose.connect(config.uri, { useNewUrlParser: true }).then(
   err => { console.log('Can not connect to the database'+ err)}
 );
 
-// mongoose.connect(config.uri, (err) => {
-//   if (err) {
-//     console.log('Połączenie z bazą danych jest niemożliwe ', err);
-//     return res.status(500).json({
-//         title: 'Nie ma połączenia z bazą danych',
-//         error: {message: 'Spróbuj później'}
-//     });
-//   } 
-//   else {
-//     console.log('Połączenie z bazą danych ' + config.db);
-//   }
-// });
-
-// const app = express();
-// app.use(bodyParser.json());
-// app.use(cors());
-// app.use('/article', articleRoute);
-// const port = process.env.PORT || 3000;
-
-// const server = app.listen(port, function(){
-//   console.log('Listening on port ' + port);
-// });
 
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(__dirname + '/dist/')); // Provide static directory for frontend
+// app.use(express.static(path.join(root, 'dist'))); // Provide static directory for frontend
+
 
 // Seting up server to accept cross-origin browser requests
 app.use(function (req, res, next) { //allow cross origin requests
@@ -53,9 +35,16 @@ app.use(function (req, res, next) { //allow cross origin requests
 
 
 app.use(cors());
+
 app.use('/articles', articleRoute);
 app.use('/user', userRoute);
 app.use('/profile', profileRoute);
+
+// app.get('*', (req, res) => {
+//   // res.sendFile(path.join(__dirname + '/dist/index.html'));
+//   res.sendFile('dist/index.html', {root});
+// });
+
 const port = process.env.PORT || 4000;
 
 const server = app.listen(port, function(){

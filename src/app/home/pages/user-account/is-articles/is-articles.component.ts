@@ -10,7 +10,7 @@ export class IsArticlesComponent implements OnInit {
   @Input() artLength: number;
   @Input() selCat: string;
   @Output() selectCat = new EventEmitter();
-    
+
   catOptions = [
     { name: 'Wszystkie', value: 'wszystkie'},
     { name: 'Nauka', value: 'nauka'},
@@ -24,13 +24,11 @@ export class IsArticlesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.selectedCat = this.selCat != undefined ?  this.selCat : this.catOptions[0].value;
+    this.selectedCat = this.selCat !== undefined ?  this.selCat : this.catOptions[0].value;
   }
 
-  
   selectCategory() {
     this.selectCat.emit(this.selectedCat);
-   
   }
 
 }

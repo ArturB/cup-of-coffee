@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 import { Article } from '../../../core/models/article.model';
 import { ArticleService } from '../../../core/services/article.service';
@@ -12,7 +12,7 @@ import { ArticleService } from '../../../core/services/article.service';
 export class CollapsedCategoryComponent implements OnInit {
 
   filteredArticles: Article[] = [];
-  
+
   articleTitle: string;
 
   @Input() articles: Article[];
@@ -22,31 +22,28 @@ export class CollapsedCategoryComponent implements OnInit {
   @Input() searchText: string;
 
 
-  constructor(private router: Router, private articleService: ArticleService) {
-    
-   }
+  constructor(private router: Router, private articleService: ArticleService) { }
 
   ngOnInit() {
     if (this.category === 'wszystkie') {
-      //retry sprawia, że jeżeli nasze zapytanie się nie powiodło to jeszcze 3 razy będzie wykonana próba zapytania
+      // retry sprawia, że jeżeli nasze zapytanie się nie powiodło to jeszcze 3 razy będzie wykonana próba zapytania
       // this.articleService.getArticlesObs().retry(3).subscribe((articles: Array<Article>) => {
       this.articleService.getArticlesObs().subscribe(
-        (articles: Array<Article>) => {     
-          this.articles = articles;        
+        (articles: Array<Article>) => {
+          this.articles = articles;
           this.filteredArticles = this.sliceFour();
         },
-        err => { 
+        err => {
           console.log(err, err.status);
         }
-      )
+      );
     } else {
       this.articleService.getArticleObsByCategory(this.category).subscribe(
         (articles: Array<Article>) => {
           this.articles = articles;
           this.filteredArticles = this.sliceFour();
         },
-
-        err => { 
+        err => {
           console.log(err);
         }
       );
@@ -55,8 +52,8 @@ export class CollapsedCategoryComponent implements OnInit {
 
   sliceFour() {
     if (this.showFour) {
-      if(this.articles.length > 4) {
-        return this.articles = this.articles.slice(this.articles.length-4, this.articles.length);
+      if (this.articles.length > 4) {
+        return this.articles = this.articles.slice(this.articles.length - 4, this.articles.length);
       } else {
         return this.articles = this.articles;
       }
@@ -67,8 +64,8 @@ export class CollapsedCategoryComponent implements OnInit {
 
 
   onGotoArticle(article: Article) {
-    this.router.navigate(['kategorie/',article.category, 'artykul', article._id]);
-    console.log("Wybrany artykuł: ", article);
+    this.router.navigate(['kategorie/', article.category, 'artykul', article._id]);
+    console.log('Wybrany artykuł: ', article);
   }
 
 

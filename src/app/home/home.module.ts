@@ -25,23 +25,22 @@ import { IsArticlesComponent } from './pages/user-account/is-articles/is-article
 
 @NgModule({
   declarations: [
-    AddArticleComponent, 
-    UserAccountComponent, 
-    CategoryComponent, 
+    AddArticleComponent,
+    UserAccountComponent,
+    CategoryComponent,
     SelectedCategoryComponent,
     ArticleComponent,
-    HomeUsComponent, 
+    HomeUsComponent,
     NotFoundComponent,
     ConfirmRemoveComponent,
-    IsArticlesComponent,  
-     
+    IsArticlesComponent,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    
+
     ColorPickerModule,
     HomeRoutingModule,
     SharedModule

@@ -10,13 +10,13 @@ export class CollapsedArticleComponent implements OnInit {
 
   @Input() article: Article;
   @Output() showArticle = new EventEmitter();
-  
+
   tcolor: string;
   bcolor: string;
   faIcon: string;
 
   likes: number;
-  
+
   constructor() { }
 
   ngOnInit() {
