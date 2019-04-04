@@ -13,7 +13,7 @@ const options = { user: 'cup-of-coffee', pass: 'xRn7Y7vFLIUhRpjGe1tKBglXQ3tlCzc3
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri, options).then(
-  () => {console.log('Database ' + config.db + ' is connected') },
+  () => {console.log('Database is connected') },
   err => { console.log('Can not connect to the database'+ err)}
 );
 
