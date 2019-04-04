@@ -1,18 +1,16 @@
 <app-search-form>
 </app-search-form>
 
-<div class="container">
 
-    <div *ngFor="let cat of categories">
-      <app-collapsed-category
-      class="mb-5"
-      [category]="cat"
-      [showFour]="showFour">
-        <div class="btnSeeMore mt-4 mr-md-3">
-          <app-btn-see-more
-          [articleCategory]="cat">
-          </app-btn-see-more>
-        </div>
-      </app-collapsed-category>
+<div *ngFor="let cat of categories">
+  <app-collapsed-category
+  class="mb-5"
+  [category]="cat"
+  [showFour]="showFour">
+    <div class="btnSeeMore mt-4 mr-md-3">
+      <app-btn-see-more
+      [articleCategory]="cat">
+      </app-btn-see-more>
     </div>
+  </app-collapsed-category>
 </div>

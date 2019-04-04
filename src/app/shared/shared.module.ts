@@ -15,6 +15,8 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
 import { DropdownDirective } from './directives/dropdown.directive';
 import { SearchPipe } from './pipes/search.pipe';
 
+import { ClickOutsideModule } from 'ng-click-outside';
+
 
 @NgModule({
   declarations: [
@@ -24,14 +26,15 @@ import { SearchPipe } from './pipes/search.pipe';
     BtnSeeMoreComponent,
     SearchFormComponent,
     DropdownDirective,
-    SearchPipe
+    SearchPipe,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
 
-    HomeRoutingModule
+    HomeRoutingModule,
+    ClickOutsideModule,
   ],
   exports: [
     HeaderComponent,

@@ -1,4 +1,4 @@
-<div class="rem-modal">
+<div (clickOutside)="onClickedOutside($event)" class="rem-modal">
   <div class="modal-content p-4">
     <div class="text-right mr-n2 mt-n3">
       <span (click)="closeModal()" class="close">&times;</span>

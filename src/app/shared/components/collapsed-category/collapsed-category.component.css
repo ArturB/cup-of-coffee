@@ -21,3 +21,13 @@ a.disabled {
         text-align: left;
     }
 }
+@media (max-width: 575px) {
+    .row {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+    .col-6 {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+}

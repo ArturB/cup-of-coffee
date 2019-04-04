@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart, Event} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from '../../../core/services/auth.service';
@@ -20,7 +20,11 @@ export class HeaderComponent implements OnInit {
   categories = ['wszystkie', 'nauka', 'sztuka', 'filozofia', 'psychologia'];
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {  }
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {
+    this.router.events.subscribe((event: Event) => {
+      this.navigationInterceptor(event);
+    });
+  }
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn;
@@ -48,6 +52,21 @@ export class HeaderComponent implements OnInit {
     } else {
         return 'fa fa-bars';
     }
+  }
+
+  onClickedOutside(e: Event) {
+    if (this.toggleBtn) {
+      this.toggleBtn = false;
+    }
+  }
+
+  private navigationInterceptor(event: Event): void {
+    if (this.toggleBtn) {
+      if (event instanceof NavigationStart) {
+        this.toggleBtn = false;
+      }
+    }
+    
   }
 
 
