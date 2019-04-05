@@ -46,7 +46,7 @@
     text-align: center;
 }
 
-@media (min-width: 1092px) {
+@media (min-width: 992px) {
     .navbar-expand-lg .navbar-nav .nav-link {
         padding-right: 0;
         padding-left: 0; 
@@ -110,7 +110,7 @@
 }
 
 /* stylizacja menu nawigacji dla małych rozdzielczości */
-@media (max-width: 1091px) {
+@media (max-width: 991px) {
     .faNav {
         display: inline-block;
         padding-right: 12px;
