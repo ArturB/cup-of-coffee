@@ -1,9 +1,17 @@
 .topMrg {
     margin-top: 84px;
-    margin-bottom: 142px;
+    /* margin-bottom: 142px; */
 }
 @media screen and (max-width: 991px) {
     .topMrg {
         margin-top: 76px;
     } 
+}
+
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+.content-wrap {
+    padding-bottom: 72px;
 }

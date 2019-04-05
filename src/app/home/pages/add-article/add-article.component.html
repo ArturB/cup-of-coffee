@@ -56,7 +56,8 @@
         id="colorText" 
         [value]="tcolor" 
         formControlName="colorText"
-        (click)="updateName()">
+        (click)="updateName()"
+        readonly>
       <label for="colorBgr" class="labelStyle mt-3 mt-md-0">Kolor tła</label>
       <input 
         [(colorPicker)]="bcolor"
@@ -66,7 +67,8 @@
         id="colorBgr" 
         formControlName="colorBgr"
         [value]="bcolor" 
-        (click)="updateName()">
+        (click)="updateName()"
+        readonly>
     </div>
     <label for="colorText" class="labelStyle">Tak będzie wyglądał nagłówek twojego artykułu</label>
     <div [style.background]="bcolor">

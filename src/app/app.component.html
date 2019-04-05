@@ -1,8 +1,11 @@
-<app-header></app-header>
-<ng2-slim-loading-bar color="#499273" [height]="'4px'"></ng2-slim-loading-bar>
-
-<div class="topMrg">
-    <router-outlet></router-outlet>
+<div class="page-container">
+    <div class="content-wrap">
+        <app-header></app-header>
+        <ng2-slim-loading-bar color="#499273" [height]="'4px'"></ng2-slim-loading-bar>
+        
+        <div class="topMrg">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <app-footer></app-footer>
 </div>
-
-<app-footer></app-footer>
