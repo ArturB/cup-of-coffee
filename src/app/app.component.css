@@ -7,6 +7,11 @@
         margin-top: 76px;
     } 
 }
+@media screen and (max-width: 575px) {
+    .topMrg {
+        margin-top: 71px;
+    }
+}
 
 .page-container {
     position: relative;
