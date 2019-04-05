@@ -182,7 +182,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
   }
 
   showIc() {
-    this.newArtForm.value.faIcon;
+    return this.newArtForm.value.faIcon;
   }
 
 

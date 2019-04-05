@@ -1,0 +1,114 @@
+[33mbf5abaf[m Zmiana sposobu wyswietlenia ikonki w add-article
+[33mc2c973b[m W add-article dodano wyświetlenie alertu przy resetowaniu formularza
+[33m8e26c3e[m Dodano readonly do inputów wyboru kolorów w add/edit-article. Usunięto fixed-bottom z footer, zrealizowano zamiast tego wyświetlanie footera po prostu na dole strony
+[33m8e161cd[m Poprawa niepoprawneho linku fo DB
+[33mec201c2[m zmieniono DB na MLab
+[33m95bc6d1[m Usunięto ng-click-outside. Wprowadzono kilka drobnych zmian w widoku poszczególnych komponentów
+[33m60ee9bd[m Zainstalowano ng-click-outside. Dodano go do modal window confirm remove oraz do nawigacji żeby się zamykała przy klikaniu outside. Dodatkowo zrealizowano sprawdzenie czy przy otwartym menu nawigacji zmienia się url (czyli klikanie w wybraną pozycję w nawigacji) i zamykanie menu nawigacji. Zmieniono paddingi dla małych rozdzielczości w collapsed-article
+[33mf32e5c4[m Usunięto ng build z package.json
+[33mcd311ad[m Usunięcie domyślnych wartości pól w formularzu logowania
+[33m77a72dc[m W package.json zmieniono start z ng serve na node server.js
+[33me88f495[m Usunięto pure: false z search.pipe
+[33m25bf9d0[m Skompresowano img w assets
+[33m3dce947[m Usunięcie zbędnych img z assets
+[33m747e779[m Zmieniono localhost na aderes heroku
+[33m684b80b[m Zmiany w package.json do produkcji
+[33m166fc67[m Zmieniono ścieżkę do DB na azure
+[33m5351ca8[m Naprawienie błędów otrzymanych z ng lint
+[33m6edd309[m Kilka drobnych zmian. Usunięto zbędne komentarze i console.logi
+[33me181888[m Zrealizowano przekierowywanie ze strony logowania/ rejestracji do strony głównej w przypadku gdy token nie jest pusty
+[33m35c5c00[m Zmieniono sposób wyśiwtlania infy o userze: zamiast przechowyć usera w localstorage jest on pobierany z serwera. Zrealizowano obsługę błędu 401 przy dodawaniu artykułu i na stronie moje-konto: if 401 => wylogowanie i przekierowywanie do strony logowania z returnUrl w queryParams. Dodano wyświetlenie tytułu artykułu przy jedo usuwaniu
+[33m10b9942[m Naprawiono bag związany z tym, że nie było sprawdzane kto edytuje artykuł. Teraz sprawdza się czy zdekodowany user jest userem, który stworzył dany artykuł
+[33m85bb3ce[m Kolejna aktualizacja README
+[33m01dee57[m Aktualizacja README
+[33m01dde3b[m Aktualizacja README
+[33m6123563[m Dodano wyświetlenie kategorii na stronie artykułu. Dodano wyświetlenie infy na user-account jeslie nie ma artykułów z wybranej kategorii
+[33m20e5fbe[m Zamieniono wszędzie gdzie jest wybór kategorii z select, zamiast wypisywania wszystkich option w html stworzono ngFor
+[33m35fabf6[m Zrealizowano wyszukiwanie atykułów wg tytułu
+[33m7a3036a[m Wyniesiono select category z user-account do oddzielnego komponentu
+[33m5721c70[m Zmieniono kolorystykę kciuka like
+[33m7011464[m Wywalono favorites. Zrealizowano natomiast wyświetlenie na user-account polajkowanych przez usera artykułów
+[33m868ad1c[m Naprawiono bug przy wyświetleniu 4 ostatnich artykułów na stronie głównej. Wcześniej przy sumarycznej ilości artykułów z wybranej kategorii mniejszej od 4 wyświetlały się nie wszystkie artykuły
+[33m3cf3a98[m Naprawiono bug przy wyświetleniu artykułów na user-account po usunięciu wybranego (wcześniej lista po usunięciu artykułu się nie aktualizowała)
+[33mc164974[m Merge branch 'developer' into feature1
+[33m584c277[m Usubięto parameter w http request getUserArticlesObs, bo po stronie serwera user jest identyfikowany poprzez dekodowanie tokena. Usunięto headers z pozostałych funkcji
+[33m3721587[m Zrealizowano możliwość wyświetlenia artykułów według wybranej kategorii na user-account
+[33mbb720bf[m Dodano footer
+[33m52d575f[m Usunięto niepotrzebne pliki z asstets/img. Zmineiono favicon.icon
+[33m40c74b8[m Dokończono realizację edycji wybranego artykułu
+[33m7c1c896[m Dodano modal window do user-account z pytaniem czy user na pewno chce usunąć artykuł. Zrealizowana obsługa akceptacji/ nie akceptacji tego wyboru. Zmieniono trochę wygląd strony user-account. Usunięto edit-article.comp. Zamiast tego funkcjonalność edycji dodano do add-article.comp. Zrealizowano przejście do edit-article
+[33ma70dd92[m Naprawiono parę błędów obsługi błędów wyświetlenia artykułu i stawiania/ usuwania lajków
+[33m937c8b8[m Dodano wyświetlenie artykułów stworzonych przez usera na jego koncie. Zmodyfikowano wyświetlenie wybranego artykułu, teraz jest wyszukiwany na podstawie id a nie title
+[33maa9596c[m Zainstalowano ngx-color-picker. Dodano możliwość wyboru koloru tytułu, tła i ikonki przy tworzniu artykułu. Zmodyfikowano z tego względu article.comp i collapsed-article.comp
+[33m51f0042[m Przeniesiono header do shared, bo tam jest używana dyrektywa Dropdowm. Zrealizowana obsługa błędó w auth. Usunięto html i css dla not-found.component. Naprawiono kilka innych drobnych bagów
+[33mf1db7fd[m Zrealizowano proste dodawanie lajków
+[33mc70ad0d[m Początek pracy nad dodawaniem lajków. Modyfikacja sposobu wyświetlenia infy o userze: zamiast robienia requestów do serwera user jest przechowywany w LocalStorage i w razie potrzeby stąd pobierany. Stylizacja wyświetlenia error i success z serwera przy add-article
+[33mcb23b43[m Modyfikaacja auth.guard. Realizacja automatycznego logowania po rejestracji. Koloryzacja błęddów pochądzączych z serwera przy logowaniu/ rejestracji
+[33m21bfdb4[m Zmieniono zawartość auth.guard. Dodano wyświetlenie w nawigacji linków w zależności od tego czy user jest zalogowany.
+[33m987b623[m Dodano wyświetlenie w odpowiedzi na http rquest artykułu oraz selected-category
+[33md25f973[m Logowanie i rejestracja ze słabą obsługą błędów po stronie serwera. Dodawanie artykułów. Wyświetlanie infy o userze
+[33mb742103[m Bawienie się nad http
+[33me5abcaf[m Bawienie się nad http
+[33mc9ec125[m Zmiany po stronie serwera. Dodanie w add-article wysyłanie do serwera
+[33mfa422ad[m Dodano ng2-slim-loading-bar
+[33m81f6b4e[m Dodanie edit-article.comp
+[33med15691[m Zmieniono vewed na likes. Dodano ikonę Like do article.html
+[33m9f560fd[m Wyświetlenie Email pod username na user-account.html
+[33mde8a7ba[m Dodano obsługę ReactiveForms w auth.Stworzono prosty auth.service. Zrealizowano wyświetlenie usera w user-account. Dodano możliwość wyświetlenia koloru zamiast obrazku w tle artykułu (zmiany zarówno w collapsed-article, article, jak i ad-article
+[33m6e31a55[m Początek pracy nad ReactiveForm w add-article
+[33m067c05d[m W selected-category zmianiono snapshot.params na paramMap.subscribe
+[33m9be5227[m Zmieniono Date w article na string
+[33ma9dcbea[m Obsługa http zakomentowana
+[33m88aef79[m Początki tworzenia http zapytań do serwera w service. Naprawiony bug podwójnego pobierania artykułów (w collapsed-category i selected-category). Zostawiono pobieranie danych tylko w collapsed-category, gdyż jest on wspólny dla dla selected-category i home-us
+[33m6c23847[m Dodano klasę col-md-4 dla wyświetlenia app-collapsed-articles
+[33m8819c8d[m Merge branch 'feature' into developer
+[33m9e407ca[m Dodana kategoria Wszystkie
+[33madba8a3[m Stworzono szkilet backendu
+[33mc67011f[m Zmiany w template user-account
+[33m33a4f37[m Modyfikacja 404-error.png
+[33m6082f3f[m Małe zmiany w widoku add-article
+[33m4d00113[m Design strony 404
+[33m7745d8f[m Dodano shadow do contBgr w style.css
+[33mff8aafd[m Kilka zmian w designie user-account
+[33mf818a7f[m Kilka zmian w designie user-account
+[33m857fcfe[m Stworzono template user-account
+[33m4280ead[m Stworzono prosty sort pipe, sortujący listę wg title
+[33m83b8dbf[m Stworzono search pipe. Ale jeszcze nie wyszukuje się nic
+[33mdc6a060[m Usunięto jquery z projektu i dependencies. Stworzono dyrektywę dropdown która pozwala na otwieranie dropdown w menu -> kategorie. Dodnao otwieranie i zamykanie toggle nawigacji w odpowiedzi na onClick(). Dodano również zmianę ikony w toggle bar
+[33mb084e12[m W selected-category dodano ngIf sprawdzający czy w wybranej kategorii są artykuły i jeśli nie ma to wyświetla się odpowiedni komunikat
+[33m409e636[m Modyfikacje w header.component szablonie i stylach w celu poprawnego wyświetlenia dropdown Kategorie
+[33m0ff4518[m Zainstalowano jquery i dodano  jsy do angular.json
+[33m633e61d[m Zmieniono padding w btn-search
+[33m076ef65[m Naprawiono realizację lazy-loading w auth
+[33mc32f726[m Zminiono kolejność pół w article.model
+[33m9214abb[m W collapsed-article dodano height dla img
+[33m6bd41c0[m Zmieniono style article.comp, bo przy długim title wychodził poza zdjęcie tytułowe
+[33md508683[m Dodano observables w article.service i subskrybcję danych z serwisu
+[33m076462c[m Usunięto article.service z core.module, bo jest on globalnie udostęoniony w @Injectable
+[33mb0c5612[m Stylizacja login i register pages
+[33mf409154[m Modyfikacja header. Stworzono auth.module z routingiem i komponenty login i register
+[33m20d8d81[m Dodano fixed-top do nawigacji i margin-top do app-component
+[33mc4e63bb[m Przeniesiono search-form do shared/. Stylizacja formularza add-article
+[33m177b17d[m Przeniesiono folder collapsed-category do shared/components
+[33m6036015[m Dodano class.disabled do heading w selected-catgory.component, który uniemożliwia naciśniecię linku Kategoria będąc na tej stronie
+[33mc3e22bf[m Zrealizowano wyświetlenie tylko 4 artykułów na home page
+[33m5559805[m Zrealizowano wyświetlenie artykułów w selected-category.component
+[33m96d389c[m Zrealizowano wyświetlenie kilku kategorii na home page
+[33m5b28004[m Zmienioo kolor btn-see-more. Usunięto pliki html i css category.component
+[33m410b38f[m Stworzono prosty article.service. Zrealizowano wstarzykiwanie zależności z tego serwisu do article.component i collapsed-category.component
+[33m7b7a834[m zrealizowano routing
+[33mfc6e776[m pierwsze kroki w nawigacji między stronami
+[33mb8b8ea1[m Dodano NotFoundComponent do routingu. Początek działań nad wyświetleniem wybranego artykułu
+[33m7164b41[m zmiany w style.css
+[33m65a1d65[m zmodyfikowano styles.css. Dodano zdarzenie onFavorite() do star
+[33m20318f5[m dodano reset btn w add-article. Przeniesiono container backgroud do style.css
+[33m715426e[m stworzono prosty formularz dodawania artykułu
+[33m45952a6[m zmiany w user.model
+[33m934843d[m zmiany w article.model. Zrealizowno proste da-bi między collapsed-category a collapsed-article
+[33m908eeaf[m zmiany w article.model
+[33m6629c9a[m dodano mb-5 do search-form
+[33m3d75c86[m stworzono szablon strony article
+[33m9ff6594[m zmiany w search-form2
+[33me5e4592[m zmiany w search-form
+[33m71c6b77[m stworzono pusty article.component
+[33meb2a64e[m małe zmiany w collapsed-category
