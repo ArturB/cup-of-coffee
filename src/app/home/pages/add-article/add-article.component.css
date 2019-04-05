@@ -35,15 +35,6 @@
     max-width: 70%;
 }
 
-@media screen and (max-width: 575px) {
-    .heading h1 {
-        font-size: 2.0rem;
-        max-width: 100%;
-    }
-    .container h5 {
-        max-width: 100%;
-    }
-}
 
 /*  form style */
 .form-group {
@@ -56,10 +47,6 @@
     padding-left: 0.5rem;
 }
 
-.form-control {
-    width: 100%;
-}
-
 textarea.form-control {
     min-height: 230px;
 }
@@ -67,6 +54,30 @@ textarea.form-control {
 .tbColor {
    cursor: pointer;
 }
+
+
+.btnGroup {
+    padding-left: 0.5rem;
+
+}
+
+@media screen and (max-width: 576px) {
+    .heading h1 {
+        font-size: 2.4rem;
+        max-width: 100%;
+    }
+    .container h5 {
+        max-width: 100%;
+    }
+    .btn-lg {
+        display: block;
+        width: 100%;
+    }
+    .btnGroup {
+        padding-left: 0;
+    }
+}
+
 @media screen and (min-width: 768px) {
     .tbColor {
         width: 140px;
@@ -80,11 +91,6 @@ textarea.form-control {
     }
 }
 
-
-.btnGroup {
-    padding-left: 0.5rem;
-
-}
 
 
 /* @media (max-width: 992px) {

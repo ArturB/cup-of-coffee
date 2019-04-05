@@ -77,12 +77,12 @@
 
     <div class="form-group">
       <label for="faIcon" class="labelStyle icLabel">Ikonka</label>
-      <select class="form-control custom-select icSelect" id="faIcon" formControlName="faIcon">
+      <select class="form-control custom-select icSelect mb-2 mb-md-0" id="faIcon" formControlName="faIcon">
         <option *ngFor="let ic of iconsArray" [value]="ic">
           {{ ic }}
         </option>
       </select>
-      <span class="">Twój wybór: <i class="fa fa-2x" [ngClass]="showIc()"></i></span>
+      <span>Twój wybór: <i class="fa fa-2x" [ngClass]="showIc()"></i></span>
 
       <div *ngIf="newArtForm.get('faIcon').invalid && newArtForm.get('faIcon').touched"
           class="alert alert-danger mt-2">
@@ -106,21 +106,21 @@
     </div>
 
     <div class="btnGroup">
-      <button type="button" (click)="onReset()" class="btn btn-lg btnReset mr-4">Anuluj<i class="fa fa-times ml-2 my-auto"></i></button>
       <button 
         *ngIf="!onEdit"
         type="submit" 
         [disabled]="newArtForm.invalid"
-        class="btn btn-lg btnPink"
+        class="btn btn-lg btnPink mr-0 mr-sm-4"
       >Dodaj artykuł<i class="fa fa-save ml-2 my-auto"></i>
       </button>
       <button 
         *ngIf="onEdit"
         type="submit" 
         [disabled]="newArtForm.invalid"
-        class="btn btn-lg btnPink"
+        class="btn btn-lg btnPink mr-0 mr-sm-4"
       >Zapisz zmiany<i class="fa fa-save ml-2 my-auto"></i>
       </button>
+      <button type="button" (click)="onReset()" class="btn btn-lg btnReset mt-3 mt-sm-0">Anuluj<i class="fa fa-times ml-2 my-auto"></i></button>
     </div> 
 
     <p *ngIf="success" class="mt-4 mb-4 alert alert-success mt-2">{{success}}</p>
