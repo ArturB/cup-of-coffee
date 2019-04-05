@@ -181,8 +181,8 @@ export class AddArticleComponent implements OnInit, OnDestroy {
     // console.log(this.article.title)
   }
 
-  chooseIc() {
-    this.article.artColors[2] = this.newArtForm.value.faIcon;
+  showIc() {
+    this.newArtForm.value.faIcon;
   }
 
 

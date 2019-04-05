@@ -77,12 +77,12 @@
 
     <div class="form-group">
       <label for="faIcon" class="labelStyle icLabel">Ikonka</label>
-      <select class="form-control custom-select icSelect" id="faIcon" formControlName="faIcon" (click)="chooseIc()">
+      <select class="form-control custom-select icSelect" id="faIcon" formControlName="faIcon">
         <option *ngFor="let ic of iconsArray" [value]="ic">
           {{ ic }}
         </option>
       </select>
-      <span class="">Twój wybór: <i class="fa fa-2x" [ngClass]="article.artColors[2]"></i></span>
+      <span class="">Twój wybór: <i class="fa fa-2x" [ngClass]="showIc()"></i></span>
 
       <div *ngIf="newArtForm.get('faIcon').invalid && newArtForm.get('faIcon').touched"
           class="alert alert-danger mt-2">
