@@ -90,6 +90,7 @@ export class AddArticleComponent implements OnInit, OnDestroy {
 
   success: string;
   error: string;
+  info: string;
 
   onEdit = false;
 
@@ -279,6 +280,8 @@ export class AddArticleComponent implements OnInit, OnDestroy {
       author: '',
       category: this.catOptions[0].value
     });
+    this.info = 'Formularz został zresetowany';
+    setTimeout(() => this.info = null, 4000);
   }
 
   ngOnDestroy() {
