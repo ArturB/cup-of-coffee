@@ -1,0 +1,7 @@
+version: '3'
+services:
+  c2:
+    build: . 
+    image: arturbrodzki/c2:c2
+    ports: 
+    - "8080:80" # -HOST:CONTAINER
