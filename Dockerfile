@@ -12,8 +12,8 @@ RUN dnf install -y \
         npm nodejs
 
 # Install npm dependencies
-RUN npm install -g @angular/cli \
-    npm install
+RUN npm install -g @angular/cli
+RUN npm install
 
 # Run app, listening on port 80
 ENTRYPOINT ["ng", "serve"]
