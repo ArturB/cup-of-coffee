@@ -82,7 +82,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cup-of-coffee:build"
+            "browserTarget": "cup-of-coffee:build",
+            "host": "0.0.0.0",
+            "port": 8080,
+            "disableHostCheck": true
           },
           "configurations": {
             "production": {

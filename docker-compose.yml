@@ -1,7 +1,16 @@
 version: '3'
 services:
-  c2:
+
+  # Development image, stored on DockerHub
+  c2-ab:
     build: . 
     image: arturbrodzki/c2:c2
     ports: 
-    - "8080:80" # -HOST:CONTAINER
+    - "8080:8080" # HOST:CONTAINER
+  
+  # Production image, intended for Cloud Run
+  c2-cr:
+    build: . 
+    image: gcr.io/phrasal-talon-160919/c2
+    ports: 
+    - "80:8080" # HOST:CONTAINER

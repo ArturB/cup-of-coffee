@@ -2,23 +2,18 @@
 FROM fedora:29
 
 # Set the working directory to /app
+# and copy the current directory to it
 WORKDIR /app
-
-# Copy the current directory contents into the container at /app
 COPY . /app
-RUN cd /app
 
-# Install basic network diagnostic tools
-RUN dnf install nmap -y
-# Install NodeJS
-RUN dnf install npm nodejs -y
+# Install dnf dependencies
+RUN dnf install -y \
+        nmap \
+        npm nodejs
 
 # Install npm dependencies
-RUN npm install -g @angular/cli
-RUN npm install
+RUN npm install -g @angular/cli \
+    npm install
 
-# Make required ports available to outside world
-EXPOSE 80
-
-# Run app
-ENTRYPOINT ng serve --host 0.0.0.0 --port 80
+# Run app, listening on port 80
+ENTRYPOINT ["ng", "serve"]
