@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  # DockerHub
+  c2:
+    build: ..
+    image: arturbrodzki/c2:linux-x86_64
+    ports: 
+    - "80:8080" # HOST:CONTAINER
+  
+  # Cloud Run
+  c2-cr:
+    build: ..
+    image: gcr.io/phrasal-talon-160919/c2
+    ports: 
+    - "80:8080" # HOST:CONTAINER
