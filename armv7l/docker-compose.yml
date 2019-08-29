@@ -3,7 +3,7 @@ services:
 
   # DockerHub
   c2:
-    build: .
+    build: .. 
     image: arturbrodzki/c2:linux-armv7l
     ports: 
     - "80:8080" # HOST:CONTAINER
