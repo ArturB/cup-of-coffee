@@ -16,4 +16,4 @@ RUN npm install -g @angular/cli
 RUN npm install
 
 # Run app, listening on port 80
-ENTRYPOINT ["ng", "serve"]
+ENTRYPOINT ["ng", "serve", "-prod"]
