@@ -12,7 +12,7 @@ exports.config = {
     'browserName': 'chrome'
   },
   directConnect: true,
-  baseUrl: 'https://cupofcoffee.herokuapp.com/',
+  baseUrl: 'https://daria.brodzki.org/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,

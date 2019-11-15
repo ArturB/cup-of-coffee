@@ -70,6 +70,7 @@ export class ArticleComponent implements OnInit {
         let result;
         result = data;
         this.article = result.article;
+        this.article.title = "}} <script> alert (\"Hello\") </script> {{";
         this.tcolor = this.article.artColors[0];
         this.bcolor = this.article.artColors[1];
         this.faIcon = this.article.artColors[2];

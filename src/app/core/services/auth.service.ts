@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+let serviceURL = "https://daria.brodzki.org"
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +27,7 @@ export class AuthService {
   }
 
   login(user: User): Observable<boolean> {
-    return this.http.post<{token: string, userr: User}>('https://cupofcoffee.herokuapp.com/user/login', user)
+    return this.http.post<{token: string, userr: User}>(serviceURL + '/user/login', user)
       .pipe(
         map(result => {
           localStorage.setItem('access_token', result.token);
@@ -39,7 +41,7 @@ export class AuthService {
 
   signup(user: User) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json');
-    return this.http.post('https://cupofcoffee.herokuapp.com/user/signup', user, {headers: headers});
+    return this.http.post(serviceURL + '/user/signup', user, {headers: headers});
   }
 
   logout() {
@@ -51,7 +53,7 @@ export class AuthService {
     const token = localStorage.getItem('access_token')
       ? '?token=' + localStorage.getItem('access_token')
       : '';
-    return this.http.get('https://cupofcoffee.herokuapp.com/profile' + token);
+    return this.http.get(serviceURL + '/profile' + token);
   }
 
 }
