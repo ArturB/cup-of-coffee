@@ -4,7 +4,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 import { Article } from '../models/article.model';
 
-let serviceURL = "https://daria.brodzki.org";
+let serviceURL = "https://cupofcoffee.herokuapp.com";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class ArticleService {
 
   getArticleObsByCategory(artCategory: string): Observable<Array<Article>> {
     const params = new HttpParams().set('category', artCategory);
-    return this.http.get<Array<Article>>(serviceURL + '/category/', {params: params});
+    return this.http.get<Array<Article>>(serviceURL + '/articles/category/', {params: params});
   }
 
   getArticleObsById(_id: string): Observable<Article> {
