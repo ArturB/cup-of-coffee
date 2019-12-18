@@ -1,0 +1,10 @@
+[Unit]
+Description = Cup of Coffee Node server
+After = network-online.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c 'cd /mnt/shared/Projekty/cup-of-coffee && node server.js'
+
+[Install]
+WantedBy=multi-user.target

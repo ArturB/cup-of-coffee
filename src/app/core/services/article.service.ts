@@ -4,7 +4,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 import { Article } from '../models/article.model';
 
-let serviceURL = "https://cupofcoffee.herokuapp.com";
+let serviceURL = "127.0.0.1";
 
 @Injectable({
   providedIn: 'root'

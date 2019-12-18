@@ -1,5 +1,3 @@
-#/bin/bash
+#!/bin/bash
 
-sudo echo "Starting deploy..."
-ng build --prod --aot
-sudo cp -rv dist/* /usr/share/nginx/daria.brodzki.org/
+sudo systemctl daemon-reload && sudo systemctl restart cup-of-coffee.service
