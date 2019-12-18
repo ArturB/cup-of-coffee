@@ -4,7 +4,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 import { Article } from '../models/article.model';
 
-let serviceURL = "127.0.0.1";
+let serviceURL = "";
 
 @Injectable({
   providedIn: 'root'

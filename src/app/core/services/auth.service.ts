@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-let serviceURL = "127.0.0.1"
+let serviceURL = ""
 
 @Injectable({
   providedIn: 'root'
