@@ -4,7 +4,8 @@ After = network-online.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash -c 'cd /mnt/shared/Projekty/cup-of-coffee && node server.js'
+ExecStart=/bin/bash -c 'cd /home/artur/Projekty/cup-of-coffee && node server.js'
 
 [Install]
 WantedBy=multi-user.target
+
