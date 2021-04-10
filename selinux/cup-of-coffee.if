@@ -1,0 +1,40 @@
+
+## <summary>policy for cup-of-coffee</summary>
+
+########################################
+## <summary>
+##	Execute cup-of-coffee_exec_t in the cup-of-coffee domain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`cup-of-coffee_domtrans',`
+	gen_require(`
+		type cup-of-coffee_t, cup-of-coffee_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, cup-of-coffee_exec_t, cup-of-coffee_t)
+')
+
+######################################
+## <summary>
+##	Execute cup-of-coffee in the caller domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`cup-of-coffee_exec',`
+	gen_require(`
+		type cup-of-coffee_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	can_exec($1, cup-of-coffee_exec_t)
+')

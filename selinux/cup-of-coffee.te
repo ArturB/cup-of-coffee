@@ -1,0 +1,50 @@
+policy_module(cup-of-coffee, 1.0.0)
+
+require {
+	type net_conf_t;
+	type unreserved_port_t;
+	type node_t;
+	type mongod_port_t;
+	type cert_t;
+	type cup-of-coffee_t;
+	type httpd_var_lib_t;
+	type fusefs_t;
+	class process execmem;
+	class udp_socket { connect create getattr setopt };
+	class tcp_socket { accept bind connect create getattr getopt listen name_bind name_connect node_bind setopt shutdown };
+	class netlink_route_socket { bind create getattr getopt nlmsg_read setopt };
+	class file { getattr open read };
+	class dir { getattr search };
+}
+
+########################################
+#
+# Declarations
+#
+
+type cup-of-coffee_t;
+type cup-of-coffee_exec_t;
+init_daemon_domain(cup-of-coffee_t, cup-of-coffee_exec_t)
+
+#permissive cup-of-coffee_t;
+
+########################################
+#
+# cup-of-coffee local policy
+#
+
+#============= cup-of-coffee_t ==============
+allow cup-of-coffee_t cert_t:dir search;
+allow cup-of-coffee_t cert_t:file { getattr open read };
+allow cup-of-coffee_t fusefs_t:dir { getattr search };
+allow cup-of-coffee_t fusefs_t:file { getattr open read };
+allow cup-of-coffee_t httpd_var_lib_t:dir search;
+allow cup-of-coffee_t mongod_port_t:tcp_socket name_connect;
+allow cup-of-coffee_t net_conf_t:file { getattr open read };
+allow cup-of-coffee_t node_t:tcp_socket node_bind;
+allow cup-of-coffee_t self:netlink_route_socket { bind create getattr getopt nlmsg_read read setopt write };
+allow cup-of-coffee_t self:process execmem;
+allow cup-of-coffee_t self:tcp_socket { accept bind connect create getattr getopt listen read setopt shutdown write };
+allow cup-of-coffee_t self:udp_socket { connect create getattr setopt write };
+allow cup-of-coffee_t unreserved_port_t:tcp_socket name_bind;
+
